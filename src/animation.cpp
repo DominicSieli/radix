@@ -5,10 +5,10 @@ namespace radix
 	Animation::Animation()
 	{}
 
-	Animation::Animation(unsigned int index, unsigned int speed, unsigned int frames)
+	Animation::Animation(unsigned int index, unsigned int frames, unsigned int speed)
 	{
 		this->index = index;
-		this->speed = speed;
 		this->frames = frames;
+		this->speed = speed;
 	}
 }
