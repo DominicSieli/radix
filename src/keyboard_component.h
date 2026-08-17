@@ -1,12 +1,12 @@
-#ifndef KEYBOARD_COMPONENT
-#define KEYBOARD_COMPONENT
+#ifndef KEYBOARD_COMPONENT_H
+#define KEYBOARD_COMPONENT_H
 
 #include "game.h"
 #include "entity_manager.h"
 #include "sprite_component.h"
 #include "transform_component.h"
 
-namespace Radix
+namespace radix
 {
 	class KeyboardComponent: public Component
 	{
@@ -24,11 +24,11 @@ namespace Radix
 
 			KeyboardComponent(std::string, std::string, std::string, std::string, std::string);
 
-			std::string SDL_Keycode(std::string);
+			std::string sdl_keycode(std::string);
 
-			void Initialize() override;
+			void initialize() override;
 
-			void Update(float) override;
+			void update(float) override;
 	};
 }
 

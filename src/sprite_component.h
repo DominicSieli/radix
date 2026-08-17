@@ -1,5 +1,5 @@
-#ifndef SPRITE_COMPONENT
-#define SPRITE_COMPONENT
+#ifndef SPRITE_COMPONENT_H
+#define SPRITE_COMPONENT_H
 
 #include <string>
 #include <SDL2/SDL.h>
@@ -9,7 +9,7 @@
 #include "texture_manager.h"
 #include "transform_component.h"
 
-namespace Radix
+namespace radix
 {
 	class SpriteComponent: public Component
 	{
@@ -33,15 +33,15 @@ namespace Radix
 
 			SpriteComponent(std::string, unsigned int, unsigned int, bool, bool);
 
-			void Play(std::string);
+			void play(std::string);
 
-			void SetTexture(std::string);
+			void set_texture(std::string);
 
-			void Initialize() override;
+			void initialize() override;
 
-			void Update(float) override;
+			void update(float) override;
 
-			void Render() override;
+			void render() override;
 	};
 }
 

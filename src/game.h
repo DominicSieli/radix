@@ -1,11 +1,11 @@
-#ifndef GAME
-#define GAME
+#ifndef GAME_H
+#define GAME_H
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_image.h>
 
-namespace Radix
+namespace radix
 {
 	class AssetManager;
 
@@ -26,25 +26,25 @@ namespace Radix
 
 			~Game();
 
-			bool Running() const;
+			bool is_running() const;
 
-			void LoadLevel(int);
+			void load_level(int);
 
-			void Input();
+			void input();
 
-			void Update();
+			void update();
 
-			void Render();
+			void render();
 
-			void UpdateCameraMovement();
+			void update_camera_movement();
 
-			void CheckCollisions();
+			void check_collisions();
 
-			void ProcessGameOver();
+			void process_gameover();
 
-			void ProcessNextLevel(int);
+			void process_next_level(int);
 
-			void Destroy();
+			void destroy();
 	};
 }
 

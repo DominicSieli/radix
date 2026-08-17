@@ -1,12 +1,12 @@
-#ifndef ENTITY_MANAGER
-#define ENTITY_MANAGER
+#ifndef ENTITY_MANAGER_H
+#define ENTITY_MANAGER_H
 
 #include <vector>
 
 #include "entity.h"
 #include "component.h"
 
-namespace Radix
+namespace radix
 {
 	class EntityManager
 	{
@@ -14,27 +14,27 @@ namespace Radix
 			std::vector<Entity*> entities;
 
 		public:
-			void Clear();
+			void clear();
 
-			void Update(float);
+			void update(float);
 
-			void Render();
+			void render();
 
-			bool IsEmpty() const;
+			bool is_empty() const;
 
-			void ListEntities() const;
+			void list_entities() const;
 
-			Entity& AddEntity(std::string, LayerType);
+			Entity& add_entity(std::string, LayerType);
 
-			std::vector<Entity*> GetEntities() const;
+			std::vector<Entity*> get_entities() const;
 
-			std::vector<Entity*> GetEntitiesByLayer(LayerType) const;
+			std::vector<Entity*> get_entities_by_layer(LayerType) const;
 
-			CollisionType CheckCollisions() const;
+			CollisionType check_collisions() const;
 
-			void DestroyInactiveEntities();
+			void destroy_inactive_entities();
 
-			unsigned int EntityCount();
+			unsigned int entity_count();
 	};
 }
 

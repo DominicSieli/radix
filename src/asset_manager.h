@@ -1,5 +1,5 @@
-#ifndef ASSET_MANAGER
-#define ASSET_MANAGER
+#ifndef ASSET_MANAGER_H
+#define ASSET_MANAGER_H
 
 #include <map>
 #include <string>
@@ -10,7 +10,7 @@
 #include "entity_manager.h"
 #include "texture_manager.h"
 
-namespace Radix
+namespace radix
 {
 	class AssetManager
 	{
@@ -24,15 +24,15 @@ namespace Radix
 
 			~AssetManager();
 
-			void Clear();
+			void clear();
 
-			SDL_Texture* GetTexture(std::string);
+			TTF_Font* get_font(std::string);
 
-			void AddTexture(std::string, const char*);
+			SDL_Texture* get_texture(std::string);
 
-			TTF_Font* GetFont(std::string);
+			void add_texture(std::string, const char*);
 
-			void AddFont(std::string, const char*, int);
+			void add_font(std::string, const char*, int);
 	};
 }
 

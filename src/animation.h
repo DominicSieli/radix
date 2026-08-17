@@ -1,7 +1,7 @@
-#ifndef ANIMATION
-#define ANIMATION
+#ifndef ANIMATION_H
+#define ANIMATION_H
 
-namespace Radix
+namespace radix
 {
 	class Animation
 	{

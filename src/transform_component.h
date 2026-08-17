@@ -1,5 +1,5 @@
-#ifndef TRANSFORM_COMPONENT
-#define TRANSFORM_COMPONENT
+#ifndef TRANSFORM_COMPONENT_H
+#define TRANSFORM_COMPONENT_H
 
 #include <SDL2/SDL.h>
 
@@ -7,7 +7,7 @@
 #include "entity_manager.h"
 #include "../include/glm/glm.hpp"
 
-namespace Radix
+namespace radix
 {
 	class TransformComponent: public Component
 	{
@@ -19,11 +19,11 @@ namespace Radix
 
 			TransformComponent(int, int, int, int, int, int, int);
 
-			void Initialize() override;
+			void initialize() override;
 
-			void Update(float) override;
+			void update(float) override;
 
-			void Render() override;
+			void render() override;
 	};
 }
 

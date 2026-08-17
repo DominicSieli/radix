@@ -2,7 +2,7 @@
 
 #include "entity.h"
 
-namespace Radix
+namespace radix
 {
 	Entity::Entity(EntityManager& entity_manager): entity_manager{entity_manager}
 	{
@@ -14,33 +14,33 @@ namespace Radix
 		this->active = true;
 	}
 
-	void Entity::Update(float delta_time)
+	void Entity::update(float delta_time)
 	{
 		for(auto& component : components)
 		{
-			component->Update(delta_time);
+			component->update(delta_time);
 		}
 	}
 
-	void Entity::Render()
+	void Entity::render()
 	{
 		for(auto& component : components)
 		{
-			component->Render();
+			component->render();
 		}
 	}
 
-	void Entity::Destroy()
+	void Entity::destroy()
 	{
 		this->active = false;
 	}
 
-	bool Entity::Active() const
+	bool Entity::is_active() const
 	{
 		return this->active;
 	}
 
-	void Entity::ListComponents() const
+	void Entity::list_components() const
 	{
 		for(auto component: component_type_map)
 		{

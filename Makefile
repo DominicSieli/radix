@@ -7,7 +7,7 @@ LIB_DIRECTORY = radix/lib
 INCLUDE_DIRECTORY = include
 BINARY = ./radix/lib/lib_radix.a
 HEADERS_DIRECTORY = radix/headers
-CXXFLAGS = -w -std=c++20 -Wfatal-errors
+CXXFLAGS = -w -std=c++20 -Wall -Wextra -Wpedantic -Wfatal-errors
 CHECK_FLAGS = --quiet --enable=all --force --error-exitcode=1
 
 IFLAGS = -I.

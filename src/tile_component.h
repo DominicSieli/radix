@@ -1,5 +1,5 @@
-#ifndef TILE_COMPONENT
-#define TILE_COMPONENT
+#ifndef TILE_COMPONENT_H
+#define TILE_COMPONENT_H
 
 #include <SDL2/SDL.h>
 
@@ -7,7 +7,7 @@
 #include "entity_manager.h"
 #include "../include/glm/glm.hpp"
 
-namespace Radix
+namespace radix
 {
 	class TileComponent: public Component
 	{
@@ -21,9 +21,9 @@ namespace Radix
 
 			~TileComponent();
 
-			void Update(float) override;
+			void update(float) override;
 
-			void Render() override;
+			void render() override;
 	};
 }
 

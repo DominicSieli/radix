@@ -1,11 +1,11 @@
-#ifndef PROJECTILE_EMITTER_COMPONENT
-#define PROJECTILE_EMITTER_COMPONENT
+#ifndef PROJECTILE_EMITTER_COMPONENT_H
+#define PROJECTILE_EMITTER_COMPONENT_H
 
 #include "entity_manager.h"
 #include "transform_component.h"
 #include "../include/glm/glm.hpp"
 
-namespace Radix
+namespace radix
 {
 	class ProjectileEmitterComponent: public Component
 	{
@@ -20,9 +20,9 @@ namespace Radix
 		public:
 			ProjectileEmitterComponent(int, int, int, bool);
 
-			void Initialize() override;
+			void initialize() override;
 
-			void Update(float) override;
+			void update(float) override;
 	};
 }
 

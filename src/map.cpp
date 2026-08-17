@@ -4,7 +4,7 @@
 #include "entity_manager.h"
 #include "tile_component.h"
 
-namespace Radix
+namespace radix
 {
 	extern EntityManager entity_manager;
 
@@ -18,7 +18,7 @@ namespace Radix
 	Map::~Map()
 	{}
 
-	void Map::LoadMap(std::string file_path, int map_size_x, int map_size_y)
+	void Map::load_map(std::string file_path, int map_size_x, int map_size_y)
 	{
 		std::fstream map_file;
 		map_file.open(file_path);
@@ -32,7 +32,7 @@ namespace Radix
 				int source_rectangle_y = atoi(&character) * tile_size;
 				map_file.get(character);
 				int source_rectangle_x = atoi(&character) * tile_size;
-				AddTile(source_rectangle_x, source_rectangle_y, x * (scale * tile_size), y * (scale * tile_size));
+				add_tile(source_rectangle_x, source_rectangle_y, x * (scale * tile_size), y * (scale * tile_size));
 				map_file.ignore();
 			}
 		}
@@ -40,9 +40,9 @@ namespace Radix
 		map_file.close();
 	}
 
-	void Map::AddTile(int source_rectangle_x, int source_rectangle_y, int x, int y)
+	void Map::add_tile(int source_rectangle_x, int source_rectangle_y, int x, int y)
 	{
-		Entity& new_tile(entity_manager.AddEntity("Tile", TILEMAP));
-		new_tile.AddComponent<TileComponent>(source_rectangle_x, source_rectangle_y, x, y, tile_size, scale, texture_id);
+		Entity& new_tile(entity_manager.add_entity("Tile", TILEMAP));
+		new_tile.add_component<TileComponent>(source_rectangle_x, source_rectangle_y, x, y, tile_size, scale, texture_id);
 	}
 }

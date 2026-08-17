@@ -1,14 +1,14 @@
-#ifndef COLLISION
-#define COLLISION
+#ifndef COLLISION_H
+#define COLLISION_H
 
 #include <SDL2/SDL.h>
 
-namespace Radix
+namespace radix
 {
 	class Collision
 	{
 		public:
-			static bool CheckRectangleCollision(const SDL_Rect&, const SDL_Rect&);
+			static bool check_rectangle_collision(const SDL_Rect&, const SDL_Rect&);
 	};
 }
 

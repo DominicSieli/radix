@@ -1,5 +1,5 @@
-#ifndef COLLIDER_COMPONENT
-#define COLLIDER_COMPONENT
+#ifndef COLLIDER_COMPONENT_H
+#define COLLIDER_COMPONENT_H
 
 #include <SDL2/SDL.h>
 
@@ -7,7 +7,7 @@
 #include "entity_manager.h"
 #include "transform_component.h"
 
-namespace Radix
+namespace radix
 {
 	class ColliderComponent: public Component
 	{
@@ -20,9 +20,9 @@ namespace Radix
 
 			ColliderComponent(std::string, int, int, int, int);
 
-			void Initialize() override;
+			void initialize() override;
 
-			void Update(float) override;
+			void update(float) override;
 	};
 }
 

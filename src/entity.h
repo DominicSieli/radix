@@ -1,5 +1,5 @@
-#ifndef ENTITY
-#define ENTITY
+#ifndef ENTITY_H
+#define ENTITY_H
 
 #include <map>
 #include <vector>
@@ -10,7 +10,7 @@
 #include "component.h"
 #include "entity_manager.h"
 
-namespace Radix
+namespace radix
 {
 	class EntityManager;
 
@@ -30,35 +30,35 @@ namespace Radix
 
 			Entity(EntityManager&, std::string, LayerType);
 
-			void Update(float);
+			void update(float);
 
-			void Render();
+			void render();
 
-			void Destroy();
+			void destroy();
 
-			bool Active() const;
+			bool is_active() const;
 
-			void ListComponents() const;
+			void list_components() const;
 
 			template<typename T, typename... T_ARGS>
-				T& AddComponent(T_ARGS&&... args)
+				T& add_component(T_ARGS&&... args)
 				{
 					T* component(new T(std::forward<T_ARGS>(args)...));
 					component->entity = this;
 					components.emplace_back(component);
 					component_type_map[&typeid(*component)] = component;
-					component->Initialize();
+					component->initialize();
 					return *component;
 				}
 
 			template<typename T>
-				T* GetComponent()
+				T* get_component()
 				{
 					return static_cast<T*>(component_type_map[&typeid(T)]);
 				}
 
 			template<typename T>
-				bool HasComponent() const
+				bool has_component() const
 				{
 					return component_type_map.count(&typeid(T));
 				}

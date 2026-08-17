@@ -1,14 +1,14 @@
 #include "animation.h"
 
-namespace Radix
+namespace radix
 {
 	Animation::Animation()
 	{}
 
-	Animation::Animation(unsigned int index, unsigned int frames, unsigned int speed)
+	Animation::Animation(unsigned int index, unsigned int speed, unsigned int frames)
 	{
 		this->index = index;
-		this->frames = frames;
 		this->speed = speed;
+		this->frames = frames;
 	}
 }

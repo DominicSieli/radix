@@ -1,6 +1,6 @@
 #include "projectile_emitter_component.h"
 
-namespace Radix
+namespace radix
 {
 	ProjectileEmitterComponent::ProjectileEmitterComponent(int speed, int degree, int range, bool loop)
 	{
@@ -10,14 +10,14 @@ namespace Radix
 		this->loop = loop;
 	}
 
-	void ProjectileEmitterComponent::Initialize()
+	void ProjectileEmitterComponent::initialize()
 	{
-		transform_component = entity->GetComponent<TransformComponent>();
+		transform_component = entity->get_component<TransformComponent>();
 		origin = glm::vec2(transform_component->position.x, transform_component->position.y);
 		transform_component->velocity = glm::vec2(glm::cos(radian) * speed, glm::sin(radian) * speed);
 	}
 
-	void ProjectileEmitterComponent::Update(float delta_time)
+	void ProjectileEmitterComponent::update(float delta_time)
 	{
 		if(glm::distance(transform_component->position, origin) > range)
 		{
@@ -28,7 +28,7 @@ namespace Radix
 			}
 			else
 			{
-				entity->Destroy();
+				entity->destroy();
 			}
 		}
 	}

@@ -1,9 +1,9 @@
-#ifndef MAP
-#define MAP
+#ifndef MAP_H
+#define MAP_H
 
 #include <string>
 
-namespace Radix
+namespace radix
 {
 	class Map
 	{
@@ -17,9 +17,9 @@ namespace Radix
 
 			~Map();
 
-			void LoadMap(std::string, int, int);
+			void load_map(std::string, int, int);
 
-			void AddTile(int, int, int, int);
+			void add_tile(int, int, int, int);
 	};
 }
 

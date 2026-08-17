@@ -1,12 +1,12 @@
 #include "sprite_component.h"
 
-namespace Radix
+namespace radix
 {
 	SpriteComponent::SpriteComponent(const char* file_path)
 	{
 		this->animated = false;
 		this->fixed = false;
-		SetTexture(file_path);
+		set_texture(file_path);
 	}
 
 	SpriteComponent::SpriteComponent(std::string id, unsigned int frames, unsigned int speed, bool directional, bool fixed)
@@ -39,11 +39,11 @@ namespace Radix
 			this->animation_name = "SingleAnimation";
 		}
 
-		Play(this->animation_name);
-		SetTexture(id);
+		play(this->animation_name);
+		set_texture(id);
 	}
 
-	void SpriteComponent::Play(std::string animation_name)
+	void SpriteComponent::play(std::string animation_name)
 	{
 		frames = animations[animation_name].frames;
 		index = animations[animation_name].index;
@@ -51,21 +51,21 @@ namespace Radix
 		this->animation_name = animation_name;
 	}
 
-	void SpriteComponent::SetTexture(std::string asset_texture_id)
+	void SpriteComponent::set_texture(std::string asset_texture_id)
 	{
-		texture = Game::asset_manager->GetTexture(asset_texture_id);
+		texture = Game::asset_manager->get_texture(asset_texture_id);
 	}
 
-	void SpriteComponent::Initialize()
+	void SpriteComponent::initialize()
 	{
-		transform_component = entity->GetComponent<TransformComponent>();
+		transform_component = entity->get_component<TransformComponent>();
 		source.x = 0;
 		source.y = 0;
 		source.w = transform_component->dimension.x;
 		source.h = transform_component->dimension.y;
 	}
 
-	void SpriteComponent::Update(float delta_time)
+	void SpriteComponent::update(float delta_time)
 	{
 		if(animated == true)
 		{
@@ -80,8 +80,8 @@ namespace Radix
 		destination.h = static_cast<int>(transform_component->dimension.y * transform_component->scale);
 	}
 
-	void SpriteComponent::Render()
+	void SpriteComponent::render()
 	{
-		TextureManager::Draw(texture, source, destination, sprite_flip);
+		TextureManager::draw(texture, source, destination, sprite_flip);
 	}
 }

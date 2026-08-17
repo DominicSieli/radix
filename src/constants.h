@@ -1,9 +1,9 @@
-#ifndef CONSTANTS
-#define CONSTANTS
+#ifndef CONSTANTS_H
+#define CONSTANTS_H
 
 #include <SDL2/SDL.h>
 
-namespace Radix
+namespace radix
 {
 	const unsigned int FPS = 60;
 	const unsigned int LAYER_COUNT = 7;

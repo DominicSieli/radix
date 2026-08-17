@@ -1,5 +1,5 @@
-#ifndef TEXT_LABEL_COMPONENT
-#define TEXT_LABEL_COMPONENT
+#ifndef TEXT_LABEL_COMPONENT_H
+#define TEXT_LABEL_COMPONENT_H
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
@@ -9,7 +9,7 @@
 #include "asset_manager.h"
 #include "entity_manager.h"
 
-namespace Radix
+namespace radix
 {
 	class TextLabelComponent: public Component
 	{
@@ -23,9 +23,9 @@ namespace Radix
 		public:
 			TextLabelComponent(int, int, std::string, std::string, const SDL_Color&);
 
-			void SetLabelText(std::string, std::string);
+			void set_label_text(std::string, std::string);
 
-			void Render() override;
+			void render() override;
 	};
 }
 

@@ -1,6 +1,6 @@
 #include "collider_component.h"
 
-namespace Radix
+namespace radix
 {
 	ColliderComponent::ColliderComponent(std::string tag, int x, int y, int width, int height)
 	{
@@ -8,17 +8,17 @@ namespace Radix
 		this->collider = {x, y, width, height};
 	}
 
-	void ColliderComponent::Initialize()
+	void ColliderComponent::initialize()
 	{
-		if(entity->HasComponent<TransformComponent>())
+		if(entity->has_component<TransformComponent>())
 		{
-			transform_component = entity->GetComponent<TransformComponent>();
+			transform_component = entity->get_component<TransformComponent>();
 			source_rectangle = {0, 0, (int)transform_component->dimension.x, (int)transform_component->dimension.y};
 			destination_rectangle = {collider.x, collider.y, collider.w, collider.h};
 		}
 	}
 
-	void ColliderComponent::Update(float delta_time)
+	void ColliderComponent::update(float delta_time)
 	{
 		collider.x = static_cast<int>(transform_component->position.x);
 		collider.y = static_cast<int>(transform_component->position.y);

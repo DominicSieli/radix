@@ -3,7 +3,7 @@
 
 #include "entity.h"
 
-namespace Radix
+namespace radix
 {
 	class Entity;
 
@@ -14,11 +14,11 @@ namespace Radix
 
 			virtual ~Component() {}
 
-			virtual void Initialize() {}
+			virtual void initialize() {}
 
-			virtual void Update(float) {}
+			virtual void update(float) {}
 
-			virtual void Render() {}
+			virtual void render() {}
 	};
 }
 
