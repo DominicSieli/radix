@@ -5,11 +5,8 @@
 
 namespace radix
 {
-	const unsigned int FPS = 60;
 	const unsigned int LAYER_COUNT = 7;
-	const unsigned int WINDOW_WIDTH = 800;
-	const unsigned int WINDOW_HEIGHT = 600;
-	const unsigned int FRAME_TARGET_TIME = 1000 / FPS;
+	const unsigned int COLLISION_COUNT = 6;
 
 	const SDL_Color GREEN = {0, 255, 0, 255};
 	const SDL_Color WHITE = {255, 255, 255, 255};
