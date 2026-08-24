@@ -1,3 +1,4 @@
+#include <cmath>
 #include "projectile_emitter_component.h"
 
 namespace radix
@@ -5,7 +6,7 @@ namespace radix
 	ProjectileEmitterComponent::ProjectileEmitterComponent(int speed, int degree, int range, bool loop)
 	{
 		this->speed = speed;
-		this->radian = glm::radians(static_cast<float>(degree));
+		this->radian = degree * std::numbers::pi_v<float> / 180.0f;
 		this->range = range;
 		this->loop = loop;
 	}
@@ -13,13 +14,13 @@ namespace radix
 	void ProjectileEmitterComponent::initialize()
 	{
 		transform_component = entity->get_component<TransformComponent>();
-		origin = glm::vec2(transform_component->position.x, transform_component->position.y);
-		transform_component->velocity = glm::vec2(glm::cos(radian) * speed, glm::sin(radian) * speed);
+		origin = create_vector2(transform_component->position.x, transform_component->position.y);
+		transform_component->velocity = create_vector2(std::cos(radian) * speed, std::sin(radian) * speed);
 	}
 
 	void ProjectileEmitterComponent::update(float delta_time)
 	{
-		if(glm::distance(transform_component->position, origin) > range)
+		if(distance(transform_component->position, origin) > range)
 		{
 			if(loop == true)
 			{

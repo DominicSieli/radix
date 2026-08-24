@@ -4,8 +4,8 @@
 #include <SDL2/SDL.h>
 
 #include "game.h"
+#include "vector2.h"
 #include "entity_manager.h"
-#include "../include/glm/glm.hpp"
 
 namespace radix
 {
@@ -13,9 +13,9 @@ namespace radix
 	{
 		public:
 			int scale;
-			glm::vec2 position;
-			glm::vec2 velocity;
-			glm::vec2 dimension;
+			Vector2 position;
+			Vector2 velocity;
+			Vector2 dimension;
 
 			TransformComponent(int, int, int, int, int, int, int);
 

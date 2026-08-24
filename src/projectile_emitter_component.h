@@ -1,9 +1,9 @@
 #ifndef PROJECTILE_EMITTER_COMPONENT_H
 #define PROJECTILE_EMITTER_COMPONENT_H
 
+#include "vector2.h"
 #include "entity_manager.h"
 #include "transform_component.h"
-#include "../include/glm/glm.hpp"
 
 namespace radix
 {
@@ -14,7 +14,7 @@ namespace radix
 			int speed;
 			int range;
 			float radian;
-			glm::vec2 origin;
+			Vector2 origin;
 			TransformComponent* transform_component;
 
 		public:

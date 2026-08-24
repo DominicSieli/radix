@@ -3,16 +3,16 @@
 
 #include <SDL2/SDL.h>
 
+#include "vector2.h"
 #include "asset_manager.h"
 #include "entity_manager.h"
-#include "../include/glm/glm.hpp"
 
 namespace radix
 {
 	class TileComponent: public Component
 	{
 		public:
-			glm::vec2 position;
+			Vector2 position;
 			SDL_Texture* texture;
 			SDL_Rect source_rectangle;
 			SDL_Rect destination_rectangle;
