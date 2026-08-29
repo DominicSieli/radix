@@ -1,9 +1,9 @@
 #ifndef TEXTURE_MANAGER_H
 #define TEXTURE_MANAGER_H
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
-#include <SDL2/SDL_image.h>
+#include <SDL3/SDL.h>
+#include <SDL3_ttf/SDL_ttf.h>
+#include <SDL3_image/SDL_image.h>
 
 namespace radix
 {
@@ -12,7 +12,7 @@ namespace radix
 		public:
 			static SDL_Texture* load_texture(const char*);
 
-			static void draw(SDL_Texture*, SDL_Rect, SDL_Rect, SDL_RendererFlip);
+			static void draw(SDL_Texture*, SDL_FRect, SDL_FRect, SDL_FlipMode);
 	};
 }
 

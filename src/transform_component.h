@@ -1,7 +1,7 @@
 #ifndef TRANSFORM_COMPONENT_H
 #define TRANSFORM_COMPONENT_H
 
-#include <SDL2/SDL.h>
+#include <SDL3/SDL.h>
 
 #include "game.h"
 #include "vector2.h"

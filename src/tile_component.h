@@ -1,7 +1,7 @@
 #ifndef TILE_COMPONENT_H
 #define TILE_COMPONENT_H
 
-#include <SDL2/SDL.h>
+#include <SDL3/SDL.h>
 
 #include "vector2.h"
 #include "asset_manager.h"
@@ -14,8 +14,8 @@ namespace radix
 		public:
 			Vector2 position;
 			SDL_Texture* texture;
-			SDL_Rect source_rectangle;
-			SDL_Rect destination_rectangle;
+			SDL_FRect source_rectangle;
+			SDL_FRect destination_rectangle;
 
 			TileComponent(int, int, int, int, int, int, std::string);
 

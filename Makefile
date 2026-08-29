@@ -6,11 +6,11 @@ BUILD_DIRECTORY = radix
 LIB_DIRECTORY = radix/lib
 BINARY = ./radix/lib/lib_radix.a
 HEADERS_DIRECTORY = radix/headers
-CXXFLAGS = -w -std=c++20 -Wall -Wextra -Wpedantic -Wfatal-errors
+CXXFLAGS = -w -std=c++23 -Wall -Wextra -Wpedantic -Wfatal-errors
 CHECK_FLAGS = --quiet --enable=all --force --error-exitcode=1
 
 LDFLAGS = -L.
-LDLIBS = -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer
+LDLIBS = -lSDL3 -lSDL3_image -lSDL3_ttf -lSDL3_mixer
 
 build:
 	mkdir -p $(BUILD_DIRECTORY);

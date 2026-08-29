@@ -14,10 +14,10 @@ namespace radix
 
 	void TextLabelComponent::set_label_text(std::string text, std::string font_family)
 	{
-		SDL_Surface* surface = TTF_RenderText_Blended(Game::asset_manager->get_font(font_family), text.c_str(), color);
+		SDL_Surface* surface = TTF_RenderText_Blended(Game::asset_manager->get_font(font_family), text.c_str(), 0, color);
 		texture = SDL_CreateTextureFromSurface(Game::renderer, surface);
-		SDL_FreeSurface(surface);
-		SDL_QueryTexture(texture, nullptr, nullptr, &position.w, &position.h);
+		SDL_DestroySurface(surface);
+		SDL_GetTextureSize(texture, &position.w, &position.h);
 	}
 
 	void TextLabelComponent::render()

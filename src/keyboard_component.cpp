@@ -33,10 +33,10 @@ namespace radix
 
 	void KeyboardComponent::update(float delta_time)
 	{
-		if(Game::event.type == SDL_KEYDOWN)
+		if(Game::event.type == SDL_EVENT_KEY_DOWN)
 		{
 			int speed = 100;
-			std::string key_code = std::to_string(Game::event.key.keysym.sym);
+			std::string key_code = std::to_string(Game::event.key.key);
 
 			if(key_code.compare(up_key) == 0)
 			{
@@ -70,9 +70,9 @@ namespace radix
 			{}
 		}
 
-		if(Game::event.type == SDL_KEYUP)
+		if(Game::event.type == SDL_EVENT_KEY_UP)
 		{
-			std::string key_code = std::to_string(Game::event.key.keysym.sym);
+			std::string key_code = std::to_string(Game::event.key.key);
 
 			if(key_code.compare(up_key) == 0)
 			{

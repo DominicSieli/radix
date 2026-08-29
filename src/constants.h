@@ -1,7 +1,7 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-#include <SDL2/SDL.h>
+#include <SDL3/SDL.h>
 
 namespace radix
 {

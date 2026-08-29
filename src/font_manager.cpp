@@ -8,8 +8,8 @@ namespace radix
 		return TTF_OpenFont(file_name, font_size);
 	}
 
-	void FontManager::draw_font(SDL_Texture* texture, SDL_Rect position)
+	void FontManager::draw_font(SDL_Texture* texture, SDL_FRect position)
 	{
-		SDL_RenderCopy(Game::renderer, texture, nullptr, &position);
+		SDL_RenderTexture(Game::renderer, texture, nullptr, &position);
 	}
 }

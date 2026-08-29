@@ -1,8 +1,8 @@
 #ifndef TEXT_LABEL_COMPONENT_H
 #define TEXT_LABEL_COMPONENT_H
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
+#include <SDL3/SDL.h>
+#include <SDL3_ttf/SDL_ttf.h>
 
 #include "game.h"
 #include "font_manager.h"
@@ -16,7 +16,7 @@ namespace radix
 		private:
 			SDL_Color color;
 			std::string text;
-			SDL_Rect position;
+			SDL_FRect position;
 			SDL_Texture* texture;
 			std::string font_family;
 

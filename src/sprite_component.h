@@ -2,7 +2,7 @@
 #define SPRITE_COMPONENT_H
 
 #include <string>
-#include <SDL2/SDL.h>
+#include <SDL3/SDL.h>
 
 #include "animation.h"
 #include "asset_manager.h"
@@ -18,16 +18,16 @@ namespace radix
 			int frames;
 			bool fixed;
 			bool animated;
-			SDL_Rect source;
+			SDL_FRect source;
 			SDL_Texture* texture;
-			SDL_Rect destination;
+			SDL_FRect destination;
 			unsigned int index = 0;
 			std::string animation_name;
 			TransformComponent* transform_component;
 			std::map<std::string, Animation> animations;
 
 		public:
-			SDL_RendererFlip sprite_flip = SDL_FLIP_NONE;
+			SDL_FlipMode sprite_flip = SDL_FLIP_NONE;
 
 			SpriteComponent(const char*);
 

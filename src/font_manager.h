@@ -1,9 +1,9 @@
 #ifndef FONT_MANAGER_H
 #define FONT_MANAGER_H
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
-#include <SDL2/SDL_image.h>
+#include <SDL3/SDL.h>
+#include <SDL3_ttf/SDL_ttf.h>
+#include <SDL3_image/SDL_image.h>
 
 namespace radix
 {
@@ -12,7 +12,7 @@ namespace radix
 		public:
 			static TTF_Font* load_font(const char*, int);
 
-			static void draw_font(SDL_Texture*, SDL_Rect);
+			static void draw_font(SDL_Texture*, SDL_FRect);
 	};
 }
 

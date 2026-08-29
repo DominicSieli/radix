@@ -1,5 +1,5 @@
-#ifndef COMPONENT
-#define COMPONENT
+#ifndef COMPONENT_H
+#define COMPONENT_H
 
 #include "entity.h"
 
