@@ -2,6 +2,7 @@
 *
 
 # Except
+!src/
 !src/**
 !LICENSE
 !Makefile
