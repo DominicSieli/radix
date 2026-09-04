@@ -1,14 +1,15 @@
 DIR = lib
 CXX = g++
+CFLAGS = -c
 LFLAGS = -L.
 OBJS = ./*.o
 ARCHIVE = ar
-ARCHFLAGS = rcs
-COMPILEFLAGS = -c
+AFLAGS = rcs
 STD = -std=c++23
 CHECK = cppcheck
 SRC = ./src/*.cpp
 LIB = lib_radix.a
+CHECKSTD = --std=c++23
 OPTIMIZATION = -O3 -flto
 LIBPATH = "./$(DIR)/$(LIB)"
 SDL = -lSDL3 -lSDL3_image -lSDL3_ttf -lSDL3_mixer
@@ -17,8 +18,8 @@ CHECKFLAGS = --quiet --enable=all --force --error-exitcode=1
 
 build:
 	mkdir -p $(DIR);
-	$(CXX) $(STD) $(WARNINGS) $(OPTIMIZATION) $(SRC) $(COMPILEFLAGS) $(LFLAGS) $(SDL);
-	$(ARCHIVE) $(ARCHFLAGS) $(LIBPATH) $(OBJS);
+	$(CXX) $(STD) $(WARNINGS) $(OPTIMIZATION) $(SRC) $(CFLAGS) $(LFLAGS) $(SDL);
+	$(ARCHIVE) $(AFLAGS) $(LIBPATH) $(OBJS);
 	rm -f $(OBJS);
 
 clean:
@@ -26,4 +27,4 @@ clean:
 	rm -rf $(DIR);
 
 check:
-	$(CHECK) $(CHECKFLAGS) $(SRC);
+	$(CHECK) $(CHECKSTD) $(CHECKFLAGS) $(SRC);
