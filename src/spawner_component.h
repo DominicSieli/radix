@@ -1,5 +1,5 @@
-#ifndef PROJECTILE_EMITTER_COMPONENT_H
-#define PROJECTILE_EMITTER_COMPONENT_H
+#ifndef SPAWNER_COMPONENT_H
+#define SPAWNER_COMPONENT_H
 
 #include "vector2.h"
 #include "entity_manager.h"
@@ -7,7 +7,7 @@
 
 namespace radix
 {
-	class ProjectileEmitterComponent: public Component
+	class SpawnerComponent: public Component
 	{
 		private:
 			bool loop;
@@ -18,7 +18,7 @@ namespace radix
 			TransformComponent* transform_component;
 
 		public:
-			ProjectileEmitterComponent(int, int, int, bool);
+			SpawnerComponent(int, int, int, bool);
 
 			void initialize() override;
 
