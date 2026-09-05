@@ -60,9 +60,9 @@ namespace radix
 		}
 	}
 
-	Entity& EntityManager::add_entity(std::string name, LayerType layer)
+	Entity& EntityManager::add_entity(std::string name, LayerType layer_type)
 	{
-		Entity* entity = new Entity(*this, name, layer);
+		Entity* entity = new Entity(*this, name, layer_type);
 		entities.emplace_back(entity);
 		return *entity;
 	}
@@ -72,13 +72,13 @@ namespace radix
 		return entities;
 	}
 
-	std::vector<Entity*> EntityManager::get_entities_by_layer(LayerType layer) const
+	std::vector<Entity*> EntityManager::get_entities_by_layer(LayerType layer_type) const
 	{
 		std::vector<Entity*> selected_entities;
 
 		for(auto& entity: entities)
 		{
-			if(entity->layer == layer) selected_entities.emplace_back(entity);
+			if(entity->layer_type == layer_type) selected_entities.emplace_back(entity);
 		}
 
 		return selected_entities;

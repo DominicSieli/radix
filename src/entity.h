@@ -23,8 +23,8 @@ namespace radix
 			std::map<const std::type_info*, Component*> component_type_map;
 
 		public:
-			LayerType layer;
 			std::string name;
+			LayerType layer_type;
 
 			Entity(EntityManager&);
 

@@ -9,7 +9,7 @@ namespace radix
 		this->active = true;
 	}
 
-	Entity::Entity(EntityManager& entity_manager, std::string name, LayerType layer): entity_manager{entity_manager}, name{name}, layer{layer}
+	Entity::Entity(EntityManager& entity_manager, std::string name, LayerType layer_type): entity_manager{entity_manager}, name{name}, layer_type{layer_type}
 	{
 		this->active = true;
 	}
