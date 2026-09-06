@@ -38,8 +38,6 @@ namespace radix
 
 			bool is_active() const;
 
-			void list_components() const;
-
 			template<typename T, typename... T_ARGS>
 				T& add_component(T_ARGS&&... args)
 				{

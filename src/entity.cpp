@@ -39,12 +39,4 @@ namespace radix
 	{
 		return this->active;
 	}
-
-	void Entity::list_components() const
-	{
-		for(auto component: component_type_map)
-		{
-			std::cout << "Component<" << component.first->name() << ">" << "\n";
-		}
-	}
 }

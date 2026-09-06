@@ -51,15 +51,6 @@ namespace radix
 		return entities.size() == 0;
 	}
 
-	void EntityManager::list_entities() const
-	{
-		for(unsigned int i = 0; i < entities.size(); i++)
-		{
-			std::cout << "Entity[" << i << "]: " << entities[i]->name << "\n";
-			entities[i]->list_components();
-		}
-	}
-
 	Entity& EntityManager::add_entity(std::string name, LayerType layer_type)
 	{
 		Entity* entity = new Entity(*this, name, layer_type);

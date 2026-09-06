@@ -22,8 +22,6 @@ namespace radix
 
 			bool is_empty() const;
 
-			void list_entities() const;
-
 			Entity& add_entity(std::string, LayerType);
 
 			std::vector<Entity*> get_entities() const;

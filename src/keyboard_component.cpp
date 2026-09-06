@@ -5,13 +5,13 @@ namespace radix
 	KeyboardComponent::KeyboardComponent()
 	{}
 
-	KeyboardComponent::KeyboardComponent(std::string up_key, std::string down_key, std::string left_key, std::string right_key, std::string shoot_key)
+	KeyboardComponent::KeyboardComponent(std::string up_key, std::string down_key, std::string left_key, std::string right_key, std::string space_key)
 	{
 		this->up_key = sdl_keycode(up_key);
 		this->down_key = sdl_keycode(down_key);
 		this->left_key = sdl_keycode(left_key);
 		this->right_key = sdl_keycode(right_key);
-		this->shoot_key = sdl_keycode(shoot_key);
+		this->space_key = sdl_keycode(space_key);
 	}
 
 	std::string KeyboardComponent::sdl_keycode(std::string key)
@@ -66,7 +66,7 @@ namespace radix
 				sprite_component->play("RightAnimation");
 			}
 
-			if(key_code.compare(shoot_key) == 0)
+			if(key_code.compare(space_key) == 0)
 			{}
 		}
 
@@ -94,7 +94,7 @@ namespace radix
 				transform_component->velocity.x = 0;
 			}
 
-			if(key_code.compare(shoot_key) == 0)
+			if(key_code.compare(space_key) == 0)
 			{}
 		}
 	}

@@ -15,7 +15,7 @@ namespace radix
 			std::string down_key;
 			std::string left_key;
 			std::string right_key;
-			std::string shoot_key;
+			std::string space_key;
 
 			SpriteComponent* sprite_component;
 			TransformComponent* transform_component;
