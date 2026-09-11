@@ -1,17 +1,12 @@
-#include "sprite_component.h"
+#include "animated_sprite_component.h"
 
 namespace radix
 {
-	SpriteComponent::SpriteComponent(const char* file_path)
-	{
-		this->animated = false;
-		this->fixed = false;
-		set_texture(file_path);
-	}
+	AnimatedSpriteComponent::AnimatedSpriteComponent()
+	{}
 
-	SpriteComponent::SpriteComponent(std::string id, unsigned int frames, unsigned int speed, bool directional, bool fixed)
+	AnimatedSpriteComponent::AnimatedSpriteComponent(std::string id, unsigned int frames, unsigned int speed, bool directional, bool fixed)
 	{
-		this->animated = true;
 		this->frames = frames;
 		this->speed = speed;
 		this->fixed = fixed;
@@ -43,7 +38,7 @@ namespace radix
 		set_texture(id);
 	}
 
-	void SpriteComponent::play(std::string animation_name)
+	void AnimatedSpriteComponent::play(std::string animation_name)
 	{
 		frames = animations[animation_name].frames;
 		index = animations[animation_name].index;
@@ -51,12 +46,12 @@ namespace radix
 		this->animation_name = animation_name;
 	}
 
-	void SpriteComponent::set_texture(std::string asset_texture_id)
+	void AnimatedSpriteComponent::set_texture(std::string asset_texture_id)
 	{
 		texture = Game::asset_manager->get_texture(asset_texture_id);
 	}
 
-	void SpriteComponent::initialize()
+	void AnimatedSpriteComponent::initialize()
 	{
 		transform_component = entity->get_component<TransformComponent>();
 		source.x = 0;
@@ -65,13 +60,9 @@ namespace radix
 		source.h = transform_component->dimension.y;
 	}
 
-	void SpriteComponent::update(float delta_time)
+	void AnimatedSpriteComponent::update(float delta_time)
 	{
-		if(animated == true)
-		{
-			source.x = source.w * static_cast<int>((SDL_GetTicks() / speed) % frames);
-		}
-
+		source.x = source.w * static_cast<int>((SDL_GetTicks() / speed) % frames);
 		source.y = index * static_cast<int>(transform_component->dimension.y);
 
 		destination.x = static_cast<int>(transform_component->position.x) - ((fixed == true) ? 0 : Game::camera.x);
@@ -80,7 +71,7 @@ namespace radix
 		destination.h = static_cast<int>(transform_component->dimension.y * transform_component->scale);
 	}
 
-	void SpriteComponent::render()
+	void AnimatedSpriteComponent::render()
 	{
 		TextureManager::draw(texture, source, destination, sprite_flip);
 	}

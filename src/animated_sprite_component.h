@@ -1,5 +1,5 @@
-#ifndef SPRITE_COMPONENT_H
-#define SPRITE_COMPONENT_H
+#ifndef ANIMATED_SPRITE_COMPONENT_H
+#define ANIMATED_SPRITE_COMPONENT_H
 
 #include <string>
 #include <SDL3/SDL.h>
@@ -11,13 +11,12 @@
 
 namespace radix
 {
-	class SpriteComponent: public Component
+	class AnimatedSpriteComponent: public Component
 	{
 		private:
 			int speed;
 			int frames;
 			bool fixed;
-			bool animated;
 			SDL_FRect source;
 			SDL_Texture* texture;
 			SDL_FRect destination;
@@ -29,9 +28,9 @@ namespace radix
 		public:
 			SDL_FlipMode sprite_flip = SDL_FLIP_NONE;
 
-			SpriteComponent(const char*);
+			AnimatedSpriteComponent();
 
-			SpriteComponent(std::string, unsigned int, unsigned int, bool, bool);
+			AnimatedSpriteComponent(std::string, unsigned int, unsigned int, bool, bool);
 
 			void play(std::string);
 

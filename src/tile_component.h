@@ -14,8 +14,8 @@ namespace radix
 		public:
 			Vector2 position;
 			SDL_Texture* texture;
-			SDL_FRect source_rectangle;
-			SDL_FRect destination_rectangle;
+			SDL_FRect source_rect;
+			SDL_FRect destination_rect;
 
 			TileComponent(int, int, int, int, int, int, std::string);
 

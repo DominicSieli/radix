@@ -2,19 +2,19 @@
 
 namespace radix
 {
-	TileComponent::TileComponent(int source_rectangle_x, int source_rectangle_y, int x, int y, int tile_size, int tile_scale, std::string asset_texture_id)
+	TileComponent::TileComponent(int source_rect_x, int source_rect_y, int x, int y, int tile_size, int tile_scale, std::string asset_texture_id)
 	{
 		texture = Game::asset_manager->get_texture(asset_texture_id);
 
-		source_rectangle.x = source_rectangle_x;
-		source_rectangle.y = source_rectangle_y;
-		source_rectangle.w = tile_size;
-		source_rectangle.h = tile_size;
+		source_rect.x = source_rect_x;
+		source_rect.y = source_rect_y;
+		source_rect.w = tile_size;
+		source_rect.h = tile_size;
 
-		destination_rectangle.x = x;
-		destination_rectangle.y = y;
-		destination_rectangle.w = tile_size * tile_scale;
-		destination_rectangle.h = tile_size * tile_scale;
+		destination_rect.x = x;
+		destination_rect.y = y;
+		destination_rect.w = tile_size * tile_scale;
+		destination_rect.h = tile_size * tile_scale;
 
 		position.x = x;
 		position.y = y;
@@ -27,12 +27,12 @@ namespace radix
 
 	void TileComponent::update(float delta_time)
 	{
-		destination_rectangle.x = position.x - Game::camera.x;
-		destination_rectangle.y = position.y - Game::camera.y;
+		destination_rect.x = position.x - Game::camera.x;
+		destination_rect.y = position.y - Game::camera.y;
 	}
 
 	void TileComponent::render()
 	{
-		TextureManager::draw(texture, source_rectangle, destination_rectangle, SDL_FLIP_NONE);
+		TextureManager::draw(texture, source_rect, destination_rect, SDL_FLIP_NONE);
 	}
 }
