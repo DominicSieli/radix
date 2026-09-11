@@ -17,8 +17,8 @@ namespace radix
 
 		public:
 			int ticks_last_frame = 0;
-			static SDL_Event event;
 			static SDL_Rect camera;
+			static SDL_Event input_event;
 			static SDL_Renderer* renderer;
 			static AssetManager* asset_manager;
 

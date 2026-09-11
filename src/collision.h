@@ -8,7 +8,7 @@ namespace radix
 	class Collision
 	{
 		public:
-			static bool check_rectangle_collision(const SDL_Rect&, const SDL_Rect&);
+			static bool check_rect_collision(const SDL_Rect&, const SDL_Rect&);
 	};
 }
 

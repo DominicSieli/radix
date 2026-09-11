@@ -2,8 +2,8 @@
 
 namespace radix
 {
-	bool Collision::check_rectangle_collision(const SDL_Rect& rectangle_1, const SDL_Rect& rectangle_2)
+	bool Collision::check_rect_collision(const SDL_Rect& rect_1, const SDL_Rect& rect_2)
 	{
-		return (rectangle_1.x + rectangle_1.w >= rectangle_2.x && rectangle_2.x + rectangle_2.w >= rectangle_1.x && rectangle_1.y + rectangle_1.h >= rectangle_2.y && rectangle_2.y + rectangle_2.h >= rectangle_1.y);
+		return (rect_1.x + rect_1.w >= rect_2.x && rect_2.x + rect_2.w >= rect_1.x && rect_1.y + rect_1.h >= rect_2.y && rect_2.y + rect_2.h >= rect_1.y);
 	}
 }

@@ -29,10 +29,10 @@ namespace radix
 			{
 				char character;
 				map_file.get(character);
-				int source_rectangle_y = atoi(&character) * tile_size;
+				int source_rect_y = atoi(&character) * tile_size;
 				map_file.get(character);
-				int source_rectangle_x = atoi(&character) * tile_size;
-				add_tile(source_rectangle_x, source_rectangle_y, x * (scale * tile_size), y * (scale * tile_size));
+				int source_rect_x = atoi(&character) * tile_size;
+				add_tile(source_rect_x, source_rect_y, x * (scale * tile_size), y * (scale * tile_size));
 				map_file.ignore();
 			}
 		}
@@ -40,9 +40,9 @@ namespace radix
 		map_file.close();
 	}
 
-	void Map::add_tile(int source_rectangle_x, int source_rectangle_y, int x, int y)
+	void Map::add_tile(int source_rect_x, int source_rect_y, int x, int y)
 	{
 		Entity& new_tile(entity_manager.add_entity("Tile", TILEMAP));
-		new_tile.add_component<TileComponent>(source_rectangle_x, source_rectangle_y, x, y, tile_size, scale, texture_id);
+		new_tile.add_component<TileComponent>(source_rect_x, source_rect_y, x, y, tile_size, scale, texture_id);
 	}
 }

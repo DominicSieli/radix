@@ -14,8 +14,8 @@ namespace radix
 		public:
 			std::string tag;
 			SDL_Rect collider;
-			SDL_Rect source_rectangle;
-			SDL_Rect destination_rectangle;
+			SDL_Rect source_rect;
+			SDL_Rect destination_rect;
 			TransformComponent* transform_component;
 
 			ColliderComponent(std::string, int, int, int, int);
