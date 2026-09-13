@@ -5,9 +5,9 @@ namespace radix
 	StaticSpriteComponent::StaticSpriteComponent()
 	{}
 
-	StaticSpriteComponent::StaticSpriteComponent(const char* file_path)
+	StaticSpriteComponent::StaticSpriteComponent(const char* file_path, bool fixed)
 	{
-		this->fixed = false;
+		this->fixed = fixed;
 		set_texture(file_path);
 	}
 

@@ -25,7 +25,7 @@ namespace radix
 
 			StaticSpriteComponent();
 
-			StaticSpriteComponent(const char*);
+			StaticSpriteComponent(const char*, bool);
 
 			void set_texture(std::string);
 
