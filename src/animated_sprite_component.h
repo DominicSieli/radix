@@ -14,23 +14,22 @@ namespace radix
 	class AnimatedSpriteComponent: public Component
 	{
 		private:
-			int speed;
-			int frames;
 			bool fixed;
 			SDL_FRect source;
 			SDL_Texture* texture;
 			SDL_FRect destination;
 			unsigned int index = 0;
-			std::string animation_name;
+			std::string current_animation;
+			std::string default_animation;
 			TransformComponent* transform_component;
-			std::map<std::string, Animation> animations;
+			std::map<std::string, Animation>* animations;
 
 		public:
 			SDL_FlipMode sprite_flip = SDL_FLIP_NONE;
 
 			AnimatedSpriteComponent();
 
-			AnimatedSpriteComponent(std::string, unsigned int, unsigned int, bool, bool);
+			AnimatedSpriteComponent(std::string, std::map<std::string, Animation>*, std::string, bool, bool);
 
 			void play(std::string);
 

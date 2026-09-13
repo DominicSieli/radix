@@ -5,45 +5,20 @@ namespace radix
 	AnimatedSpriteComponent::AnimatedSpriteComponent()
 	{}
 
-	AnimatedSpriteComponent::AnimatedSpriteComponent(std::string id, unsigned int frames, unsigned int speed, bool directional, bool fixed)
+	AnimatedSpriteComponent::AnimatedSpriteComponent(std::string id, std::map<std::string, Animation>* animations, std::string default_animation, bool directional, bool fixed)
 	{
-		this->frames = frames;
-		this->speed = speed;
+		this->index = 0;
 		this->fixed = fixed;
-
-		if(directional == true)
-		{
-			Animation up = Animation(3, frames, speed);
-			Animation down = Animation(0, frames, speed);
-			Animation left = Animation(2, frames, speed);
-			Animation right = Animation(1, frames, speed);
-
-			animations.emplace("UpAnimation", up);
-			animations.emplace("DownAnimation", down);
-			animations.emplace("LeftAnimation", left);
-			animations.emplace("RightAnimation", right);
-
-			this->index = 0;
-			this->animation_name = "DownAnimation";
-		}
-		else
-		{
-			Animation single_animation = Animation(0, frames, speed);
-			animations.emplace("SingleAnimation", single_animation);
-			this->index = 0;
-			this->animation_name = "SingleAnimation";
-		}
-
-		play(this->animation_name);
+		this->animations = animations;
+		this->current_animation = default_animation;
+		play(this->current_animation);
 		set_texture(id);
 	}
 
-	void AnimatedSpriteComponent::play(std::string animation_name)
+	void AnimatedSpriteComponent::play(std::string current_animation)
 	{
-		frames = animations[animation_name].frames;
-		index = animations[animation_name].index;
-		speed = animations[animation_name].speed;
-		this->animation_name = animation_name;
+		this->index = (*animations)[current_animation].index;
+		this->current_animation = current_animation;
 	}
 
 	void AnimatedSpriteComponent::set_texture(std::string asset_texture_id)
@@ -62,7 +37,7 @@ namespace radix
 
 	void AnimatedSpriteComponent::update(float delta_time)
 	{
-		source.x = source.w * static_cast<int>((SDL_GetTicks() / speed) % frames);
+		source.x = source.w * static_cast<int>((SDL_GetTicks() / (*animations)[current_animation].speed) % (*animations)[current_animation].frames);
 		source.y = index * static_cast<int>(transform_component->dimension.y);
 
 		destination.x = static_cast<int>(transform_component->position.x) - ((fixed == true) ? 0 : Game::camera.x);
