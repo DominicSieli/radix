@@ -14,6 +14,8 @@ namespace radix
 			std::vector<Entity*> entities;
 
 		public:
+			EntityManager();
+
 			void clear();
 
 			void update(float);

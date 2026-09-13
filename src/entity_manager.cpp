@@ -6,6 +6,9 @@
 
 namespace radix
 {
+	EntityManager::EntityManager()
+	{}
+
 	void EntityManager::clear()
 	{
 		for(auto& entity : entities)
