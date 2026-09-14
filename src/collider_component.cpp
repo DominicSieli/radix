@@ -1,6 +1,6 @@
 #include "collider_component.h"
 
-namespace radix
+namespace Radix
 {
 	ColliderComponent::ColliderComponent(std::string tag, int x, int y, int width, int height)
 	{

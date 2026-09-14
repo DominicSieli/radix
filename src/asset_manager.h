@@ -10,7 +10,7 @@
 #include "entity_manager.h"
 #include "texture_manager.h"
 
-namespace radix
+namespace Radix
 {
 	class AssetManager
 	{

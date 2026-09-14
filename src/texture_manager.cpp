@@ -1,7 +1,7 @@
 #include "game.h"
 #include "texture_manager.h"
 
-namespace radix
+namespace Radix
 {
 	SDL_Texture* TextureManager::load_texture(const char* file_name)
 	{

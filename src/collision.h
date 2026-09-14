@@ -3,7 +3,7 @@
 
 #include <SDL3/SDL.h>
 
-namespace radix
+namespace Radix
 {
 	class Collision
 	{

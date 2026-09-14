@@ -1,6 +1,6 @@
 #include "tile_component.h"
 
-namespace radix
+namespace Radix
 {
 	TileComponent::TileComponent(int source_rect_x, int source_rect_y, int x, int y, int tile_size, int tile_scale, std::string asset_texture_id)
 	{

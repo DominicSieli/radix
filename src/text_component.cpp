@@ -1,6 +1,6 @@
 #include "text_component.h"
 
-namespace radix
+namespace Radix
 {
 	TextComponent::TextComponent(int x, int y, std::string text, std::string font_family, const SDL_Color& color)
 	{

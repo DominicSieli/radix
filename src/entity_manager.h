@@ -6,7 +6,7 @@
 #include "entity.h"
 #include "component.h"
 
-namespace radix
+namespace Radix
 {
 	class EntityManager
 	{

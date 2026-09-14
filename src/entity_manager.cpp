@@ -4,7 +4,7 @@
 #include "entity_manager.h"
 #include "collider_component.h"
 
-namespace radix
+namespace Radix
 {
 	EntityManager::EntityManager()
 	{}

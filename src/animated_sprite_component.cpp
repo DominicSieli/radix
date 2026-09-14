@@ -1,6 +1,6 @@
 #include "animated_sprite_component.h"
 
-namespace radix
+namespace Radix
 {
 	AnimatedSpriteComponent::AnimatedSpriteComponent()
 	{}

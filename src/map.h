@@ -5,7 +5,7 @@
 
 #include "entity_manager.h"
 
-namespace radix
+namespace Radix
 {
 	class Map
 	{

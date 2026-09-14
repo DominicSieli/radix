@@ -10,7 +10,7 @@
 #include "component.h"
 #include "entity_manager.h"
 
-namespace radix
+namespace Radix
 {
 	class EntityManager;
 
@@ -20,7 +20,7 @@ namespace radix
 			bool active;
 			EntityManager& entity_manager;
 			std::vector<Component*> components;
-			std::map<const std::type_info*, Component*> component_type_map;
+			std::map<const std::type_info*, Component*> component_map;
 
 		public:
 			std::string name;
@@ -44,7 +44,7 @@ namespace radix
 					T* component(new T(std::forward<T_ARGS>(args)...));
 					component->entity = this;
 					components.emplace_back(component);
-					component_type_map[&typeid(*component)] = component;
+					component_map[&typeid(*component)] = component;
 					component->initialize();
 					return *component;
 				}
@@ -52,13 +52,13 @@ namespace radix
 			template<typename T>
 				T* get_component()
 				{
-					return static_cast<T*>(component_type_map[&typeid(T)]);
+					return static_cast<T*>(component_map[&typeid(T)]);
 				}
 
 			template<typename T>
 				bool has_component() const
 				{
-					return component_type_map.count(&typeid(T));
+					return component_map.count(&typeid(T));
 				}
 	};
 }

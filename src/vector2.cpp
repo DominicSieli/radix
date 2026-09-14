@@ -1,7 +1,7 @@
 #include <cmath>
 #include "vector2.h"
 
-namespace radix
+namespace Radix
 {
 	Vector2 create_vector2(float x, float y)
 	{

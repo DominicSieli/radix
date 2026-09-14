@@ -1,7 +1,7 @@
 #include "game.h"
 #include "font_manager.h"
 
-namespace radix
+namespace Radix
 {
 	TTF_Font* FontManager::load_font(const char* file_name, int font_size)
 	{

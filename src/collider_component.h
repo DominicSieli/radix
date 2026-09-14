@@ -7,7 +7,7 @@
 #include "entity_manager.h"
 #include "transform_component.h"
 
-namespace radix
+namespace Radix
 {
 	class ColliderComponent: public Component
 	{

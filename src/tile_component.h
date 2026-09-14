@@ -7,7 +7,7 @@
 #include "asset_manager.h"
 #include "entity_manager.h"
 
-namespace radix
+namespace Radix
 {
 	class TileComponent: public Component
 	{

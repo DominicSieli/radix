@@ -3,7 +3,7 @@
 
 #include <SDL3/SDL.h>
 
-namespace radix
+namespace Radix
 {
 	const unsigned int LAYER_COUNT = 7;
 	const unsigned int COLLISION_COUNT = 6;

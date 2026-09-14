@@ -1,6 +1,6 @@
 #include "collision.h"
 
-namespace radix
+namespace Radix
 {
 	bool Collision::check_rect_collision(const SDL_Rect& rect_1, const SDL_Rect& rect_2)
 	{

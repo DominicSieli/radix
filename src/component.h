@@ -3,7 +3,7 @@
 
 #include "entity.h"
 
-namespace radix
+namespace Radix
 {
 	class Entity;
 

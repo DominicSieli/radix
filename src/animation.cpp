@@ -1,6 +1,6 @@
 #include "animation.h"
 
-namespace radix
+namespace Radix
 {
 	Animation::Animation()
 	{}

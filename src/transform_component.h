@@ -7,7 +7,7 @@
 #include "vector2.h"
 #include "entity_manager.h"
 
-namespace radix
+namespace Radix
 {
 	class TransformComponent: public Component
 	{

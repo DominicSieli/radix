@@ -1,6 +1,6 @@
 #include "transform_component.h"
 
-namespace radix
+namespace Radix
 {
 	TransformComponent::TransformComponent(int position_x, int position_y, int velocity_x, int velocity_y, int dimension_x, int dimension_y, int scale)
 	{

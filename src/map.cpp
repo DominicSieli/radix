@@ -3,7 +3,7 @@
 #include "map.h"
 #include "tile_component.h"
 
-namespace radix
+namespace Radix
 {
 	Map::Map(std::string texture_id, EntityManager* entity_manager, int scale, int tile_size)
 	{

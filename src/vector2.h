@@ -1,7 +1,7 @@
 #ifndef VECTOR2_H
 #define VECTOR2_H
 
-namespace radix
+namespace Radix
 {
 	struct Vector2
 	{

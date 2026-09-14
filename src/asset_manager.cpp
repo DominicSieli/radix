@@ -1,6 +1,6 @@
 #include "asset_manager.h"
 
-namespace radix
+namespace Radix
 {
 	AssetManager::AssetManager(EntityManager* entity_manager)
 	{}

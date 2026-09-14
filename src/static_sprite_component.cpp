@@ -1,6 +1,6 @@
 #include "static_sprite_component.h"
 
-namespace radix
+namespace Radix
 {
 	StaticSpriteComponent::StaticSpriteComponent()
 	{}

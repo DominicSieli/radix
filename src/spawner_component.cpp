@@ -1,7 +1,7 @@
 #include <cmath>
 #include "spawner_component.h"
 
-namespace radix
+namespace Radix
 {
 	SpawnerComponent::SpawnerComponent(int speed, int degree, int range, bool loop)
 	{

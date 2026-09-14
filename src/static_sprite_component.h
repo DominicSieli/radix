@@ -8,7 +8,7 @@
 #include "texture_manager.h"
 #include "transform_component.h"
 
-namespace radix
+namespace Radix
 {
 	class StaticSpriteComponent: public Component
 	{

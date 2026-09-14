@@ -2,7 +2,7 @@
 
 #include "entity.h"
 
-namespace radix
+namespace Radix
 {
 	Entity::Entity(EntityManager& entity_manager): entity_manager{entity_manager}
 	{
