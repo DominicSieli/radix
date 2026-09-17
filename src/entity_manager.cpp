@@ -96,7 +96,7 @@ namespace Radix
 					{
 						ColliderComponent* that_collider = that_entity->get_component<ColliderComponent>();
 
-						if(Collision::check_rect_collision(this_collider->collider, that_collider->collider) == true)
+						if(check_rect_collision(this_collider->collider, that_collider->collider) == true)
 						{
 							if(this_collider->tag.compare("PLAYER") == 0 && that_collider->tag.compare("ENEMY") == 0)
 							{

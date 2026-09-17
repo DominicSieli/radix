@@ -1,5 +1,5 @@
-#ifndef MAP_H
-#define MAP_H
+#ifndef TILE_MAP_H
+#define TILE_MAP_H
 
 #include <string>
 
@@ -7,7 +7,7 @@
 
 namespace Radix
 {
-	class Map
+	class TileMap
 	{
 		private:
 			int scale;
@@ -16,9 +16,9 @@ namespace Radix
 			EntityManager* entity_manager;
 
 		public:
-			Map(std::string, EntityManager*, int, int);
+			TileMap(std::string, EntityManager*, int, int);
 
-			~Map();
+			~TileMap();
 
 			void load_map(std::string, int, int);
 

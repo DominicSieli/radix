@@ -5,11 +5,7 @@
 
 namespace Radix
 {
-	class Collision
-	{
-		public:
-			static bool check_rect_collision(const SDL_Rect&, const SDL_Rect&);
-	};
+	bool check_rect_collision(const SDL_Rect, const SDL_Rect);
 }
 
 #endif

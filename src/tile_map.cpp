@@ -1,11 +1,11 @@
 #include <fstream>
 
-#include "map.h"
+#include "tile_map.h"
 #include "tile_component.h"
 
 namespace Radix
 {
-	Map::Map(std::string texture_id, EntityManager* entity_manager, int scale, int tile_size)
+	TileMap::TileMap(std::string texture_id, EntityManager* entity_manager, int scale, int tile_size)
 	{
 		this->scale = scale;
 		this->tile_size = tile_size;
@@ -13,10 +13,10 @@ namespace Radix
 		this->entity_manager = entity_manager;
 	}
 
-	Map::~Map()
+	TileMap::~TileMap()
 	{}
 
-	void Map::load_map(std::string file_path, int map_size_x, int map_size_y)
+	void TileMap::load_map(std::string file_path, int map_size_x, int map_size_y)
 	{
 		std::fstream map_file;
 		map_file.open(file_path);
@@ -38,7 +38,7 @@ namespace Radix
 		map_file.close();
 	}
 
-	void Map::add_tile(int source_rect_x, int source_rect_y, int x, int y)
+	void TileMap::add_tile(int source_rect_x, int source_rect_y, int x, int y)
 	{
 		Entity* new_tile(entity_manager->add_entity("Tile", TILEMAP));
 		new_tile->add_component<TileComponent>(source_rect_x, source_rect_y, x, y, tile_size, scale, texture_id);
