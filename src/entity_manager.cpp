@@ -11,7 +11,7 @@ namespace Radix
 
 	void EntityManager::clear()
 	{
-		for(auto& entity : entities)
+		for(auto* entity : entities)
 		{
 			entity->destroy();
 		}
@@ -19,7 +19,7 @@ namespace Radix
 
 	void EntityManager::update(float delta_time)
 	{
-		for(auto& entity : entities)
+		for(auto* entity : entities)
 		{
 			entity->update(delta_time);
 		}
@@ -42,7 +42,7 @@ namespace Radix
 	{
 		for(int layer_number = 0; layer_number < LAYER_COUNT; layer_number++)
 		{
-			for(auto& entity: get_entities_by_layer(static_cast<LayerType>(layer_number)))
+			for(auto* entity: get_entities_by_layer(static_cast<LayerType>(layer_number)))
 			{
 				entity->render();
 			}
@@ -54,11 +54,11 @@ namespace Radix
 		return entities.size() == 0;
 	}
 
-	Entity& EntityManager::add_entity(std::string name, LayerType layer_type)
+	Entity* EntityManager::add_entity(std::string name, LayerType layer_type)
 	{
-		Entity* entity = new Entity(*this, name, layer_type);
+		Entity* entity = new Entity(this, name, layer_type);
 		entities.emplace_back(entity);
-		return *entity;
+		return entity;
 	}
 
 	std::vector<Entity*> EntityManager::get_entities() const
@@ -70,7 +70,7 @@ namespace Radix
 	{
 		std::vector<Entity*> selected_entities;
 
-		for(auto& entity: entities)
+		for(auto* entity: entities)
 		{
 			if(entity->layer_type == layer_type) selected_entities.emplace_back(entity);
 		}
@@ -82,7 +82,7 @@ namespace Radix
 	{
 		for(int i = 0; i < entities.size() - 1; i++)
 		{
-			auto& this_entity = entities[i];
+			auto* this_entity = entities[i];
 
 			if(this_entity->has_component<ColliderComponent>() == true)
 			{
@@ -90,7 +90,7 @@ namespace Radix
 
 				for(int j = i + 1; j < entities.size(); j++)
 				{
-					auto& that_entity = entities[j];
+					auto* that_entity = entities[j];
 
 					if(this_entity->name.compare(that_entity->name) != 0 && that_entity->has_component<ColliderComponent>() == true)
 					{

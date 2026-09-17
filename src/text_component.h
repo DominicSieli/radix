@@ -21,7 +21,7 @@ namespace Radix
 			std::string font_family;
 
 		public:
-			TextComponent(int, int, std::string, std::string, const SDL_Color&);
+			TextComponent(int, int, std::string, std::string, SDL_Color);
 
 			void set_text(std::string, std::string);
 

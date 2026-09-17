@@ -6,9 +6,9 @@ namespace Radix
 	SpawnerComponent::SpawnerComponent(int speed, int degree, int range, bool loop)
 	{
 		this->speed = speed;
-		this->radian = degree * std::numbers::pi_v<float> / 180.0f;
 		this->range = range;
 		this->loop = loop;
+		this->radian = degree * std::numbers::pi_v<float> / 180.0f;
 	}
 
 	void SpawnerComponent::initialize()

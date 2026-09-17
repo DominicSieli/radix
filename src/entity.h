@@ -18,7 +18,7 @@ namespace Radix
 	{
 		private:
 			bool active;
-			EntityManager& entity_manager;
+			EntityManager* entity_manager;
 			std::vector<Component*> components;
 			std::map<const std::type_info*, Component*> component_map;
 
@@ -26,9 +26,9 @@ namespace Radix
 			std::string name;
 			LayerType layer_type;
 
-			Entity(EntityManager&);
+			Entity(EntityManager*);
 
-			Entity(EntityManager&, std::string, LayerType);
+			Entity(EntityManager*, std::string, LayerType);
 
 			void update(float);
 
@@ -39,14 +39,14 @@ namespace Radix
 			bool is_active() const;
 
 			template<typename T, typename... T_ARGS>
-				T& add_component(T_ARGS&&... args)
+				T* add_component(T_ARGS&&... args)
 				{
 					T* component(new T(std::forward<T_ARGS>(args)...));
 					component->entity = this;
 					components.emplace_back(component);
 					component_map[&typeid(*component)] = component;
 					component->initialize();
-					return *component;
+					return component;
 				}
 
 			template<typename T>

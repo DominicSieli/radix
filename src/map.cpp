@@ -7,10 +7,10 @@ namespace Radix
 {
 	Map::Map(std::string texture_id, EntityManager* entity_manager, int scale, int tile_size)
 	{
-		this->texture_id = texture_id;
-		this->entity_manager = entity_manager;
 		this->scale = scale;
 		this->tile_size = tile_size;
+		this->texture_id = texture_id;
+		this->entity_manager = entity_manager;
 	}
 
 	Map::~Map()
@@ -40,7 +40,7 @@ namespace Radix
 
 	void Map::add_tile(int source_rect_x, int source_rect_y, int x, int y)
 	{
-		Entity& new_tile(entity_manager->add_entity("Tile", TILEMAP));
-		new_tile.add_component<TileComponent>(source_rect_x, source_rect_y, x, y, tile_size, scale, texture_id);
+		Entity* new_tile(entity_manager->add_entity("Tile", TILEMAP));
+		new_tile->add_component<TileComponent>(source_rect_x, source_rect_y, x, y, tile_size, scale, texture_id);
 	}
 }

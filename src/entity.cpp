@@ -4,14 +4,18 @@
 
 namespace Radix
 {
-	Entity::Entity(EntityManager& entity_manager): entity_manager{entity_manager}
+	Entity::Entity(EntityManager* entity_manager)
 	{
 		this->active = true;
+		this->entity_manager = entity_manager;
 	}
 
-	Entity::Entity(EntityManager& entity_manager, std::string name, LayerType layer_type): entity_manager{entity_manager}, name{name}, layer_type{layer_type}
+	Entity::Entity(EntityManager* entity_manager, std::string name, LayerType layer_type)
 	{
+		this->name = name;
 		this->active = true;
+		this->layer_type = layer_type;
+		this->entity_manager = entity_manager;
 	}
 
 	void Entity::update(float delta_time)
