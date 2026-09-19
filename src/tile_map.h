@@ -12,11 +12,11 @@ namespace Radix
 		private:
 			int scale;
 			int tile_size;
-			std::string texture_id;
+			unsigned int texture_id;
 			EntityManager* entity_manager;
 
 		public:
-			TileMap(std::string, EntityManager*, int, int);
+			TileMap(const unsigned int&, EntityManager*, int, int);
 
 			~TileMap();
 

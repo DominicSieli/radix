@@ -16,8 +16,8 @@ namespace Radix
 	{
 		private:
 			EntityManager* entity_manager;
-			std::map<std::string, TTF_Font*> fonts;
-			std::map<std::string, SDL_Texture*> textures;
+			std::map<unsigned int, TTF_Font*> fonts;
+			std::map<unsigned int, SDL_Texture*> textures;
 
 		public:
 			AssetManager(EntityManager*);
@@ -26,13 +26,13 @@ namespace Radix
 
 			void clear();
 
-			TTF_Font* get_font(std::string);
+			TTF_Font* get_font(const unsigned int&);
 
-			SDL_Texture* get_texture(std::string);
+			SDL_Texture* get_texture(const unsigned int&);
 
-			void add_texture(std::string, const char*);
+			void add_texture(const unsigned int&, const char*);
 
-			void add_font(std::string, const char*, int);
+			void add_font(const unsigned int&, const char*, int);
 	};
 }
 

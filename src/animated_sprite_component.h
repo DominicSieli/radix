@@ -1,7 +1,6 @@
 #ifndef ANIMATED_SPRITE_COMPONENT_H
 #define ANIMATED_SPRITE_COMPONENT_H
 
-#include <string>
 #include <SDL3/SDL.h>
 
 #include "animation.h"
@@ -16,26 +15,26 @@ namespace Radix
 		private:
 			bool fixed;
 			SDL_FRect source;
+			unsigned int index;
 			SDL_Texture* texture;
 			SDL_FRect destination;
-			unsigned int index = 0;
-			std::string current_animation;
-			std::string default_animation;
+			unsigned int current_animation;
+			unsigned int default_animation;
 			TransformComponent* transform_component;
-			std::map<std::string, Animation>* animations;
+			std::map<unsigned int, Animation> animations;
 
 		public:
 			SDL_FlipMode sprite_flip = SDL_FLIP_NONE;
 
 			AnimatedSpriteComponent();
 
-			AnimatedSpriteComponent(std::string, std::map<std::string, Animation>*, std::string, bool, bool);
-
-			void play(std::string);
-
-			void set_texture(std::string);
+			AnimatedSpriteComponent(const unsigned int&, const std::map<unsigned int, Animation>&, const unsigned int&, const bool&);
 
 			void initialize() override;
+
+			void play(unsigned int);
+
+			void set_texture(const unsigned int&);
 
 			void update(float) override;
 

@@ -2,9 +2,9 @@
 
 namespace Radix
 {
-	TileComponent::TileComponent(int source_rect_x, int source_rect_y, int x, int y, int tile_size, int tile_scale, std::string asset_texture_id)
+	TileComponent::TileComponent(int source_rect_x, int source_rect_y, int x, int y, int tile_size, int tile_scale, const unsigned int& texture_id)
 	{
-		texture = Game::asset_manager->get_texture(asset_texture_id);
+		texture = Game::asset_manager->get_texture(texture_id);
 
 		source_rect.x = source_rect_x;
 		source_rect.y = source_rect_y;

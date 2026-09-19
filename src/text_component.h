@@ -18,12 +18,12 @@ namespace Radix
 			std::string text;
 			SDL_FRect position;
 			SDL_Texture* texture;
-			std::string font_family;
+			unsigned int font_family;
 
 		public:
-			TextComponent(int, int, std::string, std::string, SDL_Color);
+			TextComponent(int, int, std::string, const unsigned int&, SDL_Color);
 
-			void set_text(std::string, std::string);
+			void set_text(std::string, const unsigned int&);
 
 			void render() override;
 	};

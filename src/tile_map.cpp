@@ -5,7 +5,7 @@
 
 namespace Radix
 {
-	TileMap::TileMap(std::string texture_id, EntityManager* entity_manager, int scale, int tile_size)
+	TileMap::TileMap(const unsigned int& texture_id, EntityManager* entity_manager, int scale, int tile_size)
 	{
 		this->scale = scale;
 		this->tile_size = tile_size;

@@ -17,7 +17,7 @@ namespace Radix
 			SDL_FRect source_rect;
 			SDL_FRect destination_rect;
 
-			TileComponent(int, int, int, int, int, int, std::string);
+			TileComponent(int, int, int, int, int, int, const unsigned int&);
 
 			~TileComponent();
 

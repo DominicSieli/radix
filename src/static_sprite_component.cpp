@@ -5,38 +5,39 @@ namespace Radix
 	StaticSpriteComponent::StaticSpriteComponent()
 	{}
 
-	StaticSpriteComponent::StaticSpriteComponent(const char* file_path, bool fixed)
+	StaticSpriteComponent::StaticSpriteComponent(const unsigned int& texture_id, const bool& fixed)
+		: fixed{fixed}
 	{
-		this->fixed = fixed;
-		set_texture(file_path);
-	}
-
-	void StaticSpriteComponent::set_texture(std::string asset_texture_id)
-	{
-		texture = Game::asset_manager->get_texture(asset_texture_id);
+		this->set_texture(texture_id);
 	}
 
 	void StaticSpriteComponent::initialize()
 	{
-		transform_component = entity->get_component<TransformComponent>();
-		source.x = 0;
-		source.y = 0;
-		source.w = transform_component->dimension.x;
-		source.h = transform_component->dimension.y;
+		this->transform_component = this->entity->get_component<TransformComponent>();
+
+		this->source.x = 0;
+		this->source.y = 0;
+		this->source.w = this->transform_component->dimension.x;
+		this->source.h = this->transform_component->dimension.y;
+	}
+
+	void StaticSpriteComponent::set_texture(const unsigned int& texture_id)
+	{
+		this->texture = Game::asset_manager->get_texture(texture_id);
 	}
 
 	void StaticSpriteComponent::update(float delta_time)
 	{
-		source.y = index * static_cast<int>(transform_component->dimension.y);
+		this->source.y = this->index * static_cast<int>(this->transform_component->dimension.y);
 
-		destination.x = static_cast<int>(transform_component->position.x) - ((fixed == true) ? 0 : Game::camera.x);
-		destination.y = static_cast<int>(transform_component->position.y) - ((fixed == true) ? 0 : Game::camera.y);
-		destination.w = static_cast<int>(transform_component->dimension.x * transform_component->scale);
-		destination.h = static_cast<int>(transform_component->dimension.y * transform_component->scale);
+		this->destination.x = static_cast<int>(this->transform_component->position.x) - ((this->fixed == true) ? 0 : Game::camera.x);
+		this->destination.y = static_cast<int>(this->transform_component->position.y) - ((this->fixed == true) ? 0 : Game::camera.y);
+		this->destination.w = static_cast<int>(this->transform_component->dimension.x * this->transform_component->scale);
+		this->destination.h = static_cast<int>(this->transform_component->dimension.y * this->transform_component->scale);
 	}
 
 	void StaticSpriteComponent::render()
 	{
-		TextureManager::draw(texture, source, destination, sprite_flip);
+		TextureManager::draw(this->texture, this->source, this->destination, this->sprite_flip);
 	}
 }

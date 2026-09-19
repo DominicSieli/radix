@@ -1,7 +1,6 @@
 #ifndef STATIC_SPRITE_COMPONENT_H
 #define STATIC_SPRITE_COMPONENT_H
 
-#include <string>
 #include <SDL3/SDL.h>
 
 #include "asset_manager.h"
@@ -25,11 +24,11 @@ namespace Radix
 
 			StaticSpriteComponent();
 
-			StaticSpriteComponent(const char*, bool);
-
-			void set_texture(std::string);
+			StaticSpriteComponent(const unsigned int&, const bool&);
 
 			void initialize() override;
+
+			void set_texture(const unsigned int&);
 
 			void update(float) override;
 

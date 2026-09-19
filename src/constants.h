@@ -11,7 +11,7 @@ namespace Radix
 	const SDL_Color GREEN = {0, 255, 0, 255};
 	const SDL_Color WHITE = {255, 255, 255, 255};
 
-	enum LayerType
+	enum LayerType : unsigned int
 	{
 		TILEMAP = 0,
 		VEGETATION = 1,
@@ -22,7 +22,7 @@ namespace Radix
 		UI = 6
 	};
 
-	enum CollisionType
+	enum CollisionType : unsigned int
 	{
 		NO_COLLISION = 0,
 		PLAYER_ENEMY_COLLISION = 1,
