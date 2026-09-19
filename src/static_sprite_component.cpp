@@ -28,8 +28,6 @@ namespace Radix
 
 	void StaticSpriteComponent::update(float delta_time)
 	{
-		this->source.y = this->index * static_cast<int>(this->transform_component->dimension.y);
-
 		this->destination.x = static_cast<int>(this->transform_component->position.x) - ((this->fixed == true) ? 0 : Game::camera.x);
 		this->destination.y = static_cast<int>(this->transform_component->position.y) - ((this->fixed == true) ? 0 : Game::camera.y);
 		this->destination.w = static_cast<int>(this->transform_component->dimension.x * this->transform_component->scale);

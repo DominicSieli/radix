@@ -2,7 +2,6 @@
 #define ASSET_MANAGER_H
 
 #include <map>
-#include <string>
 #include <SDL3_ttf/SDL_ttf.h>
 
 #include "game.h"

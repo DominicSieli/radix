@@ -16,12 +16,10 @@ namespace Radix
 			SDL_FRect source;
 			SDL_Texture* texture;
 			SDL_FRect destination;
-			unsigned int index = 0;
 			TransformComponent* transform_component;
-
-		public:
 			SDL_FlipMode sprite_flip = SDL_FLIP_NONE;
 
+		public:
 			StaticSpriteComponent();
 
 			StaticSpriteComponent(const unsigned int&, const bool&);

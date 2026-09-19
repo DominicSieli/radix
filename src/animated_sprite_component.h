@@ -21,11 +21,10 @@ namespace Radix
 			unsigned int current_animation;
 			unsigned int default_animation;
 			TransformComponent* transform_component;
+			SDL_FlipMode sprite_flip = SDL_FLIP_NONE;
 			std::map<unsigned int, Animation> animations;
 
 		public:
-			SDL_FlipMode sprite_flip = SDL_FLIP_NONE;
-
 			AnimatedSpriteComponent();
 
 			AnimatedSpriteComponent(const unsigned int&, const std::map<unsigned int, Animation>&, const unsigned int&, const bool&);
