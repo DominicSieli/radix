@@ -2,7 +2,6 @@
 #define ASSET_MANAGER_H
 
 #include <map>
-#include <SDL3_ttf/SDL_ttf.h>
 
 #include "game.h"
 #include "font_manager.h"
@@ -14,12 +13,11 @@ namespace Radix
 	class AssetManager
 	{
 		private:
-			EntityManager* entity_manager;
 			std::map<unsigned int, TTF_Font*> fonts;
 			std::map<unsigned int, SDL_Texture*> textures;
 
 		public:
-			AssetManager(EntityManager*);
+			AssetManager();
 
 			~AssetManager();
 

@@ -1,4 +1,5 @@
 #include <cmath>
+
 #include "vector2.h"
 
 namespace Radix

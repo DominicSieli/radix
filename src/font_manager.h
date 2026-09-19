@@ -10,9 +10,9 @@ namespace Radix
 	class FontManager
 	{
 		public:
-			static TTF_Font* load_font(const char*, int);
-
 			static void draw_font(SDL_Texture*, SDL_FRect);
+
+			static TTF_Font* load_font(const char*, const unsigned int&);
 	};
 }
 

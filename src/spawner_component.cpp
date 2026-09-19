@@ -1,4 +1,5 @@
 #include <cmath>
+
 #include "spawner_component.h"
 
 namespace Radix
