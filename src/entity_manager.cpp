@@ -40,9 +40,9 @@ namespace Radix
 
 	void EntityManager::render()
 	{
-		for(int layer_number = 0; layer_number < LAYER_COUNT; layer_number++)
+		for(int layer_number = 0; layer_number < 10; layer_number++)
 		{
-			for(auto* entity: get_entities_by_layer(static_cast<LayerType>(layer_number)))
+			for(auto* entity: get_entities_by_layer(static_cast<unsigned int>(layer_number)))
 			{
 				entity->render();
 			}
@@ -54,9 +54,9 @@ namespace Radix
 		return entities.size() == 0;
 	}
 
-	Entity* EntityManager::add_entity(std::string name, LayerType layer_type)
+	Entity* EntityManager::add_entity(std::string name, const unsigned int& render_layer)
 	{
-		Entity* entity = new Entity(this, name, layer_type);
+		Entity* entity = new Entity(this, name, render_layer);
 		entities.emplace_back(entity);
 		return entity;
 	}
@@ -66,19 +66,19 @@ namespace Radix
 		return entities;
 	}
 
-	std::vector<Entity*> EntityManager::get_entities_by_layer(LayerType layer_type) const
+	std::vector<Entity*> EntityManager::get_entities_by_layer(const unsigned int& render_layer) const
 	{
 		std::vector<Entity*> selected_entities;
 
 		for(auto* entity: entities)
 		{
-			if(entity->layer_type == layer_type) selected_entities.emplace_back(entity);
+			if(entity->render_layer == render_layer) selected_entities.emplace_back(entity);
 		}
 
 		return selected_entities;
 	}
 
-	CollisionType EntityManager::check_collisions() const
+	Collisions EntityManager::check_collisions() const
 	{
 		for(int i = 0; i < entities.size() - 1; i++)
 		{
@@ -98,22 +98,22 @@ namespace Radix
 
 						if(check_rect_collision(this_collider->collider, that_collider->collider) == true)
 						{
-							if(this_collider->tag.compare("PLAYER") == 0 && that_collider->tag.compare("ENEMY") == 0)
+							if(this_collider->tag == PLAYER_COLLIDER && that_collider->tag == ENEMY_COLLIDER)
 							{
 								return PLAYER_ENEMY_COLLISION;
 							}
 
-							if(this_collider->tag.compare("PLAYER") == 0 && that_collider->tag.compare("PROJECTILE") == 0)
+							if(this_collider->tag == PLAYER_COLLIDER && that_collider->tag == ENEMY_PROJECTILE_COLLIDER)
 							{
 								return PLAYER_PROJECTILE_COLLISION;
 							}
 
-							if(this_collider->tag.compare("ENEMY") == 0 && that_collider->tag.compare("PLAYER_PROJECTILE") == 0)
+							if(this_collider->tag == ENEMY_COLLIDER && that_collider->tag == PLAYER_PROJECTILE_COLLIDER)
 							{
 								return ENEMY_PROJECTILE_COLLISION;
 							}
 
-							if(this_collider->tag.compare("PLAYER") == 0 && that_collider->tag.compare("LEVEL_COMPLETE") == 0)
+							if(this_collider->tag == PLAYER_COLLIDER && that_collider->tag == LEVEL_COMPLETE_COLLIDER)
 							{
 								return PLAYER_LEVEL_COMPLETE_COLLISION;
 							}

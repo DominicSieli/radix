@@ -6,7 +6,6 @@
 #include <string>
 #include <typeinfo>
 
-#include "constants.h"
 #include "component.h"
 #include "entity_manager.h"
 
@@ -24,11 +23,11 @@ namespace Radix
 
 		public:
 			std::string name;
-			LayerType layer_type;
+			unsigned int render_layer;
 
 			Entity(EntityManager*);
 
-			Entity(EntityManager*, std::string, LayerType);
+			Entity(EntityManager*, std::string, const unsigned int&);
 
 			void update(float);
 

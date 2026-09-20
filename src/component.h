@@ -12,13 +12,17 @@ namespace Radix
 		public:
 			Entity* entity;
 
-			virtual ~Component() {}
+			virtual ~Component()
+			{}
 
-			virtual void initialize() {}
+			virtual void initialize()
+			{}
 
-			virtual void update(float) {}
+			virtual void update(float)
+			{}
 
-			virtual void render() {}
+			virtual void render()
+			{}
 	};
 }
 

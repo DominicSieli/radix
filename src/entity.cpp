@@ -10,12 +10,10 @@ namespace Radix
 		this->entity_manager = entity_manager;
 	}
 
-	Entity::Entity(EntityManager* entity_manager, std::string name, LayerType layer_type)
+	Entity::Entity(EntityManager* entity_manager, std::string name, const unsigned int& render_layer)
+		: entity_manager{entity_manager}, name{name}, render_layer{render_layer}
 	{
-		this->name = name;
 		this->active = true;
-		this->layer_type = layer_type;
-		this->entity_manager = entity_manager;
 	}
 
 	void Entity::update(float delta_time)

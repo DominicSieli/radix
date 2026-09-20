@@ -5,6 +5,7 @@
 
 #include "entity.h"
 #include "component.h"
+#include "collision_tags.h"
 
 namespace Radix
 {
@@ -24,13 +25,13 @@ namespace Radix
 
 			bool is_empty() const;
 
-			Entity* add_entity(std::string, LayerType);
+			Entity* add_entity(std::string, const unsigned int&);
 
 			std::vector<Entity*> get_entities() const;
 
-			std::vector<Entity*> get_entities_by_layer(LayerType) const;
+			std::vector<Entity*> get_entities_by_layer(const unsigned int&) const;
 
-			CollisionType check_collisions() const;
+			Collisions check_collisions() const;
 
 			void destroy_inactive_entities();
 

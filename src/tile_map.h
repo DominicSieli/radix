@@ -20,9 +20,9 @@ namespace Radix
 
 			~TileMap();
 
-			void load_map(std::string, int, int);
+			void load_map(std::string, int, int, std::string name, const unsigned int& render_layer);
 
-			void add_tile(int, int, int, int);
+			void add_tile(int, int, int, int, std::string name, const unsigned int& render_layer);
 	};
 }
 

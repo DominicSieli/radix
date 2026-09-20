@@ -16,7 +16,7 @@ namespace Radix
 	TileMap::~TileMap()
 	{}
 
-	void TileMap::load_map(std::string file_path, int map_size_x, int map_size_y)
+	void TileMap::load_map(std::string file_path, int map_size_x, int map_size_y, std::string name, const unsigned int& render_layer)
 	{
 		std::fstream map_file;
 		map_file.open(file_path);
@@ -30,7 +30,7 @@ namespace Radix
 				int source_rect_y = atoi(&character) * tile_size;
 				map_file.get(character);
 				int source_rect_x = atoi(&character) * tile_size;
-				add_tile(source_rect_x, source_rect_y, x * (scale * tile_size), y * (scale * tile_size));
+				add_tile(source_rect_x, source_rect_y, x * (scale * tile_size), y * (scale * tile_size), name, render_layer);
 				map_file.ignore();
 			}
 		}
@@ -38,9 +38,9 @@ namespace Radix
 		map_file.close();
 	}
 
-	void TileMap::add_tile(int source_rect_x, int source_rect_y, int x, int y)
+	void TileMap::add_tile(int source_rect_x, int source_rect_y, int x, int y, std::string name, const unsigned int& render_layer)
 	{
-		Entity* new_tile(entity_manager->add_entity("Tile", TILEMAP));
+		Entity* new_tile(entity_manager->add_entity(name, render_layer));
 		new_tile->add_component<TileComponent>(source_rect_x, source_rect_y, x, y, tile_size, scale, texture_id);
 	}
 }

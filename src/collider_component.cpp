@@ -2,7 +2,7 @@
 
 namespace Radix
 {
-	ColliderComponent::ColliderComponent(std::string tag, int x, int y, int w, int h)
+	ColliderComponent::ColliderComponent(const unsigned int& tag, const int& x, const int& y, const int& w, const int& h)
 		: tag{tag}
 	{
 		this->collider = {x, y, w, h};
