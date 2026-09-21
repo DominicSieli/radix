@@ -5,16 +5,14 @@
 
 #include "entity.h"
 #include "component.h"
-#include "collision_tags.h"
 
 namespace Radix
 {
 	class EntityManager
 	{
-		private:
+		public:
 			std::vector<Entity*> entities;
 
-		public:
 			EntityManager();
 
 			void clear();
@@ -30,8 +28,6 @@ namespace Radix
 			std::vector<Entity*> get_entities() const;
 
 			std::vector<Entity*> get_entities_by_layer(const unsigned int&) const;
-
-			Collisions check_collisions() const;
 
 			void destroy_inactive_entities();
 

@@ -1,8 +1,4 @@
-#include <iostream>
-
-#include "collision.h"
 #include "entity_manager.h"
-#include "collider_component.h"
 
 namespace Radix
 {
@@ -76,54 +72,6 @@ namespace Radix
 		}
 
 		return selected_entities;
-	}
-
-	Collisions EntityManager::check_collisions() const
-	{
-		for(int i = 0; i < entities.size() - 1; i++)
-		{
-			auto* this_entity = entities[i];
-
-			if(this_entity->has_component<ColliderComponent>() == true)
-			{
-				ColliderComponent* this_collider = this_entity->get_component<ColliderComponent>();
-
-				for(int j = i + 1; j < entities.size(); j++)
-				{
-					auto* that_entity = entities[j];
-
-					if(this_entity->name.compare(that_entity->name) != 0 && that_entity->has_component<ColliderComponent>() == true)
-					{
-						ColliderComponent* that_collider = that_entity->get_component<ColliderComponent>();
-
-						if(check_rect_collision(this_collider->collider, that_collider->collider) == true)
-						{
-							if(this_collider->tag == PLAYER_COLLIDER && that_collider->tag == ENEMY_COLLIDER)
-							{
-								return PLAYER_ENEMY_COLLISION;
-							}
-
-							if(this_collider->tag == PLAYER_COLLIDER && that_collider->tag == ENEMY_PROJECTILE_COLLIDER)
-							{
-								return PLAYER_PROJECTILE_COLLISION;
-							}
-
-							if(this_collider->tag == ENEMY_COLLIDER && that_collider->tag == PLAYER_PROJECTILE_COLLIDER)
-							{
-								return ENEMY_PROJECTILE_COLLISION;
-							}
-
-							if(this_collider->tag == PLAYER_COLLIDER && that_collider->tag == LEVEL_COMPLETE_COLLIDER)
-							{
-								return PLAYER_LEVEL_COMPLETE_COLLISION;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		return NO_COLLISION;
 	}
 
 	unsigned int EntityManager::entity_count()

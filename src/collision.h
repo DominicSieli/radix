@@ -1,11 +1,11 @@
 #ifndef COLLISION_H
 #define COLLISION_H
 
-#include <SDL3/SDL.h>
-
-namespace Radix
+struct Collision
 {
-	bool check_rect_collision(const SDL_Rect&, const SDL_Rect&);
-}
+	unsigned int collider_tag_1;
+	unsigned int collider_tag_2;
+	unsigned int collision_type;
+};
 
 #endif
