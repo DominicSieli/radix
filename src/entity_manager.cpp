@@ -34,17 +34,6 @@ namespace Radix
 		}
 	}
 
-	void EntityManager::render()
-	{
-		for(int layer_number = 0; layer_number < 10; layer_number++)
-		{
-			for(auto* entity: get_entities_by_layer(static_cast<unsigned int>(layer_number)))
-			{
-				entity->render();
-			}
-		}
-	}
-
 	bool EntityManager::is_empty() const
 	{
 		return entities.size() == 0;

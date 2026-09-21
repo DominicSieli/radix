@@ -19,8 +19,6 @@ namespace Radix
 
 			void update(float);
 
-			void render();
-
 			bool is_empty() const;
 
 			Entity* add_entity(std::string, const unsigned int&);
