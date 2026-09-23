@@ -8,6 +8,9 @@
 namespace Radix
 {
 	class AssetManager;
+	class RenderManager;
+	class EntityManager;
+	class CollisionManager;
 
 	class Game
 	{
@@ -20,7 +23,10 @@ namespace Radix
 			static SDL_Rect camera;
 			static SDL_Event input_event;
 			static SDL_Renderer* renderer;
-			static AssetManager* asset_manager;
+			static AssetManager asset_manager;
+			static RenderManager render_manager;
+			static EntityManager entity_manager;
+			static CollisionManager collision_manager;
 
 			Game();
 

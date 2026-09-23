@@ -1,3 +1,4 @@
+#include "game.h"
 #include "entity_manager.h"
 
 namespace Radix

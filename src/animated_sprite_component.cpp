@@ -1,3 +1,4 @@
+#include "asset_manager.h"
 #include "animated_sprite_component.h"
 
 namespace Radix
@@ -30,7 +31,7 @@ namespace Radix
 
 	void AnimatedSpriteComponent::set_texture(unsigned int texture_id)
 	{
-		this->texture = Game::asset_manager->get_texture(texture_id);
+		this->texture = Game::asset_manager.get_texture(texture_id);
 	}
 
 	void AnimatedSpriteComponent::update(float delta_time)

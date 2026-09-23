@@ -5,19 +5,13 @@
 #include <SDL3/SDL.h>
 
 #include "collision.h"
-#include "entity_manager.h"
 
 namespace Radix
 {
 	class CollisionManager
 	{
-		private:
-			EntityManager* entity_manager;
-
 		public:
 			CollisionManager();
-
-			CollisionManager(EntityManager*);
 
 			~CollisionManager();
 

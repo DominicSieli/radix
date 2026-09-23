@@ -3,8 +3,6 @@
 
 #include <string>
 
-#include "entity_manager.h"
-
 namespace Radix
 {
 	class TileMap
@@ -13,10 +11,9 @@ namespace Radix
 			int scale;
 			int tile_size;
 			unsigned int texture_id;
-			EntityManager* entity_manager;
 
 		public:
-			TileMap(unsigned int, EntityManager*, int, int);
+			TileMap(unsigned int, int, int);
 
 			~TileMap();
 

@@ -1,5 +1,4 @@
 #include "entity.h"
-#include "entity_manager.h"
 #include "collision_manager.h"
 #include "collider_component.h"
 
@@ -8,26 +7,22 @@ namespace Radix
 	CollisionManager::CollisionManager()
 	{}
 
-	CollisionManager::CollisionManager(EntityManager* entity_manager)
-		: entity_manager{entity_manager}
-	{}
-
 	CollisionManager::~CollisionManager()
 	{}
 
 	unsigned int CollisionManager::check_collisions(const std::vector<Collision>& collisions, unsigned int no_collision)
 	{
-		for(int i = 0; i < this->entity_manager->entities.size() - 1; i++)
+		for(int i = 0; i < Game::entity_manager.entities.size() - 1; i++)
 		{
-			Entity* entity_1 = this->entity_manager->entities[i];
+			Entity* entity_1 = Game::entity_manager.entities[i];
 
 			if(entity_1->has_component<ColliderComponent>() == true)
 			{
 				ColliderComponent* entity_1_collider = entity_1->get_component<ColliderComponent>();
 
-				for(int j = i + 1; j < this->entity_manager->entities.size(); j++)
+				for(int j = i + 1; j < Game::entity_manager.entities.size(); j++)
 				{
-					Entity* entity_2 = this->entity_manager->entities[j];
+					Entity* entity_2 = Game::entity_manager.entities[j];
 
 					if(entity_1->name.compare(entity_2->name) != 0 && entity_2->has_component<ColliderComponent>() == true)
 					{

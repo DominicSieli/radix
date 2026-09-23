@@ -14,7 +14,7 @@ namespace Radix
 
 	void TextComponent::set_text(std::string text, unsigned int font_family)
 	{
-		SDL_Surface* surface = TTF_RenderText_Blended(Game::asset_manager->get_font(font_family), text.c_str(), 0, color);
+		SDL_Surface* surface = TTF_RenderText_Blended(Game::asset_manager.get_font(font_family), text.c_str(), 0, color);
 		texture = SDL_CreateTextureFromSurface(Game::renderer, surface);
 		SDL_DestroySurface(surface);
 		SDL_GetTextureSize(texture, &position.w, &position.h);
