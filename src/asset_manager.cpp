@@ -16,22 +16,22 @@ namespace Radix
 		this->textures.clear();
 	}
 
-	TTF_Font* AssetManager::get_font(const unsigned int& font_id)
+	TTF_Font* AssetManager::get_font(unsigned int font_id)
 	{
 		return this->fonts[font_id];
 	}
 
-	SDL_Texture* AssetManager::get_texture(const unsigned int& texture_id)
+	SDL_Texture* AssetManager::get_texture(unsigned int texture_id)
 	{
 		return this->textures[texture_id];
 	}
 
-	void AssetManager::add_texture(const unsigned int& texture_id, const char* file_path)
+	void AssetManager::add_texture(unsigned int texture_id, const char* file_path)
 	{
 		this->textures.emplace(texture_id, TextureManager::load_texture(file_path));
 	}
 
-	void AssetManager::add_font(const unsigned int& font_id, const char* file_path, int font_size)
+	void AssetManager::add_font(unsigned int font_id, const char* file_path, int font_size)
 	{
 		this->fonts.emplace(font_id, FontManager::load_font(file_path, font_size));
 	}

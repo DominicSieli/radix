@@ -21,7 +21,7 @@ namespace Radix
 
 	void SpawnerComponent::update(float delta_time)
 	{
-		if(distance(&transform_component->position, &origin) > range)
+		if(distance(transform_component->position, origin) > range)
 		{
 			if(loop == true)
 			{

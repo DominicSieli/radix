@@ -9,10 +9,10 @@ namespace Radix
 		return {x, y};
 	}
 
-	float distance(const Vector2* point1, const Vector2* point2)
+	float distance(Vector2 point1, Vector2 point2)
 	{
-		float dx = point2->x - point1->x;
-		float dy = point2->y - point1->y;
+		float dx = point2.x - point1.x;
+		float dy = point2.y - point1.y;
 
 		return std::sqrt(dx * dx + dy * dy);
 	}

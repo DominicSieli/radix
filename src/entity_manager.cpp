@@ -34,24 +34,24 @@ namespace Radix
 		}
 	}
 
-	bool EntityManager::is_empty() const
+	bool EntityManager::is_empty()
 	{
 		return entities.size() == 0;
 	}
 
-	Entity* EntityManager::add_entity(std::string name, const unsigned int& render_layer)
+	Entity* EntityManager::add_entity(std::string name, unsigned int render_layer)
 	{
 		Entity* entity = new Entity(this, name, render_layer);
 		entities.emplace_back(entity);
 		return entity;
 	}
 
-	std::vector<Entity*> EntityManager::get_entities() const
+	std::vector<Entity*> EntityManager::get_entities()
 	{
 		return entities;
 	}
 
-	std::vector<Entity*> EntityManager::get_entities_by_layer(const unsigned int& render_layer) const
+	std::vector<Entity*> EntityManager::get_entities_by_layer(unsigned int render_layer)
 	{
 		std::vector<Entity*> selected_entities;
 

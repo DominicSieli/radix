@@ -11,7 +11,7 @@ namespace Radix
 
 	Vector2 create_vector2(float, float);
 
-	float distance(const Vector2*, const Vector2*);
+	float distance(Vector2, Vector2);
 }
 
 #endif

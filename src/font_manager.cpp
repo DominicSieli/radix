@@ -8,7 +8,7 @@ namespace Radix
 		SDL_RenderTexture(Game::renderer, texture, NULL, &position);
 	}
 
-	TTF_Font* FontManager::load_font(const char* file_name, const unsigned int& font_size)
+	TTF_Font* FontManager::load_font(const char* file_name, unsigned int font_size)
 	{
 		return TTF_OpenFont(file_name, font_size);
 	}

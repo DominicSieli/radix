@@ -12,7 +12,7 @@ namespace Radix
 
 			Animation();
 
-			Animation(const unsigned int&, const unsigned int&, const unsigned int&);
+			Animation(unsigned int, unsigned int, unsigned int);
 	};
 }
 

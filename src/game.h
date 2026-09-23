@@ -26,7 +26,7 @@ namespace Radix
 
 			~Game();
 
-			bool is_running() const;
+			bool is_running();
 
 			void load_level(int);
 

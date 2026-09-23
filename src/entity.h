@@ -27,7 +27,7 @@ namespace Radix
 
 			Entity(EntityManager*);
 
-			Entity(EntityManager*, std::string, const unsigned int&);
+			Entity(EntityManager*, std::string, unsigned int);
 
 			void update(float);
 
@@ -35,7 +35,7 @@ namespace Radix
 
 			void destroy();
 
-			bool is_active() const;
+			bool is_active();
 
 			template<typename T, typename... T_ARGS>
 				T* add_component(T_ARGS&&... args)
@@ -55,7 +55,7 @@ namespace Radix
 				}
 
 			template<typename T>
-				bool has_component() const
+				bool has_component()
 				{
 					return component_map.count(&typeid(T));
 				}

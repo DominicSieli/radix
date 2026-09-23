@@ -27,13 +27,13 @@ namespace Radix
 		public:
 			AnimatedSpriteComponent();
 
-			AnimatedSpriteComponent(const unsigned int&, const std::map<unsigned int, Animation>&, const unsigned int&, const bool&);
+			AnimatedSpriteComponent(unsigned int, const std::map<unsigned int, Animation>&, unsigned int, bool);
 
 			void initialize() override;
 
 			void play(unsigned int);
 
-			void set_texture(const unsigned int&);
+			void set_texture(unsigned int);
 
 			void update(float) override;
 

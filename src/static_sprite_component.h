@@ -22,11 +22,11 @@ namespace Radix
 		public:
 			StaticSpriteComponent();
 
-			StaticSpriteComponent(const unsigned int&, const bool&);
+			StaticSpriteComponent(unsigned int, bool);
 
 			void initialize() override;
 
-			void set_texture(const unsigned int&);
+			void set_texture(unsigned int);
 
 			void update(float) override;
 

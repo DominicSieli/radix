@@ -5,7 +5,7 @@ namespace Radix
 	StaticSpriteComponent::StaticSpriteComponent()
 	{}
 
-	StaticSpriteComponent::StaticSpriteComponent(const unsigned int& texture_id, const bool& fixed)
+	StaticSpriteComponent::StaticSpriteComponent(unsigned int texture_id, bool fixed)
 		: fixed{fixed}
 	{
 		this->set_texture(texture_id);
@@ -21,7 +21,7 @@ namespace Radix
 		this->source.h = this->transform_component->dimension.y;
 	}
 
-	void StaticSpriteComponent::set_texture(const unsigned int& texture_id)
+	void StaticSpriteComponent::set_texture(unsigned int texture_id)
 	{
 		this->texture = Game::asset_manager->get_texture(texture_id);
 	}

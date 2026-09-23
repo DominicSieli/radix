@@ -16,13 +16,13 @@ namespace Radix
 			EntityManager* entity_manager;
 
 		public:
-			TileMap(const unsigned int&, EntityManager*, int, int);
+			TileMap(unsigned int, EntityManager*, int, int);
 
 			~TileMap();
 
-			void load_map(std::string, int, int, std::string name, const unsigned int& render_layer);
+			void load_map(std::string, int, int, std::string name, unsigned int render_layer);
 
-			void add_tile(int, int, int, int, std::string name, const unsigned int& render_layer);
+			void add_tile(int, int, int, int, std::string name, unsigned int render_layer);
 	};
 }
 

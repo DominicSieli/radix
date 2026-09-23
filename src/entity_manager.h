@@ -19,13 +19,13 @@ namespace Radix
 
 			void update(float);
 
-			bool is_empty() const;
+			bool is_empty();
 
-			Entity* add_entity(std::string, const unsigned int&);
+			Entity* add_entity(std::string, unsigned int);
 
-			std::vector<Entity*> get_entities() const;
+			std::vector<Entity*> get_entities();
 
-			std::vector<Entity*> get_entities_by_layer(const unsigned int&) const;
+			std::vector<Entity*> get_entities_by_layer(unsigned int);
 
 			void destroy_inactive_entities();
 

@@ -15,7 +15,7 @@ namespace Radix
 	CollisionManager::~CollisionManager()
 	{}
 
-	unsigned int CollisionManager::check_collisions(const std::vector<Collision>& collisions, const unsigned int& no_collision)
+	unsigned int CollisionManager::check_collisions(const std::vector<Collision>& collisions, unsigned int no_collision)
 	{
 		for(int i = 0; i < this->entity_manager->entities.size() - 1; i++)
 		{
@@ -51,7 +51,7 @@ namespace Radix
 		return no_collision;
 	}
 
-	bool CollisionManager::check_rect_collision(const SDL_Rect& rect_1, const SDL_Rect& rect_2)
+	bool CollisionManager::check_rect_collision(SDL_Rect rect_1, SDL_Rect rect_2)
 	{
 		return (rect_1.x + rect_1.w >= rect_2.x && rect_2.x + rect_2.w >= rect_1.x && rect_1.y + rect_1.h >= rect_2.y && rect_2.y + rect_2.h >= rect_1.y);
 	}

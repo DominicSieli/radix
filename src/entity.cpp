@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "entity.h"
 
 namespace Radix
@@ -10,7 +8,7 @@ namespace Radix
 		this->entity_manager = entity_manager;
 	}
 
-	Entity::Entity(EntityManager* entity_manager, std::string name, const unsigned int& render_layer)
+	Entity::Entity(EntityManager* entity_manager, std::string name, unsigned int render_layer)
 		: entity_manager{entity_manager}, name{name}, render_layer{render_layer}
 	{
 		this->active = true;
@@ -37,7 +35,7 @@ namespace Radix
 		this->active = false;
 	}
 
-	bool Entity::is_active() const
+	bool Entity::is_active()
 	{
 		return this->active;
 	}

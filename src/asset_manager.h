@@ -23,13 +23,13 @@ namespace Radix
 
 			void clear();
 
-			TTF_Font* get_font(const unsigned int&);
+			TTF_Font* get_font(unsigned int);
 
-			SDL_Texture* get_texture(const unsigned int&);
+			SDL_Texture* get_texture(unsigned int);
 
-			void add_texture(const unsigned int&, const char*);
+			void add_texture(unsigned int, const char*);
 
-			void add_font(const unsigned int&, const char*, int);
+			void add_font(unsigned int, const char*, int);
 	};
 }
 

@@ -18,7 +18,7 @@ namespace Radix
 			SDL_Rect destination_rect;
 			TransformComponent* transform_component;
 
-			ColliderComponent(const unsigned int&, const int&, const int&, const int&, const int&);
+			ColliderComponent(unsigned int, int, int, int, int);
 
 			void initialize() override;
 

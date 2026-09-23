@@ -12,7 +12,7 @@ namespace Radix
 		public:
 			static void draw_font(SDL_Texture*, SDL_FRect);
 
-			static TTF_Font* load_font(const char*, const unsigned int&);
+			static TTF_Font* load_font(const char*, unsigned int);
 	};
 }
 

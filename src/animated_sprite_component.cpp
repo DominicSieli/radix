@@ -5,7 +5,7 @@ namespace Radix
 	AnimatedSpriteComponent::AnimatedSpriteComponent()
 	{}
 
-	AnimatedSpriteComponent::AnimatedSpriteComponent(const unsigned int& texture_id, const std::map<unsigned int, Animation>& animations, const unsigned int& default_animation, const bool& fixed)
+	AnimatedSpriteComponent::AnimatedSpriteComponent(unsigned int texture_id, const std::map<unsigned int, Animation>& animations, unsigned int default_animation, bool fixed)
 		: animations{animations}, default_animation{default_animation}, current_animation{default_animation}, fixed{fixed}
 	{
 		this->set_texture(texture_id);
@@ -28,7 +28,7 @@ namespace Radix
 		this->index = this->animations[animation].index;
 	}
 
-	void AnimatedSpriteComponent::set_texture(const unsigned int& texture_id)
+	void AnimatedSpriteComponent::set_texture(unsigned int texture_id)
 	{
 		this->texture = Game::asset_manager->get_texture(texture_id);
 	}
