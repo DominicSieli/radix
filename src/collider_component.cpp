@@ -2,11 +2,17 @@
 
 namespace Radix
 {
+	ColliderComponent::ColliderComponent()
+	{}
+
 	ColliderComponent::ColliderComponent(unsigned int tag, int x, int y, int w, int h)
 		: tag{tag}
 	{
 		this->collider = {x, y, w, h};
 	}
+
+	ColliderComponent::~ColliderComponent()
+	{}
 
 	void ColliderComponent::initialize()
 	{

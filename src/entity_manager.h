@@ -15,6 +15,8 @@ namespace Radix
 
 			EntityManager();
 
+			~EntityManager();
+
 			void clear();
 
 			void update(float);

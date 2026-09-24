@@ -18,7 +18,11 @@ namespace Radix
 			SDL_Rect destination_rect;
 			TransformComponent* transform_component;
 
+			ColliderComponent();
+
 			ColliderComponent(unsigned int, int, int, int, int);
+
+			~ColliderComponent();
 
 			void initialize() override;
 

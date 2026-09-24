@@ -1,11 +1,21 @@
 #ifndef COLLISION_H
 #define COLLISION_H
 
-struct Collision
+namespace Radix
 {
-	unsigned int collider_tag_1;
-	unsigned int collider_tag_2;
-	unsigned int collision_type;
-};
+	class Collision
+	{
+		public:
+			unsigned int collider_tag_1;
+			unsigned int collider_tag_2;
+			unsigned int collision_type;
+
+			Collision();
+
+			Collision(unsigned int, unsigned int, unsigned int);
+
+			~Collision();
+	};
+}
 
 #endif
