@@ -1,6 +1,6 @@
 #include <cmath>
 
-#include "point_2d.h"
+#include "vector_2.h"
 #include "spawner_component.h"
 
 namespace Radix
@@ -20,13 +20,13 @@ namespace Radix
 	void SpawnerComponent::initialize()
 	{
 		transform_component = entity->get_component<TransformComponent>();
-		origin = Point2D(transform_component->position.x, transform_component->position.y);
-		transform_component->velocity = Point2D(std::cos(radian) * speed, std::sin(radian) * speed);
+		origin = Vector2(transform_component->position.x, transform_component->position.y);
+		transform_component->velocity = Vector2(std::cos(radian) * speed, std::sin(radian) * speed);
 	}
 
 	void SpawnerComponent::update(float delta_time)
 	{
-		if(Point2D::distance(transform_component->position, origin) > range)
+		if(Vector2::distance(transform_component->position, origin) > range)
 		{
 			if(loop == true)
 			{

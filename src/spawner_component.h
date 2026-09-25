@@ -1,7 +1,7 @@
 #ifndef SPAWNER_COMPONENT_H
 #define SPAWNER_COMPONENT_H
 
-#include "point_2d.h"
+#include "vector_2.h"
 #include "entity_manager.h"
 #include "transform_component.h"
 
@@ -12,7 +12,7 @@ namespace Radix
 		private:
 			bool loop;
 			float radian;
-			Point2D origin;
+			Vector2 origin;
 			unsigned int speed;
 			unsigned int range;
 			unsigned int degree;
