@@ -13,6 +13,7 @@ namespace Radix
 	{
 		public:
 			float scale;
+			float rotation;
 			Vector2 position;
 			Vector2 velocity;
 			Vector2 dimension;
@@ -21,7 +22,7 @@ namespace Radix
 
 			~TransformComponent();
 
-			TransformComponent(int, int, int, int, int, int, float);
+			TransformComponent(Vector2, Vector2, Vector2, float, float);
 
 			void initialize() override;
 

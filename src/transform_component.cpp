@@ -8,13 +8,9 @@ namespace Radix
 	TransformComponent::~TransformComponent()
 	{}
 
-	TransformComponent::TransformComponent(int position_x, int position_y, int velocity_x, int velocity_y, int dimension_x, int dimension_y, float scale)
-	{
-		this->scale = scale;
-		this->position = Vector2(position_x, position_y);
-		this->velocity = Vector2(velocity_x, velocity_y);
-		this->dimension = Vector2(dimension_x, dimension_y);
-	}
+	TransformComponent::TransformComponent(Vector2 position, Vector2 velocity, Vector2 dimension, float rotation, float scale)
+		:position{position}, velocity{velocity}, dimension{dimension}, rotation{rotation}, scale{scale}
+	{}
 
 	void TransformComponent::initialize()
 	{}
