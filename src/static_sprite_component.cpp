@@ -5,6 +5,9 @@ namespace Radix
 	StaticSpriteComponent::StaticSpriteComponent()
 	{}
 
+	StaticSpriteComponent::~StaticSpriteComponent()
+	{}
+
 	StaticSpriteComponent::StaticSpriteComponent(unsigned int texture_id, bool fixed)
 		: fixed{fixed}
 	{

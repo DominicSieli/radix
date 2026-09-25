@@ -3,7 +3,7 @@
 
 #include <SDL3/SDL.h>
 
-#include "vector2.h"
+#include "point_2d.h"
 #include "asset_manager.h"
 #include "entity_manager.h"
 
@@ -12,14 +12,16 @@ namespace Radix
 	class TileComponent: public Component
 	{
 		public:
-			Vector2 position;
+			Point2D position;
 			SDL_Texture* texture;
 			SDL_FRect source_rect;
 			SDL_FRect destination_rect;
 
-			TileComponent(int, int, int, int, int, int, unsigned int);
+			TileComponent();
 
 			~TileComponent();
+
+			TileComponent(int, int, int, int, int, int, unsigned int);
 
 			void update(float) override;
 

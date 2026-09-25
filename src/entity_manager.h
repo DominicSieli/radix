@@ -4,7 +4,6 @@
 #include <vector>
 
 #include "entity.h"
-#include "component.h"
 
 namespace Radix
 {

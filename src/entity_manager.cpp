@@ -1,4 +1,5 @@
 #include "game.h"
+#include "entity.h"
 #include "entity_manager.h"
 
 namespace Radix
@@ -45,7 +46,7 @@ namespace Radix
 
 	Entity* EntityManager::add_entity(std::string name, unsigned int render_layer)
 	{
-		Entity* entity = new Entity(this, name, render_layer);
+		Entity* entity = new Entity(name, render_layer);
 		entities.emplace_back(entity);
 		return entity;
 	}

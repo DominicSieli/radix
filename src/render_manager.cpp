@@ -7,6 +7,9 @@ namespace Radix
 	RenderManager::RenderManager()
 	{}
 
+	RenderManager::~RenderManager()
+	{}
+
 	void RenderManager::render()
 	{
 		for(int layer_number = 0; layer_number < 10; layer_number++)

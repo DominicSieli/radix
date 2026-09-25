@@ -2,6 +2,12 @@
 
 namespace Radix
 {
+	TextComponent::TextComponent()
+	{}
+
+	TextComponent::~TextComponent()
+	{}
+
 	TextComponent::TextComponent(int x, int y, std::string text, unsigned int font_family, SDL_Color color)
 	{
 		this->position.x = x;

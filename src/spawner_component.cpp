@@ -1,27 +1,32 @@
 #include <cmath>
 
+#include "point_2d.h"
 #include "spawner_component.h"
 
 namespace Radix
 {
-	SpawnerComponent::SpawnerComponent(int speed, int degree, int range, bool loop)
+	SpawnerComponent::SpawnerComponent()
+	{}
+
+	SpawnerComponent::~SpawnerComponent()
+	{}
+
+	SpawnerComponent::SpawnerComponent(unsigned int speed, unsigned int degree, unsigned int range, bool loop)
+		: speed{speed}, degree{degree}, range{range}, loop{loop}
 	{
-		this->speed = speed;
-		this->range = range;
-		this->loop = loop;
-		this->radian = degree * std::numbers::pi_v<float> / 180.0f;
+		this->radian = this->degree * std::numbers::pi_v<float> / 180.0f;
 	}
 
 	void SpawnerComponent::initialize()
 	{
 		transform_component = entity->get_component<TransformComponent>();
-		origin = create_vector2(transform_component->position.x, transform_component->position.y);
-		transform_component->velocity = create_vector2(std::cos(radian) * speed, std::sin(radian) * speed);
+		origin = Point2D(transform_component->position.x, transform_component->position.y);
+		transform_component->velocity = Point2D(std::cos(radian) * speed, std::sin(radian) * speed);
 	}
 
 	void SpawnerComponent::update(float delta_time)
 	{
-		if(distance(transform_component->position, origin) > range)
+		if(Point2D::distance(transform_component->position, origin) > range)
 		{
 			if(loop == true)
 			{

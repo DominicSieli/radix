@@ -2,12 +2,18 @@
 
 namespace Radix
 {
+	TransformComponent::TransformComponent()
+	{}
+
+	TransformComponent::~TransformComponent()
+	{}
+
 	TransformComponent::TransformComponent(int position_x, int position_y, int velocity_x, int velocity_y, int dimension_x, int dimension_y, int scale)
 	{
 		this->scale = scale;
-		this->position = create_vector2(position_x, position_y);
-		this->velocity = create_vector2(velocity_x, velocity_y);
-		this->dimension = create_vector2(dimension_x, dimension_y);
+		this->position = Point2D(position_x, position_y);
+		this->velocity = Point2D(velocity_x, velocity_y);
+		this->dimension = Point2D(dimension_x, dimension_y);
 	}
 
 	void TransformComponent::initialize()

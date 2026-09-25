@@ -1,7 +1,7 @@
 #ifndef SPAWNER_COMPONENT_H
 #define SPAWNER_COMPONENT_H
 
-#include "vector2.h"
+#include "point_2d.h"
 #include "entity_manager.h"
 #include "transform_component.h"
 
@@ -11,14 +11,19 @@ namespace Radix
 	{
 		private:
 			bool loop;
-			int speed;
-			int range;
 			float radian;
-			Vector2 origin;
+			Point2D origin;
+			unsigned int speed;
+			unsigned int range;
+			unsigned int degree;
 			TransformComponent* transform_component;
 
 		public:
-			SpawnerComponent(int, int, int, bool);
+			SpawnerComponent();
+
+			~SpawnerComponent();
+
+			SpawnerComponent(unsigned int, unsigned int, unsigned int, bool);
 
 			void initialize() override;
 

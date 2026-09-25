@@ -7,17 +7,13 @@
 #include <typeinfo>
 
 #include "component.h"
-#include "entity_manager.h"
 
 namespace Radix
 {
-	class EntityManager;
-
 	class Entity
 	{
 		private:
 			bool active;
-			EntityManager* entity_manager;
 			std::vector<Component*> components;
 			std::map<const std::type_info*, Component*> component_map;
 
@@ -25,9 +21,11 @@ namespace Radix
 			std::string name;
 			unsigned int render_layer;
 
-			Entity(EntityManager*);
+			Entity();
 
-			Entity(EntityManager*, std::string, unsigned int);
+			Entity(std::string, unsigned int);
+
+			~Entity();
 
 			void update(float);
 

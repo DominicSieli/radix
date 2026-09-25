@@ -13,9 +13,11 @@ namespace Radix
 			unsigned int texture_id;
 
 		public:
-			TileMap(unsigned int, int, int);
+			TileMap();
 
 			~TileMap();
+
+			TileMap(unsigned int, int, int);
 
 			void load_map(std::string, int, int, std::string name, unsigned int render_layer);
 

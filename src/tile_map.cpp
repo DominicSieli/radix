@@ -6,15 +6,18 @@
 
 namespace Radix
 {
+	TileMap::TileMap()
+	{}
+
+	TileMap::~TileMap()
+	{}
+
 	TileMap::TileMap(unsigned int texture_id, int scale, int tile_size)
 	{
 		this->scale = scale;
 		this->tile_size = tile_size;
 		this->texture_id = texture_id;
 	}
-
-	TileMap::~TileMap()
-	{}
 
 	void TileMap::load_map(std::string file_path, int map_size_x, int map_size_y, std::string name, unsigned int render_layer)
 	{

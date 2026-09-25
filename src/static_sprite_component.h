@@ -24,6 +24,8 @@ namespace Radix
 
 			StaticSpriteComponent(unsigned int, bool);
 
+			~StaticSpriteComponent();
+
 			void initialize() override;
 
 			void set_texture(unsigned int);

@@ -2,17 +2,19 @@
 
 namespace Radix
 {
-	Entity::Entity(EntityManager* entity_manager)
+	Entity::Entity()
 	{
 		this->active = true;
-		this->entity_manager = entity_manager;
 	}
 
-	Entity::Entity(EntityManager* entity_manager, std::string name, unsigned int render_layer)
-		: entity_manager{entity_manager}, name{name}, render_layer{render_layer}
+	Entity::Entity(std::string name, unsigned int render_layer)
+		: name{name}, render_layer{render_layer}
 	{
 		this->active = true;
 	}
+
+	Entity::~Entity()
+	{}
 
 	void Entity::update(float delta_time)
 	{

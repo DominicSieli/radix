@@ -5,6 +5,11 @@
 #include <SDL3_ttf/SDL_ttf.h>
 #include <SDL3_image/SDL_image.h>
 
+#include "asset_manager.h"
+#include "render_manager.h"
+#include "entity_manager.h"
+#include "collision_manager.h"
+
 namespace Radix
 {
 	class AssetManager;

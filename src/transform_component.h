@@ -4,7 +4,7 @@
 #include <SDL3/SDL.h>
 
 #include "game.h"
-#include "vector2.h"
+#include "point_2d.h"
 #include "entity_manager.h"
 
 namespace Radix
@@ -13,9 +13,13 @@ namespace Radix
 	{
 		public:
 			int scale;
-			Vector2 position;
-			Vector2 velocity;
-			Vector2 dimension;
+			Point2D position;
+			Point2D velocity;
+			Point2D dimension;
+
+			TransformComponent();
+
+			~TransformComponent();
 
 			TransformComponent(int, int, int, int, int, int, int);
 
