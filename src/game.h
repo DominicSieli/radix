@@ -25,6 +25,8 @@ namespace Radix
 
 		public:
 			int ticks_last_frame = 0;
+			static double delta_time;
+
 			static SDL_Rect camera;
 			static SDL_Event input_event;
 			static SDL_Renderer* renderer;

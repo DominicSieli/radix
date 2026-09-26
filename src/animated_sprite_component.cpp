@@ -22,19 +22,19 @@ namespace Radix
 
 		this->source.x = 0;
 		this->source.y = 0;
-		this->source.w = this->transform_component->dimension.x;
-		this->source.h = this->transform_component->dimension.y;
+		this->source.w = this->transform_component->dimensions.x;
+		this->source.h = this->transform_component->dimensions.y;
 	}
 
-	void AnimatedSpriteComponent::update(float delta_time)
+	void AnimatedSpriteComponent::update(double delta_time)
 	{
 		this->source.x = this->source.w * static_cast<int>((SDL_GetTicks() / this->animations[this->current_animation].speed) % this->animations[this->current_animation].frames);
-		this->source.y = this->index * static_cast<int>(this->transform_component->dimension.y);
+		this->source.y = this->index * static_cast<int>(this->transform_component->dimensions.y);
 
 		this->destination.x = static_cast<int>(this->transform_component->position.x) - ((this->fixed == true) ? 0 : Game::camera.x);
 		this->destination.y = static_cast<int>(this->transform_component->position.y) - ((this->fixed == true) ? 0 : Game::camera.y);
-		this->destination.w = static_cast<int>(this->transform_component->dimension.x * this->transform_component->scale);
-		this->destination.h = static_cast<int>(this->transform_component->dimension.y * this->transform_component->scale);
+		this->destination.w = static_cast<int>(this->transform_component->dimensions.x * this->transform_component->scale.x);
+		this->destination.h = static_cast<int>(this->transform_component->dimensions.y * this->transform_component->scale.y);
 	}
 
 	void AnimatedSpriteComponent::render()

@@ -12,10 +12,10 @@ namespace Radix
 	class TileComponent: public Component
 	{
 		public:
-			Vector2 position;
 			SDL_Texture* texture;
 			SDL_FRect source_rect;
 			SDL_FRect destination_rect;
+			Vector2<unsigned int> position;
 
 			TileComponent();
 
@@ -23,7 +23,7 @@ namespace Radix
 
 			TileComponent(int, int, int, int, int, int, unsigned int);
 
-			void update(float) override;
+			void update(double) override;
 
 			void render() override;
 	};

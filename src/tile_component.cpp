@@ -30,7 +30,7 @@ namespace Radix
 		position.y = y;
 	}
 
-	void TileComponent::update(float delta_time)
+	void TileComponent::update(double delta_time)
 	{
 		destination_rect.x = position.x - Game::camera.x;
 		destination_rect.y = position.y - Game::camera.y;

@@ -30,7 +30,7 @@ namespace Radix
 
 			void set_texture(unsigned int);
 
-			void update(float) override;
+			void update(double) override;
 
 			void render() override;
 	};

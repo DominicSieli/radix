@@ -8,8 +8,8 @@ namespace Radix
 	class TileMap
 	{
 		private:
-			int scale;
-			int tile_size;
+			unsigned int scale;
+			unsigned int tile_size;
 			unsigned int texture_id;
 
 		public:
@@ -17,7 +17,7 @@ namespace Radix
 
 			~TileMap();
 
-			TileMap(unsigned int, int, int);
+			TileMap(unsigned int, unsigned int, unsigned int);
 
 			void load_map(std::string, int, int, std::string name, unsigned int render_layer);
 

@@ -12,7 +12,7 @@ namespace Radix
 	TileMap::~TileMap()
 	{}
 
-	TileMap::TileMap(unsigned int texture_id, int scale, int tile_size)
+	TileMap::TileMap(unsigned int texture_id, unsigned int scale, unsigned int tile_size)
 	{
 		this->scale = scale;
 		this->tile_size = tile_size;

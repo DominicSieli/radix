@@ -31,7 +31,7 @@ namespace Radix
 
 			void initialize() override;
 
-			void update(float) override;
+			void update(double) override;
 
 			void render() override;
 

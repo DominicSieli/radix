@@ -18,7 +18,7 @@ namespace Radix
 
 			void clear();
 
-			void update(float);
+			void update(double);
 
 			bool is_empty();
 

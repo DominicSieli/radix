@@ -18,7 +18,7 @@ namespace Radix
 		}
 	}
 
-	void EntityManager::update(float delta_time)
+	void EntityManager::update(double delta_time)
 	{
 		for(auto* entity : entities)
 		{

@@ -16,7 +16,7 @@ namespace Radix
 	Entity::~Entity()
 	{}
 
-	void Entity::update(float delta_time)
+	void Entity::update(double delta_time)
 	{
 		for(auto& component : components)
 		{

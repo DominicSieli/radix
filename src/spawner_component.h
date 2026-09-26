@@ -11,11 +11,7 @@ namespace Radix
 	{
 		private:
 			bool loop;
-			float radian;
-			Vector2 origin;
-			unsigned int speed;
-			unsigned int range;
-			unsigned int degree;
+			double range;
 			TransformComponent* transform_component;
 
 		public:
@@ -23,11 +19,11 @@ namespace Radix
 
 			~SpawnerComponent();
 
-			SpawnerComponent(unsigned int, unsigned int, unsigned int, bool);
+			SpawnerComponent(double, bool);
 
 			void initialize() override;
 
-			void update(float) override;
+			void update(double) override;
 	};
 }
 
