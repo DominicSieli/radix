@@ -8,7 +8,7 @@ namespace Radix
 	SpawnerComponent::~SpawnerComponent()
 	{}
 
-	SpawnerComponent::SpawnerComponent(double range, bool loop)
+	SpawnerComponent::SpawnerComponent(float range, bool loop)
 		: range{range}, loop{loop}
 	{}
 
@@ -17,6 +17,6 @@ namespace Radix
 		transform_component = entity->get_component<TransformComponent>();
 	}
 
-	void SpawnerComponent::update(double delta_time)
+	void SpawnerComponent::update(float delta_time)
 	{}
 }

@@ -15,7 +15,7 @@ namespace Radix
 			SDL_Texture* texture;
 			SDL_FRect source_rect;
 			SDL_FRect destination_rect;
-			Vector2<unsigned int> position;
+			Vector2<double> position;
 
 			TileComponent();
 
@@ -23,7 +23,7 @@ namespace Radix
 
 			TileComponent(int, int, int, int, int, int, unsigned int);
 
-			void update(double) override;
+			void update(float) override;
 
 			void render() override;
 	};

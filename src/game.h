@@ -24,8 +24,8 @@ namespace Radix
 			SDL_Window* window = nullptr;
 
 		public:
+			static float delta_time;
 			int ticks_last_frame = 0;
-			static double delta_time;
 
 			static SDL_Rect camera;
 			static SDL_Event input_event;
@@ -41,7 +41,7 @@ namespace Radix
 
 			bool is_running();
 
-			void load_level(int);
+			void load_level(unsigned int);
 
 			void input();
 
@@ -55,7 +55,7 @@ namespace Radix
 
 			void process_gameover();
 
-			void process_next_level(int);
+			void process_next_level(unsigned int);
 
 			void destroy();
 	};

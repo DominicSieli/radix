@@ -27,7 +27,7 @@ namespace Radix
 
 			~Entity();
 
-			void update(double);
+			void update(float);
 
 			void render();
 

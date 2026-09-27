@@ -11,7 +11,7 @@ namespace Radix
 	{
 		private:
 			bool loop;
-			double range;
+			float range;
 			TransformComponent* transform_component;
 
 		public:
@@ -19,11 +19,11 @@ namespace Radix
 
 			~SpawnerComponent();
 
-			SpawnerComponent(double, bool);
+			SpawnerComponent(float, bool);
 
 			void initialize() override;
 
-			void update(double) override;
+			void update(float) override;
 	};
 }
 

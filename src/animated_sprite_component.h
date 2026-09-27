@@ -3,6 +3,7 @@
 
 #include <SDL3/SDL.h>
 
+#include "vector_2.h"
 #include "animation.h"
 #include "transform_component.h"
 
@@ -16,6 +17,7 @@ namespace Radix
 			unsigned int index;
 			SDL_Texture* texture;
 			SDL_FRect destination;
+			Vector2<int> dimensions;
 			unsigned int current_animation;
 			unsigned int default_animation;
 			TransformComponent* transform_component;
@@ -25,13 +27,13 @@ namespace Radix
 		public:
 			AnimatedSpriteComponent();
 
-			AnimatedSpriteComponent(const std::map<unsigned int, Animation>&, unsigned int, unsigned int, bool);
+			AnimatedSpriteComponent(const std::map<unsigned int, Animation>&, unsigned int, unsigned int, Vector2<int>, bool);
 
 			~AnimatedSpriteComponent();
 
 			void initialize() override;
 
-			void update(double) override;
+			void update(float) override;
 
 			void render() override;
 

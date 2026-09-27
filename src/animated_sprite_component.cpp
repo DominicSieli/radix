@@ -6,8 +6,8 @@ namespace Radix
 	AnimatedSpriteComponent::AnimatedSpriteComponent()
 	{}
 
-	AnimatedSpriteComponent::AnimatedSpriteComponent(const std::map<unsigned int, Animation>& animations, unsigned int texture_id, unsigned int default_animation, bool fixed)
-		: animations{animations}, default_animation{default_animation}, current_animation{default_animation}, fixed{fixed}
+	AnimatedSpriteComponent::AnimatedSpriteComponent(const std::map<unsigned int, Animation>& animations, unsigned int texture_id, unsigned int default_animation, Vector2<int> dimensions, bool fixed)
+		: animations{animations}, default_animation{default_animation}, current_animation{default_animation}, dimensions{dimensions}, fixed{fixed}
 	{
 		this->set_texture(texture_id);
 		this->play(default_animation);
@@ -22,19 +22,19 @@ namespace Radix
 
 		this->source.x = 0;
 		this->source.y = 0;
-		this->source.w = this->transform_component->dimensions.x;
-		this->source.h = this->transform_component->dimensions.y;
+		this->source.w = this->dimensions.x;
+		this->source.h = this->dimensions.y;
 	}
 
-	void AnimatedSpriteComponent::update(double delta_time)
+	void AnimatedSpriteComponent::update(float delta_time)
 	{
 		this->source.x = this->source.w * static_cast<int>((SDL_GetTicks() / this->animations[this->current_animation].speed) % this->animations[this->current_animation].frames);
-		this->source.y = this->index * static_cast<int>(this->transform_component->dimensions.y);
+		this->source.y = this->index * this->dimensions.y;
 
 		this->destination.x = static_cast<int>(this->transform_component->position.x) - ((this->fixed == true) ? 0 : Game::camera.x);
 		this->destination.y = static_cast<int>(this->transform_component->position.y) - ((this->fixed == true) ? 0 : Game::camera.y);
-		this->destination.w = static_cast<int>(this->transform_component->dimensions.x * this->transform_component->scale.x);
-		this->destination.h = static_cast<int>(this->transform_component->dimensions.y * this->transform_component->scale.y);
+		this->destination.w = this->dimensions.x * static_cast<int>(this->transform_component->scale.x);
+		this->destination.h = this->dimensions.y * static_cast<int>(this->transform_component->scale.y);
 	}
 
 	void AnimatedSpriteComponent::render()

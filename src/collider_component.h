@@ -4,6 +4,7 @@
 #include <SDL3/SDL.h>
 
 #include "game.h"
+#include "vector_2.h"
 #include "entity_manager.h"
 #include "transform_component.h"
 
@@ -16,17 +17,18 @@ namespace Radix
 			SDL_Rect collider;
 			SDL_Rect source_rect;
 			SDL_Rect destination_rect;
+			Vector2<int> dimensions;
 			TransformComponent* transform_component;
 
 			ColliderComponent();
 
-			ColliderComponent(unsigned int, int, int, int, int);
+			ColliderComponent(unsigned int, Vector2<int>);
 
 			~ColliderComponent();
 
 			void initialize() override;
 
-			void update(double) override;
+			void update(float) override;
 	};
 }
 
