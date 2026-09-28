@@ -4,6 +4,7 @@
 # Except
 !src/
 !src/**
+!.clangd
 !LICENSE
 !Makefile
 !.gitignore
