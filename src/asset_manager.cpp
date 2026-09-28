@@ -28,11 +28,17 @@ namespace Radix
 
 	void AssetManager::add_texture(unsigned int texture_id, const char* file_path)
 	{
-		this->textures.emplace(texture_id, TextureManager::load_texture(file_path));
+		if(!this->textures.contains(texture_id))
+		{
+			this->textures.emplace(texture_id, TextureManager::load_texture(file_path));
+		}
 	}
 
 	void AssetManager::add_font(unsigned int font_id, const char* file_path, int font_size)
 	{
-		this->fonts.emplace(font_id, FontManager::load_font(file_path, font_size));
+		if(!this->fonts.contains(font_id))
+		{
+			this->fonts.emplace(font_id, FontManager::load_font(file_path, font_size));
+		}
 	}
 }
