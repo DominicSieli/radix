@@ -1,30 +1,41 @@
-DIR = lib
-CXX = g++
-CFLAGS = -c
-LFLAGS = -L.
-OBJS = ./*.o
-ARCHIVE = ar
-AFLAGS = rcs
-STD = -std=c++23
-CHECK = cppcheck
-SRC = ./src/*.cpp
-LIB = lib_radix.a
-CHECKSTD = --std=c++23
-OPTIMIZATION = -O3 -flto
-LIBPATH = "./$(DIR)/$(LIB)"
-SDL = -lSDL3 -lSDL3_image -lSDL3_ttf -lSDL3_mixer
-WARNINGS = -w -Wall -Wextra -Wpedantic -Wfatal-errors
-CHECKFLAGS = --quiet --enable=all --force --error-exitcode=1
+DIR			:= lib
+CXX			:= g++
+ARCHIVE		:= ar
+CHECK		:= clang-tidy
 
-build:
-	mkdir -p $(DIR);
-	$(CXX) $(STD) $(WARNINGS) $(OPTIMIZATION) $(SRC) $(CFLAGS) $(LFLAGS) $(SDL);
-	$(ARCHIVE) $(AFLAGS) $(LIBPATH) $(OBJS);
-	rm -f $(OBJS);
+STD			:= -std=c++23
+WARNINGS	:= -Wall -Wextra -Wpedantic -Wfatal-errors
+OPTIMIZATION := -O3 -flto
 
-clean:
-	rm -f $(OBJS);
-	rm -rf $(DIR);
+CXXFLAGS	:= $(STD) $(WARNINGS)
+ARFLAGS		:= rcs
+
+SRC			:= $(wildcard src/*.cpp)
+OBJS		:= $(SRC:.cpp=.o)
+
+LIB			:= $(DIR)/lib_radix.a
+
+SDL			:= -lSDL3 -lSDL3_image -lSDL3_ttf -lSDL3_mixer
+
+.PHONY: build_debug build_optimized check clean
+
+build_debug: CXXFLAGS += -g
+build_debug: $(LIB)
+
+build_optimized: CXXFLAGS += $(OPTIMIZATION)
+build_optimized: $(LIB)
+
+$(LIB): $(OBJS)
+	@mkdir -p $(DIR)
+	$(ARCHIVE) $(ARFLAGS) $@ $^
+	rm -f $(OBJS)
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 check:
-	$(CHECK) $(CHECKSTD) $(CHECKFLAGS) $(SRC);
+	$(CHECK) $(CXXFLAGS) $(SRC)
+
+clean:
+	rm -f $(OBJS)
+	rm -rf $(DIR)
