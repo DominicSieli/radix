@@ -32,6 +32,20 @@ or:
 make build_optimized
 ```
 
+## Utilities
+
+Check for warnings and errors
+
+```bash
+make check
+```
+
+Clean project directory
+
+```bash
+make clean
+```
+
 ### Using Radix in Another Project
 
 Alternatively, you can place the `radix` directory inside your project and include the desired header files in your source files. This will compile Radix as part of your project.
