@@ -17,7 +17,7 @@ LIB			:= $(DIR)/lib_radix.a
 
 SDL			:= -lSDL3 -lSDL3_image -lSDL3_ttf -lSDL3_mixer
 
-.PHONY: build_debug build_optimized check clean
+.PHONY: build_debug build_optimized check clean compile_commands
 
 build_debug: CXXFLAGS += -g
 build_debug: $(LIB)
@@ -39,3 +39,8 @@ check:
 clean:
 	rm -f $(OBJS)
 	rm -rf $(DIR)
+	rm -rf .cache
+	rm -f compile_commands.json
+
+compile_commands:
+	bear -- make
