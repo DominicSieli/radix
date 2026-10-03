@@ -34,7 +34,8 @@ $(LIB): $(OBJS)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 check:
-	$(CHECK) $(CXXFLAGS) $(SRC)
+	bear -- make
+	$(CHECK) $(SRC)
 
 clean:
 	rm -f $(OBJS)

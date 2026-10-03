@@ -46,6 +46,12 @@ Clean project directory
 make clean
 ```
 
+Generate compile_commands.json
+
+```bash
+make compile_commands
+```
+
 ### Using Radix in Another Project
 
 Alternatively, you can place the `radix` directory inside your project and include the desired header files in your source files. This will compile Radix as part of your project.
