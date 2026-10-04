@@ -14,13 +14,13 @@ namespace Radix
 		public:
 			float rotation;
 			Vector2<float> scale;
-			Vector2<double> position;
+			Vector2<float> position;
 
 			TransformComponent();
 
 			~TransformComponent();
 
-			TransformComponent(Vector2<double>, Vector2<float>, float);
+			TransformComponent(Vector2<float>, Vector2<float>, float);
 
 			void initialize() override;
 
@@ -32,7 +32,7 @@ namespace Radix
 
 			void rescale(Vector2<float>);
 
-			void translate(Vector2<double>);
+			void translate(Vector2<float>);
 	};
 }
 

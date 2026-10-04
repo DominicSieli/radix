@@ -8,7 +8,7 @@ namespace Radix
 	StaticSpriteComponent::~StaticSpriteComponent()
 	{}
 
-	StaticSpriteComponent::StaticSpriteComponent(unsigned int texture_id, Vector2<int> dimensions, bool fixed)
+	StaticSpriteComponent::StaticSpriteComponent(unsigned int texture_id, Vector2<float> dimensions, bool fixed)
 		: dimensions{dimensions}, fixed{fixed}
 	{
 		this->set_texture(texture_id);
@@ -31,10 +31,10 @@ namespace Radix
 
 	void StaticSpriteComponent::update(float delta_time)
 	{
-		this->destination.x = static_cast<int>(this->transform_component->position.x) - ((this->fixed == true) ? 0 : Game::camera.x);
-		this->destination.y = static_cast<int>(this->transform_component->position.y) - ((this->fixed == true) ? 0 : Game::camera.y);
-		this->destination.w = this->dimensions.x * static_cast<int>(this->transform_component->scale.x);
-		this->destination.h = this->dimensions.y * static_cast<int>(this->transform_component->scale.y);
+		this->destination.x = this->transform_component->position.x - ((this->fixed == true) ? 0.00f : static_cast<float>(Game::camera.x));
+		this->destination.y = this->transform_component->position.y - ((this->fixed == true) ? 0.00f : static_cast<float>(Game::camera.y));
+		this->destination.w = this->dimensions.x * this->transform_component->scale.x;
+		this->destination.h = this->dimensions.y * this->transform_component->scale.y;
 	}
 
 	void StaticSpriteComponent::render()

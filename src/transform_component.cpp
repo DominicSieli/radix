@@ -11,7 +11,7 @@ namespace Radix
 	TransformComponent::~TransformComponent()
 	{}
 
-	TransformComponent::TransformComponent(Vector2<double> position, Vector2<float> scale, float rotation)
+	TransformComponent::TransformComponent(Vector2<float> position, Vector2<float> scale, float rotation)
 		: position{position}, scale{scale}, rotation{rotation}
 	{}
 
@@ -33,7 +33,7 @@ namespace Radix
 	void TransformComponent::rescale(Vector2<float> factors)
 	{}
 
-	void TransformComponent::translate(Vector2<double> velocity)
+	void TransformComponent::translate(Vector2<float> velocity)
 	{
 		this->position.x += velocity.x * Game::delta_time;
 		this->position.y += velocity.y * Game::delta_time;

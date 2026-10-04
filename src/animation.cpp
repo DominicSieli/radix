@@ -5,7 +5,7 @@ namespace Radix
 	Animation::Animation()
 	{}
 
-	Animation::Animation(unsigned int index, unsigned int frames, unsigned int speed)
+	Animation::Animation(unsigned int index, unsigned int frames, float speed)
 		: index{index}, frames{frames}, speed{speed}
 	{}
 

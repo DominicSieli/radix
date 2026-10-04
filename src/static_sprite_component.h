@@ -17,14 +17,14 @@ namespace Radix
 			SDL_FRect source;
 			SDL_Texture* texture;
 			SDL_FRect destination;
-			Vector2<int> dimensions;
+			Vector2<float> dimensions;
 			TransformComponent* transform_component;
 			SDL_FlipMode sprite_flip = SDL_FLIP_NONE;
 
 		public:
 			StaticSpriteComponent();
 
-			StaticSpriteComponent(unsigned int, Vector2<int>, bool);
+			StaticSpriteComponent(unsigned int, Vector2<float>, bool);
 
 			~StaticSpriteComponent();
 

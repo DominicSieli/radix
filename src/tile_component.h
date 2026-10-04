@@ -15,13 +15,13 @@ namespace Radix
 			SDL_Texture* texture;
 			SDL_FRect source_rect;
 			SDL_FRect destination_rect;
-			Vector2<double> position;
+			Vector2<float> position;
 
 			TileComponent();
 
 			~TileComponent();
 
-			TileComponent(int, int, int, int, int, int, unsigned int);
+			TileComponent(float, float, float, float, int, float, unsigned int);
 
 			void update(float) override;
 

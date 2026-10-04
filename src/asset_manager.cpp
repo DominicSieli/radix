@@ -1,4 +1,6 @@
 #include "asset_manager.h"
+#include "font_manager.h"
+#include "texture_manager.h"
 
 namespace Radix
 {
