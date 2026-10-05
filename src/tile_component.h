@@ -19,7 +19,7 @@ namespace Radix
 
 			TileComponent();
 
-			~TileComponent();
+			~TileComponent() override;
 
 			TileComponent(float, float, float, float, int, float, unsigned int);
 

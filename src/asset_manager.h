@@ -29,7 +29,7 @@ namespace Radix
 
 			void add_texture(unsigned int, const char*);
 
-			void add_font(unsigned int, const char*, int);
+			void add_font(unsigned int, const char*, float);
 	};
 }
 

@@ -6,13 +6,13 @@ namespace Radix
 	class Animation
 	{
 		public:
-			float speed;
 			unsigned int index;
 			unsigned int frames;
+			unsigned int speed;
 
 			Animation();
 
-			Animation(unsigned int, unsigned int, float);
+			Animation(unsigned int, unsigned int, unsigned int);
 
 			~Animation();
 	};

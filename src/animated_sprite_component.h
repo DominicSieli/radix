@@ -29,7 +29,7 @@ namespace Radix
 
 			AnimatedSpriteComponent(const std::map<unsigned int, Animation>&, unsigned int, unsigned int, Vector2<int>, bool);
 
-			~AnimatedSpriteComponent();
+			~AnimatedSpriteComponent() override;
 
 			void initialize() override;
 

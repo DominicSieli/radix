@@ -36,7 +36,7 @@ namespace Radix
 		}
 	}
 
-	void AssetManager::add_font(unsigned int font_id, const char* file_path, int font_size)
+	void AssetManager::add_font(unsigned int font_id, const char* file_path, float font_size)
 	{
 		if(!this->fonts.contains(font_id))
 		{

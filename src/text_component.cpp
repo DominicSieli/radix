@@ -8,17 +8,15 @@ namespace Radix
 	TextComponent::~TextComponent()
 	{}
 
-	TextComponent::TextComponent(int x, int y, std::string text, unsigned int font_family, SDL_Color color)
+	TextComponent::TextComponent(float x, float y, std::string text, unsigned int font_family, SDL_Color color)
+		: text{text}, font_family{font_family}, color{color}
 	{
 		this->position.x = x;
 		this->position.y = y;
-		this->text = text;
-		this->font_family = font_family;
-		this->color = color;
 		set_text(text, font_family);
 	}
 
-	void TextComponent::set_text(std::string text, unsigned int font_family)
+	void TextComponent::set_text(const std::string& text, const unsigned int& font_family)
 	{
 		SDL_Surface* surface = TTF_RenderText_Blended(Game::asset_manager.get_font(font_family), text.c_str(), 0, color);
 		texture = SDL_CreateTextureFromSurface(Game::renderer, surface);

@@ -26,7 +26,7 @@ namespace Radix
 
 			StaticSpriteComponent(unsigned int, Vector2<float>, bool);
 
-			~StaticSpriteComponent();
+			~StaticSpriteComponent() override;
 
 			void initialize() override;
 

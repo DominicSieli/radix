@@ -26,13 +26,9 @@ namespace Radix
 		this->source.h = static_cast<float>(this->dimensions.y);
 	}
 
-	void AnimatedSpriteComponent::update(float delta_time)
+	void AnimatedSpriteComponent::update(float)
 	{
-		unsigned int ticks = SDL_GetTicks();
-		unsigned int frames = this->animations[this->current_animation].frames;
-		unsigned int speed = static_cast<unsigned int>(this->animations[this->current_animation].speed);
-
-		this->source.x = this->source.w * static_cast<float>((ticks / speed) % frames);
+		this->source.x = this->source.w * static_cast<float>((SDL_GetTicks() / this->animations[this->current_animation].speed) % this->animations[this->current_animation].frames);
 		this->source.y = static_cast<float>(this->index * this->dimensions.y);
 
 		this->destination.x = this->transform_component->position.x - ((this->fixed == true) ? 0.00f : static_cast<float>(Game::camera.x));

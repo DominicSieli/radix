@@ -24,7 +24,7 @@ namespace Radix
 
 			ColliderComponent(unsigned int, Vector2<int>);
 
-			~ColliderComponent();
+			~ColliderComponent() override;
 
 			void initialize() override;
 

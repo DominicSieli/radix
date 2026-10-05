@@ -44,10 +44,11 @@ namespace Radix
 		return entities.size() == 0;
 	}
 
-	Entity* EntityManager::add_entity(std::string name, unsigned int render_layer)
+	Entity* EntityManager::add_entity(const std::string& name, const unsigned int& render_layer)
 	{
 		Entity* entity = new Entity(name, render_layer);
 		entities.emplace_back(entity);
+
 		return entity;
 	}
 
@@ -56,13 +57,13 @@ namespace Radix
 		return entities;
 	}
 
-	std::vector<Entity*> EntityManager::get_entities_by_layer(unsigned int render_layer)
+	std::vector<Entity*> EntityManager::get_entities_by_render_layer(unsigned int render_layer)
 	{
 		std::vector<Entity*> selected_entities;
 
 		for(auto* entity: entities)
 		{
-			if(entity->render_layer == render_layer) selected_entities.emplace_back(entity);
+			if(entity->get_render_layer() == render_layer) selected_entities.emplace_back(entity);
 		}
 
 		return selected_entities;

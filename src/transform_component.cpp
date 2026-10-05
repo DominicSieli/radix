@@ -30,10 +30,10 @@ namespace Radix
 		//this->rotation = degree * std::numbers::pi_v<float> / 180.0;
 	}
 
-	void TransformComponent::rescale(Vector2<float> factors)
+	void TransformComponent::rescale(const Vector2<float>& factors)
 	{}
 
-	void TransformComponent::translate(Vector2<float> velocity)
+	void TransformComponent::translate(const Vector2<float>& velocity)
 	{
 		this->position.x += velocity.x * Game::delta_time;
 		this->position.y += velocity.y * Game::delta_time;

@@ -18,7 +18,7 @@ namespace Radix
 
 			TransformComponent();
 
-			~TransformComponent();
+			~TransformComponent() override;
 
 			TransformComponent(Vector2<float>, Vector2<float>, float);
 
@@ -30,9 +30,9 @@ namespace Radix
 
 			void rotate(float);
 
-			void rescale(Vector2<float>);
+			void rescale(const Vector2<float>&);
 
-			void translate(Vector2<float>);
+			void translate(const Vector2<float>&);
 	};
 }
 

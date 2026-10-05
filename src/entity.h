@@ -14,16 +14,15 @@ namespace Radix
 	{
 		private:
 			bool active;
+			std::string name;
+			unsigned int render_layer;
 			std::vector<Component*> components;
 			std::map<const std::type_info*, Component*> component_map;
 
 		public:
-			std::string name;
-			unsigned int render_layer;
-
 			Entity();
 
-			Entity(std::string, unsigned int);
+			Entity(const std::string&, const unsigned int&);
 
 			~Entity();
 
@@ -34,6 +33,10 @@ namespace Radix
 			void destroy();
 
 			bool is_active();
+
+			std::string get_name();
+
+			unsigned int get_render_layer();
 
 			template<typename T, typename... T_ARGS>
 				T* add_component(T_ARGS&&... args)

@@ -24,13 +24,13 @@ namespace Radix
 				{
 					Entity* entity_2 = Game::entity_manager.entities[j];
 
-					if(entity_1->name.compare(entity_2->name) != 0 && entity_2->has_component<ColliderComponent>() == true)
+					if(entity_1->get_name().compare(entity_2->get_name()) != 0 && entity_2->has_component<ColliderComponent>() == true)
 					{
 						ColliderComponent* entity_2_collider = entity_2->get_component<ColliderComponent>();
 
 						if(check_rect_collision(entity_1_collider->collider, entity_2_collider->collider) == true)
 						{
-							for(Collision collision : collisions)
+							for(const Collision& collision : collisions)
 							{
 								if(entity_1_collider->tag == collision.collider_tag_1 && entity_2_collider->tag == collision.collider_tag_2)
 								{

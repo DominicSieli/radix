@@ -3,15 +3,11 @@
 namespace Radix
 {
 	Entity::Entity()
-	{
-		this->active = true;
-	}
+	{}
 
-	Entity::Entity(std::string name, unsigned int render_layer)
-		: name{name}, render_layer{render_layer}
-	{
-		this->active = true;
-	}
+	Entity::Entity(const std::string& name, const unsigned int& render_layer)
+		: name{name}, render_layer{render_layer}, active{true}
+	{}
 
 	Entity::~Entity()
 	{}
@@ -40,5 +36,15 @@ namespace Radix
 	bool Entity::is_active()
 	{
 		return this->active;
+	}
+
+	std::string Entity::get_name()
+	{
+		return this->name;
+	}
+
+	unsigned int Entity::get_render_layer()
+	{
+		return this->render_layer;
 	}
 }
