@@ -14,6 +14,7 @@ namespace Radix
 	{
 		private:
 			bool active;
+			unsigned int id;
 			std::string name;
 			unsigned int render_layer;
 			std::vector<Component*> components;
@@ -30,9 +31,11 @@ namespace Radix
 
 			void render();
 
-			void destroy();
+			void deactivate();
 
 			bool is_active();
+
+			unsigned int get_id();
 
 			std::string get_name();
 

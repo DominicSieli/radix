@@ -10,12 +10,9 @@ namespace Radix
 	EntityManager::~EntityManager()
 	{}
 
-	void EntityManager::clear()
+	void EntityManager::clear_entities()
 	{
-		for(auto* entity : entities)
-		{
-			entity->destroy();
-		}
+		this->entities.clear();
 	}
 
 	void EntityManager::update(float delta_time)
@@ -24,8 +21,6 @@ namespace Radix
 		{
 			entity->update(delta_time);
 		}
-
-		destroy_inactive_entities();
 	}
 
 	void EntityManager::destroy_inactive_entities()
@@ -34,7 +29,7 @@ namespace Radix
 		{
 			if(entities[i]->is_active() == false)
 			{
-				entities.erase(entities.begin() + i);
+				delete entities[i];
 			}
 		}
 	}
@@ -50,6 +45,17 @@ namespace Radix
 		entities.emplace_back(entity);
 
 		return entity;
+	}
+
+	Entity* EntityManager::get_entity_by_id(unsigned int id)
+	{
+		for(auto* entity : entities)
+		{
+			if(entity->get_id() == id)
+			{
+				return entity;
+			}
+		}
 	}
 
 	std::vector<Entity*> EntityManager::get_entities()

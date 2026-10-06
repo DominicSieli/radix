@@ -10,7 +10,9 @@ namespace Radix
 	{}
 
 	Entity::~Entity()
-	{}
+	{
+		components.clear();
+	}
 
 	void Entity::update(float delta_time)
 	{
@@ -28,7 +30,7 @@ namespace Radix
 		}
 	}
 
-	void Entity::destroy()
+	void Entity::deactivate()
 	{
 		this->active = false;
 	}
@@ -36,6 +38,11 @@ namespace Radix
 	bool Entity::is_active()
 	{
 		return this->active;
+	}
+
+	unsigned int Entity::get_id()
+	{
+		return this->id;
 	}
 
 	std::string Entity::get_name()
