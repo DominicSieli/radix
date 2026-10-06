@@ -33,10 +33,10 @@ namespace Radix
 	void TransformComponent::rescale(const Vector2<float>& factors)
 	{}
 
-	void TransformComponent::translate(const Vector2<float>& velocity)
+	void TransformComponent::translate(const Vector2<float>& speed)
 	{
-		this->position.x += velocity.x * Game::delta_time;
-		this->position.y += velocity.y * Game::delta_time;
+		this->position.x += speed.x;
+		this->position.y += speed.y;
 
 		//velocity = Vector2(std::cos(radian) * speed, std::sin(radian) * speed);
 	}
