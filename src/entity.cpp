@@ -5,8 +5,11 @@ namespace Radix
 	Entity::Entity()
 	{}
 
-	Entity::Entity(const std::string& name, const unsigned int& render_layer)
-		: name{name}, render_layer{render_layer}, active{true}
+	Entity::Entity(const std::string& name, const unsigned int& render_layer):
+		active{true},
+		id{current_id++},
+		name{name},
+		render_layer{render_layer}
 	{}
 
 	Entity::~Entity()

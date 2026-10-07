@@ -29,7 +29,7 @@ namespace Radix
 		SDL_DestroyTexture(texture);
 	}
 
-	void TileComponent::update(float delta_time)
+	void TileComponent::update(float)
 	{
 		destination_rect.x = position.x - static_cast<float>(Game::camera.x);
 		destination_rect.y = position.y - static_cast<float>(Game::camera.y);

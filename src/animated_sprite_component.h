@@ -12,17 +12,19 @@ namespace Radix
 	class AnimatedSpriteComponent: public Component
 	{
 		private:
+			std::map<unsigned int, Animation> animations;
+			unsigned int texture_id;
+			unsigned int default_animation;
+			unsigned int current_animation;
+			Vector2<int> dimensions;
 			bool fixed;
+
 			SDL_FRect source;
 			unsigned int index;
 			SDL_Texture* texture;
 			SDL_FRect destination;
-			Vector2<int> dimensions;
-			unsigned int current_animation;
-			unsigned int default_animation;
 			TransformComponent* transform_component;
 			SDL_FlipMode sprite_flip = SDL_FLIP_NONE;
-			std::map<unsigned int, Animation> animations;
 
 		public:
 			AnimatedSpriteComponent();

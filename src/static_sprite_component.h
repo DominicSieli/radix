@@ -13,11 +13,13 @@ namespace Radix
 	class StaticSpriteComponent: public Component
 	{
 		private:
+			unsigned int texture_id;
+			Vector2<float> dimensions;
 			bool fixed;
+
 			SDL_FRect source;
 			SDL_Texture* texture;
 			SDL_FRect destination;
-			Vector2<float> dimensions;
 			TransformComponent* transform_component;
 			SDL_FlipMode sprite_flip = SDL_FLIP_NONE;
 

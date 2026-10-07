@@ -24,7 +24,7 @@ namespace Radix
 		}
 	}
 
-	void ColliderComponent::update(float delta_time)
+	void ColliderComponent::update(float)
 	{
 		this->collider.x = static_cast<int>(this->transform_component->position.x);
 		this->collider.y = static_cast<int>(this->transform_component->position.y);

@@ -5,6 +5,7 @@
 #include <SDL3_ttf/SDL_ttf.h>
 
 #include "game.h"
+#include "vector_2.h"
 #include "font_manager.h"
 #include "asset_manager.h"
 #include "entity_manager.h"
@@ -14,16 +15,17 @@ namespace Radix
 	class TextComponent: public Component
 	{
 		private:
-			SDL_Color color;
 			std::string text;
+			unsigned int font_family;
+			SDL_Color color;
+
 			SDL_FRect position;
 			SDL_Texture* texture;
-			unsigned int font_family;
 
 		public:
 			TextComponent();
 
-			TextComponent(float, float, std::string, unsigned int, SDL_Color);
+			TextComponent(const Vector2<float>&, const std::string&, const unsigned int&, const SDL_Color&);
 
 			~TextComponent() override;
 

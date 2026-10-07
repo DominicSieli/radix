@@ -17,6 +17,8 @@ namespace Radix
 			unsigned int id;
 			std::string name;
 			unsigned int render_layer;
+			inline static unsigned int current_id = 0;
+
 			std::vector<Component*> components;
 			std::map<const std::type_info*, Component*> component_map;
 

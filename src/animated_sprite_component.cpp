@@ -7,8 +7,13 @@ namespace Radix
 	AnimatedSpriteComponent::AnimatedSpriteComponent()
 	{}
 
-	AnimatedSpriteComponent::AnimatedSpriteComponent(const std::map<unsigned int, Animation>& animations, unsigned int texture_id, unsigned int default_animation, Vector2<int> dimensions, bool fixed)
-		: animations{animations}, default_animation{default_animation}, current_animation{default_animation}, dimensions{dimensions}, fixed{fixed}
+	AnimatedSpriteComponent::AnimatedSpriteComponent(const std::map<unsigned int, Animation>& animations, unsigned int texture_id, unsigned int default_animation, Vector2<int> dimensions, bool fixed):
+		animations{animations},
+		texture_id{texture_id},
+		default_animation{default_animation},
+		current_animation{default_animation},
+		dimensions{dimensions},
+		fixed{fixed}
 	{
 		this->set_texture(texture_id);
 		this->play(default_animation);

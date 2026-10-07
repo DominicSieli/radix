@@ -12,13 +12,13 @@ namespace Radix
 	class TransformComponent: public Component
 	{
 		public:
-			float rotation;
-			Vector2<float> scale;
 			Vector2<float> position;
+			Vector2<float> scale;
+			float rotation;
 
 			TransformComponent();
 
-			TransformComponent(Vector2<float>, Vector2<float>, float);
+			TransformComponent(const Vector2<float>&, const Vector2<float>&, const float&);
 
 			~TransformComponent() override;
 
@@ -28,7 +28,9 @@ namespace Radix
 
 			void render() override;
 
-			void rotate(float);
+			void rotate(const float&);
+
+			void set_rotation(const float&);
 
 			void rescale(const Vector2<float>&);
 

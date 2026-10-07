@@ -13,7 +13,7 @@ namespace Radix
 
 	unsigned int CollisionManager::check_collisions(const std::vector<Collision>& collisions, unsigned int no_collision)
 	{
-		for(int i = 0; i < Game::entity_manager->entities.size() - 1; i++)
+		for(unsigned int i = 0; i < Game::entity_manager->entities.size() - 1; i++)
 		{
 			Entity* entity_1 = Game::entity_manager->entities[i];
 
@@ -21,7 +21,7 @@ namespace Radix
 			{
 				ColliderComponent* entity_1_collider = entity_1->get_component<ColliderComponent>();
 
-				for(int j = i + 1; j < Game::entity_manager->entities.size(); j++)
+				for(unsigned int j = i + 1; j < Game::entity_manager->entities.size(); j++)
 				{
 					Entity* entity_2 = Game::entity_manager->entities[j];
 

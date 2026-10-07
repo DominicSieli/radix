@@ -17,7 +17,7 @@ namespace Radix
 
 	void EntityManager::update(float delta_time)
 	{
-		for(auto* entity : entities)
+		for(Entity* entity : entities)
 		{
 			entity->update(delta_time);
 		}
@@ -25,11 +25,11 @@ namespace Radix
 
 	void EntityManager::destroy_inactive_entities()
 	{
-		for(int i = 0; i < entities.size(); i++)
+		for(Entity* entity : entities)
 		{
-			if(entities[i]->is_active() == false)
+			if(entity->is_active() == false)
 			{
-				delete entities[i];
+				delete entity;
 			}
 		}
 	}
@@ -49,13 +49,15 @@ namespace Radix
 
 	Entity* EntityManager::get_entity_by_id(unsigned int id)
 	{
-		for(auto* entity : entities)
+		for(Entity* entity : entities)
 		{
 			if(entity->get_id() == id)
 			{
 				return entity;
 			}
 		}
+
+		return nullptr;
 	}
 
 	std::vector<Entity*> EntityManager::get_entities()
