@@ -3,6 +3,12 @@
 
 namespace Radix
 {
+	FontManager::FontManager()
+	{}
+
+	FontManager::~FontManager()
+	{}
+
 	void FontManager::draw_font(SDL_Texture* texture, SDL_FRect position)
 	{
 		SDL_RenderTexture(Game::renderer, texture, NULL, &position);

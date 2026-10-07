@@ -25,15 +25,13 @@ namespace Radix
 
 		public:
 			static float delta_time;
-			int ticks_last_frame = 0;
-
 			static SDL_Rect camera;
 			static SDL_Event input_event;
 			static SDL_Renderer* renderer;
-			static AssetManager asset_manager;
-			static RenderManager render_manager;
-			static EntityManager entity_manager;
-			static CollisionManager collision_manager;
+			static AssetManager* asset_manager;
+			static RenderManager* render_manager;
+			static EntityManager* entity_manager;
+			static CollisionManager* collision_manager;
 
 			Game();
 

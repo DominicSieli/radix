@@ -9,15 +9,15 @@ namespace Radix
 	TileMap::TileMap()
 	{}
 
-	TileMap::~TileMap()
-	{}
-
 	TileMap::TileMap(unsigned int texture_id, unsigned int scale, unsigned int tile_size)
 	{
 		this->scale = scale;
 		this->tile_size = tile_size;
 		this->texture_id = texture_id;
 	}
+
+	TileMap::~TileMap()
+	{}
 
 	void TileMap::load_map(std::string file_path, int map_size_x, int map_size_y, std::string name, unsigned int render_layer)
 	{
@@ -43,7 +43,7 @@ namespace Radix
 
 	void TileMap::add_tile(int source_rect_x, int source_rect_y, int x, int y, std::string name, unsigned int render_layer)
 	{
-		Entity* new_tile(Game::entity_manager.add_entity(name, render_layer));
+		Entity* new_tile(Game::entity_manager->add_entity(name, render_layer));
 		new_tile->add_component<TileComponent>(source_rect_x, source_rect_y, x, y, tile_size, scale, texture_id);
 	}
 }

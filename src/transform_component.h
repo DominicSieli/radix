@@ -18,9 +18,9 @@ namespace Radix
 
 			TransformComponent();
 
-			~TransformComponent() override;
-
 			TransformComponent(Vector2<float>, Vector2<float>, float);
+
+			~TransformComponent() override;
 
 			void initialize() override;
 

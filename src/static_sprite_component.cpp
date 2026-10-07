@@ -1,3 +1,4 @@
+#include "game.h"
 #include "static_sprite_component.h"
 
 namespace Radix
@@ -5,14 +6,14 @@ namespace Radix
 	StaticSpriteComponent::StaticSpriteComponent()
 	{}
 
-	StaticSpriteComponent::~StaticSpriteComponent()
-	{}
-
 	StaticSpriteComponent::StaticSpriteComponent(unsigned int texture_id, Vector2<float> dimensions, bool fixed)
 		: dimensions{dimensions}, fixed{fixed}
 	{
 		this->set_texture(texture_id);
 	}
+
+	StaticSpriteComponent::~StaticSpriteComponent()
+	{}
 
 	void StaticSpriteComponent::initialize()
 	{
@@ -26,7 +27,7 @@ namespace Radix
 
 	void StaticSpriteComponent::set_texture(unsigned int texture_id)
 	{
-		this->texture = Game::asset_manager.get_texture(texture_id);
+		this->texture = Game::asset_manager->get_texture(texture_id);
 	}
 
 	void StaticSpriteComponent::update(float delta_time)

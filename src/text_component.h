@@ -23,9 +23,9 @@ namespace Radix
 		public:
 			TextComponent();
 
-			~TextComponent() override;
-
 			TextComponent(float, float, std::string, unsigned int, SDL_Color);
+
+			~TextComponent() override;
 
 			void set_text(const std::string&, const unsigned int&);
 

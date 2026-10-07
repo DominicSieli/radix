@@ -8,11 +8,11 @@ namespace Radix
 	TransformComponent::TransformComponent()
 	{}
 
-	TransformComponent::~TransformComponent()
-	{}
-
 	TransformComponent::TransformComponent(Vector2<float> position, Vector2<float> scale, float rotation)
 		: position{position}, scale{scale}, rotation{rotation}
+	{}
+
+	TransformComponent::~TransformComponent()
 	{}
 
 	void TransformComponent::initialize()

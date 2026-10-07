@@ -1,3 +1,4 @@
+#include "game.h"
 #include "collider_component.h"
 
 namespace Radix

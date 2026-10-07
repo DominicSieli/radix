@@ -15,9 +15,9 @@ namespace Radix
 		public:
 			TileMap();
 
-			~TileMap();
-
 			TileMap(unsigned int, unsigned int, unsigned int);
+
+			~TileMap();
 
 			void load_map(std::string, int, int, std::string name, unsigned int render_layer);
 

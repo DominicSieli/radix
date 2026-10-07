@@ -14,7 +14,7 @@ namespace Radix
 	{
 		for(int layer_number = 0; layer_number < 10; layer_number++)
 		{
-			for(Entity* entity: Game::entity_manager.get_entities_by_render_layer(layer_number))
+			for(Entity* entity: Game::entity_manager->get_entities_by_render_layer(layer_number))
 			{
 				entity->render();
 			}
