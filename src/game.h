@@ -24,8 +24,9 @@ namespace Radix
 			SDL_Window* window = nullptr;
 
 		public:
-			static float delta_time;
+			Uint64 previous_tick;
 			static SDL_Rect camera;
+			static float delta_time;
 			static SDL_Event input_event;
 			static SDL_Renderer* renderer;
 			inline static AssetManager asset_manager{};

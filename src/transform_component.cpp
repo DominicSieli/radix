@@ -28,7 +28,7 @@ namespace Radix
 
 	void TransformComponent::rotate(const float& degree)
 	{
-		this->rotation += degree;
+		this->rotation += degree * Game::delta_time;
 	}
 
 	void TransformComponent::set_rotation(const float& degree)
