@@ -29,7 +29,7 @@ namespace Radix
 
 	void StaticSpriteComponent::set_texture(unsigned int texture_id)
 	{
-		this->texture = Game::asset_manager->get_texture(texture_id);
+		this->texture = Game::asset_manager.get_texture(texture_id);
 	}
 
 	void StaticSpriteComponent::update(float)

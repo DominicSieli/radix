@@ -3,7 +3,7 @@
 
 #include <map>
 
-#include "game.h"
+//#include "game.h"
 #include "font_manager.h"
 #include "entity_manager.h"
 #include "texture_manager.h"

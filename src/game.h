@@ -28,10 +28,10 @@ namespace Radix
 			static SDL_Rect camera;
 			static SDL_Event input_event;
 			static SDL_Renderer* renderer;
-			static AssetManager* asset_manager;
-			static RenderManager* render_manager;
-			static EntityManager* entity_manager;
-			static CollisionManager* collision_manager;
+			inline static AssetManager asset_manager{};
+			inline static RenderManager render_manager{};
+			inline static EntityManager entity_manager{};
+			inline static CollisionManager collision_manager{};
 
 			Game();
 

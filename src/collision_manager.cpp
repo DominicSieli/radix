@@ -13,17 +13,17 @@ namespace Radix
 
 	unsigned int CollisionManager::check_collisions(const std::vector<Collision>& collisions, unsigned int no_collision)
 	{
-		for(unsigned int i = 0; i < Game::entity_manager->entities.size() - 1; i++)
+		for(unsigned int i = 0; i < Game::entity_manager.entities.size() - 1; i++)
 		{
-			Entity* entity_1 = Game::entity_manager->entities[i];
+			Entity* entity_1 = Game::entity_manager.entities[i];
 
 			if(entity_1->has_component<ColliderComponent>() == true)
 			{
 				ColliderComponent* entity_1_collider = entity_1->get_component<ColliderComponent>();
 
-				for(unsigned int j = i + 1; j < Game::entity_manager->entities.size(); j++)
+				for(unsigned int j = i + 1; j < Game::entity_manager.entities.size(); j++)
 				{
-					Entity* entity_2 = Game::entity_manager->entities[j];
+					Entity* entity_2 = Game::entity_manager.entities[j];
 
 					if(entity_1->get_name().compare(entity_2->get_name()) != 0 && entity_2->has_component<ColliderComponent>() == true)
 					{

@@ -5,17 +5,12 @@ namespace Radix
 {
 	class RenderManager
 	{
-		private:
-			unsigned int layer_count;
-
 		public:
-			RenderManager(const unsigned int);
+			RenderManager();
 
 			~RenderManager();
 
-			unsigned int get_layer_count();
-
-			void render();
+			void render(const unsigned int&);
 	};
 }
 

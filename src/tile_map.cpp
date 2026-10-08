@@ -43,7 +43,7 @@ namespace Radix
 
 	void TileMap::add_tile(int source_rect_x, int source_rect_y, int x, int y, std::string name, unsigned int render_layer)
 	{
-		Entity* new_tile(Game::entity_manager->add_entity(name, render_layer));
+		Entity* new_tile(Game::entity_manager.add_entity(name, render_layer));
 		new_tile->add_component<TileComponent>(source_rect_x, source_rect_y, x, y, tile_size, scale, texture_id);
 	}
 }
