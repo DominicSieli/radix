@@ -12,8 +12,6 @@ namespace Radix
 		public:
 			FontManager();
 
-			~FontManager();
-
 			static void draw_font(SDL_Texture*, SDL_FRect);
 
 			static TTF_Font* load_font(const char*, float);

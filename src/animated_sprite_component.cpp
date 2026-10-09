@@ -4,23 +4,12 @@
 
 namespace Radix
 {
-	AnimatedSpriteComponent::AnimatedSpriteComponent()
-	{}
-
-	AnimatedSpriteComponent::AnimatedSpriteComponent(const std::map<unsigned int, Animation>& animations, unsigned int texture_id, unsigned int default_animation, Vector2<int> dimensions, bool fixed):
-		animations{animations},
-		texture_id{texture_id},
-		default_animation{default_animation},
-		current_animation{default_animation},
-		dimensions{dimensions},
-		fixed{fixed}
+	AnimatedSpriteComponent::AnimatedSpriteComponent(const std::map<unsigned int, Animation>& animations, const unsigned int& texture_id, const unsigned int& default_animation, const Vector2<int>& dimensions, const bool& fixed):
+		animations{animations}, texture_id{texture_id}, default_animation{default_animation}, current_animation{default_animation}, dimensions{dimensions}, fixed{fixed}
 	{
 		this->set_texture(texture_id);
 		this->play(default_animation);
 	}
-
-	AnimatedSpriteComponent::~AnimatedSpriteComponent()
-	{}
 
 	void AnimatedSpriteComponent::initialize()
 	{
@@ -32,7 +21,7 @@ namespace Radix
 		this->source.h = static_cast<float>(this->dimensions.y);
 	}
 
-	void AnimatedSpriteComponent::update(float)
+	void AnimatedSpriteComponent::update(const float&)
 	{
 		this->source.x = this->source.w * static_cast<float>((SDL_GetTicks() / this->animations[this->current_animation].speed) % this->animations[this->current_animation].frames);
 		this->source.y = static_cast<float>(this->index * this->dimensions.y);
@@ -48,13 +37,13 @@ namespace Radix
 		TextureManager::draw(this->texture, this->source, this->destination, this->sprite_flip);
 	}
 
-	void AnimatedSpriteComponent::play(unsigned int animation)
+	void AnimatedSpriteComponent::play(const unsigned int& animation)
 	{
 		this->current_animation = animation;
 		this->index = this->animations[animation].index;
 	}
 
-	void AnimatedSpriteComponent::set_texture(unsigned int texture_id)
+	void AnimatedSpriteComponent::set_texture(const unsigned int& texture_id)
 	{
 		this->texture = Game::asset_manager.get_texture(texture_id);
 	}

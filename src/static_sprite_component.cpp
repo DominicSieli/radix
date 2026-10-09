@@ -3,19 +3,11 @@
 
 namespace Radix
 {
-	StaticSpriteComponent::StaticSpriteComponent()
-	{}
-
 	StaticSpriteComponent::StaticSpriteComponent(unsigned int texture_id, Vector2<float> dimensions, bool fixed):
-		texture_id{texture_id},
-		dimensions{dimensions},
-		fixed{fixed}
+		texture_id{texture_id}, dimensions{dimensions}, fixed{fixed}
 	{
 		this->set_texture(texture_id);
 	}
-
-	StaticSpriteComponent::~StaticSpriteComponent()
-	{}
 
 	void StaticSpriteComponent::initialize()
 	{
@@ -32,7 +24,7 @@ namespace Radix
 		this->texture = Game::asset_manager.get_texture(texture_id);
 	}
 
-	void StaticSpriteComponent::update(float)
+	void StaticSpriteComponent::update(const float&)
 	{
 		this->destination.x = this->transform_component->position.x - ((this->fixed == true) ? 0.00f : static_cast<float>(Game::camera.x));
 		this->destination.y = this->transform_component->position.y - ((this->fixed == true) ? 0.00f : static_cast<float>(Game::camera.y));

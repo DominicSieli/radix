@@ -12,11 +12,6 @@
 
 namespace Radix
 {
-	class AssetManager;
-	class RenderManager;
-	class EntityManager;
-	class CollisionManager;
-
 	class Game
 	{
 		private:
@@ -40,7 +35,7 @@ namespace Radix
 
 			bool is_running();
 
-			void load_level(unsigned int);
+			void load_level(const unsigned int&);
 
 			void input();
 
@@ -54,7 +49,7 @@ namespace Radix
 
 			void process_gameover();
 
-			void process_next_level(unsigned int);
+			void process_next_level(const unsigned int&);
 
 			void destroy();
 	};

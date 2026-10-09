@@ -27,21 +27,17 @@ namespace Radix
 			SDL_FlipMode sprite_flip = SDL_FLIP_NONE;
 
 		public:
-			AnimatedSpriteComponent();
-
-			AnimatedSpriteComponent(const std::map<unsigned int, Animation>&, unsigned int, unsigned int, Vector2<int>, bool);
-
-			~AnimatedSpriteComponent() override;
+			AnimatedSpriteComponent(const std::map<unsigned int, Animation>&, const unsigned int&, const unsigned int&, const Vector2<int>&, const bool&);
 
 			void initialize() override;
 
-			void update(float) override;
+			void update(const float&) override;
 
 			void render() override;
 
-			void play(unsigned int);
+			void play(const unsigned int&);
 
-			void set_texture(unsigned int);
+			void set_texture(const unsigned int&);
 	};
 }
 

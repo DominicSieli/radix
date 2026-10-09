@@ -18,7 +18,7 @@ namespace Radix
 			virtual void initialize()
 			{}
 
-			virtual void update(float)
+			virtual void update(const float&)
 			{}
 
 			virtual void render()

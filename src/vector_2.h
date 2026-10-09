@@ -15,14 +15,11 @@ namespace Radix
 			Vector2()
 			{}
 
-			Vector2(T x, T y)
-				: x{x}, y{y}
+			Vector2(const T& x, const T& y):
+				x{x}, y{y}
 			{}
 
-			~Vector2()
-			{}
-
-			T distance(Vector2<T> position_1, Vector2<T> position_2)
+			inline static T distance(const Vector2<T>& position_1, const Vector2<T>& position_2)
 			{
 				T dx = position_2.x - position_1.x;
 				T dy = position_2.y - position_1.y;

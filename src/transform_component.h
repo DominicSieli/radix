@@ -16,25 +16,19 @@ namespace Radix
 			Vector2<float> scale;
 			float rotation;
 
-			TransformComponent();
-
 			TransformComponent(const Vector2<float>&, const Vector2<float>&, const float&);
-
-			~TransformComponent() override;
-
-			void initialize() override;
-
-			void update(float) override;
-
-			void render() override;
 
 			void rotate(const float&);
 
 			void set_rotation(const float&);
 
-			void rescale(const Vector2<float>&);
+			void scaling(const Vector2<float>&);
+
+			void set_scale(const Vector2<float>&);
 
 			void translate(const Vector2<float>&);
+
+			void set_position(const Vector2<float>&);
 	};
 }
 

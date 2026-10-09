@@ -24,17 +24,13 @@ namespace Radix
 			SDL_FlipMode sprite_flip = SDL_FLIP_NONE;
 
 		public:
-			StaticSpriteComponent();
-
 			StaticSpriteComponent(unsigned int, Vector2<float>, bool);
-
-			~StaticSpriteComponent() override;
 
 			void initialize() override;
 
 			void set_texture(unsigned int);
 
-			void update(float) override;
+			void update(const float&) override;
 
 			void render() override;
 	};

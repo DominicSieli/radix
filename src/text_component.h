@@ -23,11 +23,7 @@ namespace Radix
 			SDL_Texture* texture;
 
 		public:
-			TextComponent();
-
 			TextComponent(const Vector2<float>&, const std::string&, const unsigned int&, const SDL_Color&);
-
-			~TextComponent() override;
 
 			void set_text(const std::string&, const unsigned int&);
 

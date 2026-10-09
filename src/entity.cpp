@@ -6,18 +6,15 @@ namespace Radix
 	{}
 
 	Entity::Entity(const std::string& name, const unsigned int& render_layer):
-		active{true},
-		id{current_id++},
-		name{name},
-		render_layer{render_layer}
+		active{true}, id{current_id++}, name{name}, render_layer{render_layer}
 	{}
 
 	Entity::~Entity()
 	{
-		components.clear();
+		this->clear_components();
 	}
 
-	void Entity::update(float delta_time)
+	void Entity::update(const float& delta_time)
 	{
 		for(auto& component : components)
 		{
@@ -51,6 +48,11 @@ namespace Radix
 	std::string Entity::get_name()
 	{
 		return this->name;
+	}
+
+	void Entity::clear_components()
+	{
+		components.clear();
 	}
 
 	unsigned int Entity::get_render_layer()

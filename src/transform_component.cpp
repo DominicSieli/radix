@@ -1,29 +1,10 @@
-#include "cmath"
-
 #include "game.h"
 #include "transform_component.h"
 
 namespace Radix
 {
-	TransformComponent::TransformComponent()
-	{}
-
 	TransformComponent::TransformComponent(const Vector2<float>& position, const Vector2<float>& scale, const float& rotation):
-		position{position},
-		scale{scale},
-		rotation{rotation}
-	{}
-
-	TransformComponent::~TransformComponent()
-	{}
-
-	void TransformComponent::initialize()
-	{}
-
-	void TransformComponent::update(float)
-	{}
-
-	void TransformComponent::render()
+		position{position}, scale{scale}, rotation{rotation}
 	{}
 
 	void TransformComponent::rotate(const float& degree)
@@ -36,17 +17,27 @@ namespace Radix
 		this->rotation = degree;
 	}
 
-	void TransformComponent::rescale(const Vector2<float>& factors)
+	void TransformComponent::scaling(const Vector2<float>& factor)
 	{
-		this->scale.x *= factors.x;
-		this->scale.y *= factors.y;
+		this->scale.x *= factor.x;
+		this->scale.y *= factor.y;
+	}
+
+	void TransformComponent::set_scale(const Vector2<float>& scale)
+	{
+		this->scale.x = scale.x;
+		this->scale.y = scale.y;
 	}
 
 	void TransformComponent::translate(const Vector2<float>& speed)
 	{
 		this->position.x += speed.x * Game::delta_time;
 		this->position.y += speed.y * Game::delta_time;
+	}
 
-		//velocity = Vector2(std::cos(radian) * speed, std::sin(radian) * speed);
+	void TransformComponent::set_position(const Vector2<float>& position)
+	{
+		this->position.x = position.x;
+		this->position.y = position.y;
 	}
 }

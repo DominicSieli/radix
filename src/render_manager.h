@@ -8,8 +8,6 @@ namespace Radix
 		public:
 			RenderManager();
 
-			~RenderManager();
-
 			void render(const unsigned int&);
 	};
 }

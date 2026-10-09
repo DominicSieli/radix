@@ -10,11 +10,7 @@ namespace Radix
 			unsigned int collider_tag_2;
 			unsigned int collision_type;
 
-			Collision();
-
 			Collision(unsigned int, unsigned int, unsigned int);
-
-			~Collision();
 	};
 }
 

@@ -7,9 +7,6 @@ namespace Radix
 	RenderManager::RenderManager()
 	{}
 
-	RenderManager::~RenderManager()
-	{}
-
 	void RenderManager::render(const unsigned int& layer_count)
 	{
 		for(unsigned int layer_number = 0; layer_number < layer_count; layer_number++)

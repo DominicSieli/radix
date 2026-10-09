@@ -4,11 +4,8 @@
 
 namespace Radix
 {
-	TileComponent::TileComponent()
-	{}
-
-	TileComponent::TileComponent(float source_rect_x, float source_rect_y, float x, float y, int tile_size, float tile_scale, unsigned int texture_id)
-		: texture{Game::asset_manager.get_texture(texture_id)}
+	TileComponent::TileComponent(float source_rect_x, float source_rect_y, float x, float y, int tile_size, float tile_scale, unsigned int texture_id):
+		texture{Game::asset_manager.get_texture(texture_id)}
 	{
 		source_rect.x = source_rect_x;
 		source_rect.y = source_rect_y;
@@ -29,7 +26,7 @@ namespace Radix
 		SDL_DestroyTexture(texture);
 	}
 
-	void TileComponent::update(float)
+	void TileComponent::update(const float&)
 	{
 		destination_rect.x = position.x - static_cast<float>(Game::camera.x);
 		destination_rect.y = position.y - static_cast<float>(Game::camera.y);

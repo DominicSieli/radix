@@ -13,8 +13,6 @@ namespace Radix
 			Animation();
 
 			Animation(unsigned int, unsigned int, unsigned int);
-
-			~Animation();
 	};
 }
 

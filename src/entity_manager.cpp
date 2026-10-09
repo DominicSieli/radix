@@ -8,7 +8,9 @@ namespace Radix
 	{}
 
 	EntityManager::~EntityManager()
-	{}
+	{
+		this->clear_entities();
+	}
 
 	void EntityManager::clear_entities()
 	{

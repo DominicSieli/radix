@@ -3,14 +3,8 @@
 
 namespace Radix
 {
-	ColliderComponent::ColliderComponent()
-	{}
-
-	ColliderComponent::ColliderComponent(unsigned int tag, Vector2<int> dimensions)
-		: tag{tag}, dimensions{dimensions}
-	{}
-
-	ColliderComponent::~ColliderComponent()
+	ColliderComponent::ColliderComponent(unsigned int tag, Vector2<int> dimensions):
+		tag{tag}, dimensions{dimensions}
 	{}
 
 	void ColliderComponent::initialize()
@@ -24,7 +18,7 @@ namespace Radix
 		}
 	}
 
-	void ColliderComponent::update(float)
+	void ColliderComponent::update(const float&)
 	{
 		this->collider.x = static_cast<int>(this->transform_component->position.x);
 		this->collider.y = static_cast<int>(this->transform_component->position.y);

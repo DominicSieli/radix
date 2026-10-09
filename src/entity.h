@@ -29,7 +29,7 @@ namespace Radix
 
 			~Entity();
 
-			void update(float);
+			void update(const float&);
 
 			void render();
 
@@ -40,6 +40,8 @@ namespace Radix
 			unsigned int get_id();
 
 			std::string get_name();
+
+			void clear_components();
 
 			unsigned int get_render_layer();
 

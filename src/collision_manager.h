@@ -13,8 +13,6 @@ namespace Radix
 		public:
 			CollisionManager();
 
-			~CollisionManager();
-
 			unsigned int check_collisions(const std::vector<Collision>&, unsigned int);
 
 			bool check_rect_collision(SDL_Rect, SDL_Rect);

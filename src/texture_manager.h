@@ -11,8 +11,6 @@ namespace Radix
 		public:
 			TextureManager();
 
-			~TextureManager();
-
 			static SDL_Texture* load_texture(const char*);
 
 			static void draw(SDL_Texture*, SDL_FRect, SDL_FRect, SDL_FlipMode);

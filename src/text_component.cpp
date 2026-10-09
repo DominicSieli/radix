@@ -3,21 +3,13 @@
 
 namespace Radix
 {
-	TextComponent::TextComponent()
-	{}
-
 	TextComponent::TextComponent(const Vector2<float>& position, const std::string& text, const unsigned int& font_family, const SDL_Color& color):
-		text{text},
-		font_family{font_family},
-		color{color}
+		text{text}, font_family{font_family}, color{color}
 	{
 		this->position.x = position.x;
 		this->position.y = position.y;
 		set_text(text, font_family);
 	}
-
-	TextComponent::~TextComponent()
-	{}
 
 	void TextComponent::set_text(const std::string& text, const unsigned int& font_family)
 	{

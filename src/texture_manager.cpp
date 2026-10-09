@@ -6,9 +6,6 @@ namespace Radix
 	TextureManager::TextureManager()
 	{}
 
-	TextureManager::~TextureManager()
-	{}
-
 	SDL_Texture* TextureManager::load_texture(const char* file_name)
 	{
 		SDL_Surface* surface = IMG_Load(file_name);

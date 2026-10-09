@@ -8,9 +8,6 @@ namespace Radix
 	CollisionManager::CollisionManager()
 	{}
 
-	CollisionManager::~CollisionManager()
-	{}
-
 	unsigned int CollisionManager::check_collisions(const std::vector<Collision>& collisions, unsigned int no_collision)
 	{
 		for(unsigned int i = 0; i < Game::entity_manager.entities.size() - 1; i++)
