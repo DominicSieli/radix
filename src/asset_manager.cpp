@@ -9,38 +9,38 @@ namespace Radix
 
 	AssetManager::~AssetManager()
 	{
-		this->clear();
+		clear();
 	}
 
 	void AssetManager::clear()
 	{
-		this->fonts.clear();
-		this->textures.clear();
+		fonts.clear();
+		textures.clear();
 	}
 
-	TTF_Font* AssetManager::get_font(unsigned int font_id)
+	TTF_Font* AssetManager::get_font(const unsigned int& id)
 	{
-		return this->fonts[font_id];
+		return fonts[id];
 	}
 
-	SDL_Texture* AssetManager::get_texture(unsigned int texture_id)
+	SDL_Texture* AssetManager::get_texture(const unsigned int& id)
 	{
-		return this->textures[texture_id];
+		return textures[id];
 	}
 
-	void AssetManager::add_texture(unsigned int texture_id, const char* file_path)
+	void AssetManager::add_texture(const unsigned int& id, const char* file_path)
 	{
-		if(!this->textures.contains(texture_id))
+		if(!textures.contains(id))
 		{
-			this->textures.emplace(texture_id, TextureManager::load_texture(file_path));
+			textures.emplace(id, TextureManager::load_texture(file_path));
 		}
 	}
 
-	void AssetManager::add_font(unsigned int font_id, const char* file_path, float font_size)
+	void AssetManager::add_font(const unsigned int& id, const char* file_path, const float& size)
 	{
-		if(!this->fonts.contains(font_id))
+		if(!fonts.contains(id))
 		{
-			this->fonts.emplace(font_id, FontManager::load_font(file_path, font_size));
+			fonts.emplace(id, FontManager::load_font(file_path, size));
 		}
 	}
 }

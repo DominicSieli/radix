@@ -7,44 +7,44 @@ namespace Radix
 	AnimatedSpriteComponent::AnimatedSpriteComponent(const std::map<unsigned int, Animation>& animations, const unsigned int& texture_id, const unsigned int& default_animation, const Vector2<int>& dimensions, const bool& fixed):
 		animations{animations}, texture_id{texture_id}, default_animation{default_animation}, current_animation{default_animation}, dimensions{dimensions}, fixed{fixed}
 	{
-		this->set_texture(texture_id);
-		this->play(default_animation);
+		set_texture(texture_id);
+		play(default_animation);
 	}
 
 	void AnimatedSpriteComponent::initialize()
 	{
-		this->transform_component = this->entity->get_component<TransformComponent>();
+		transform_component = entity->get_component<TransformComponent>();
 
-		this->source.x = 0;
-		this->source.y = 0;
-		this->source.w = static_cast<float>(this->dimensions.x);
-		this->source.h = static_cast<float>(this->dimensions.y);
+		source.x = 0;
+		source.y = 0;
+		source.w = static_cast<float>(dimensions.x);
+		source.h = static_cast<float>(dimensions.y);
 	}
 
 	void AnimatedSpriteComponent::update(const float&)
 	{
-		this->source.x = this->source.w * static_cast<float>((SDL_GetTicks() / this->animations[this->current_animation].speed) % this->animations[this->current_animation].frames);
-		this->source.y = static_cast<float>(this->index * this->dimensions.y);
+		source.x = source.w * static_cast<float>((SDL_GetTicks() / animations[current_animation].speed) % animations[current_animation].frames);
+		source.y = static_cast<float>(index * dimensions.y);
 
-		this->destination.x = this->transform_component->position.x - ((this->fixed == true) ? 0.00f : static_cast<float>(Game::camera.x));
-		this->destination.y = this->transform_component->position.y - ((this->fixed == true) ? 0.00f : static_cast<float>(Game::camera.y));
-		this->destination.w = static_cast<float>(this->dimensions.x) * this->transform_component->scale.x;
-		this->destination.h = static_cast<float>(this->dimensions.y) * this->transform_component->scale.y;
+		destination.x = transform_component->position.x - ((fixed == true) ? 0.00f : static_cast<float>(Game::camera.x));
+		destination.y = transform_component->position.y - ((fixed == true) ? 0.00f : static_cast<float>(Game::camera.y));
+		destination.w = static_cast<float>(dimensions.x) * transform_component->scale.x;
+		destination.h = static_cast<float>(dimensions.y) * transform_component->scale.y;
 	}
 
 	void AnimatedSpriteComponent::render()
 	{
-		TextureManager::draw(this->texture, this->source, this->destination, this->sprite_flip);
+		TextureManager::draw(texture, source, destination, sprite_flip);
 	}
 
 	void AnimatedSpriteComponent::play(const unsigned int& animation)
 	{
-		this->current_animation = animation;
-		this->index = this->animations[animation].index;
+		current_animation = animation;
+		index = animations[animation].index;
 	}
 
-	void AnimatedSpriteComponent::set_texture(const unsigned int& texture_id)
+	void AnimatedSpriteComponent::set_texture(const unsigned int& id)
 	{
-		this->texture = Game::asset_manager.get_texture(texture_id);
+		texture = Game::asset_manager.get_texture(id);
 	}
 }

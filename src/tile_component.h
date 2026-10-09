@@ -17,7 +17,7 @@ namespace Radix
 			SDL_FRect destination_rect;
 			Vector2<float> position;
 
-			TileComponent(float, float, float, float, int, float, unsigned int);
+			TileComponent(const Vector2<float>&, const Vector2<float>&, const int&, const float&, const unsigned int&);
 
 			~TileComponent() override;
 

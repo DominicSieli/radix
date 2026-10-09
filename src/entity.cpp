@@ -11,7 +11,7 @@ namespace Radix
 
 	Entity::~Entity()
 	{
-		this->clear_components();
+		clear_components();
 	}
 
 	void Entity::update(const float& delta_time)
@@ -32,22 +32,22 @@ namespace Radix
 
 	void Entity::deactivate()
 	{
-		this->active = false;
+		active = false;
 	}
 
 	bool Entity::is_active()
 	{
-		return this->active;
+		return active;
 	}
 
 	unsigned int Entity::get_id()
 	{
-		return this->id;
+		return id;
 	}
 
 	std::string Entity::get_name()
 	{
-		return this->name;
+		return name;
 	}
 
 	void Entity::clear_components()
@@ -57,6 +57,6 @@ namespace Radix
 
 	unsigned int Entity::get_render_layer()
 	{
-		return this->render_layer;
+		return render_layer;
 	}
 }

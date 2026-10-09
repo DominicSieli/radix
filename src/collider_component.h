@@ -20,7 +20,7 @@ namespace Radix
 			Vector2<int> dimensions;
 			TransformComponent* transform_component;
 
-			ColliderComponent(unsigned int, Vector2<int>);
+			ColliderComponent(const unsigned int&, const Vector2<int>&);
 
 			void initialize() override;
 

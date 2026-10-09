@@ -3,28 +3,28 @@
 
 namespace Radix
 {
-	ColliderComponent::ColliderComponent(unsigned int tag, Vector2<int> dimensions):
+	ColliderComponent::ColliderComponent(const unsigned int& tag, const Vector2<int>& dimensions):
 		tag{tag}, dimensions{dimensions}
 	{}
 
 	void ColliderComponent::initialize()
 	{
-		if(this->entity->has_component<TransformComponent>())
+		if(entity->has_component<TransformComponent>())
 		{
-			this->transform_component = this->entity->get_component<TransformComponent>();
-			this->source_rect = {0, 0, this->dimensions.x, this->dimensions.y};
-			this->destination_rect = {this->collider.x, this->collider.y, this->collider.w, this->collider.h};
-			this->collider = {static_cast<int>(this->transform_component->position.x), static_cast<int>(this->transform_component->position.y), this->dimensions.x, this->dimensions.y};
+			transform_component = entity->get_component<TransformComponent>();
+			source_rect = {0, 0, dimensions.x, dimensions.y};
+			destination_rect = {collider.x, collider.y, collider.w, collider.h};
+			collider = {static_cast<int>(transform_component->position.x), static_cast<int>(transform_component->position.y), dimensions.x, dimensions.y};
 		}
 	}
 
 	void ColliderComponent::update(const float&)
 	{
-		this->collider.x = static_cast<int>(this->transform_component->position.x);
-		this->collider.y = static_cast<int>(this->transform_component->position.y);
-		this->collider.w = this->dimensions.x * static_cast<int>(this->transform_component->scale.x);
-		this->collider.h = this->dimensions.y * static_cast<int>(this->transform_component->scale.y);
-		this->destination_rect.x = this->collider.x - Game::camera.x;
-		this->destination_rect.y = this->collider.y - Game::camera.y;
+		collider.x = static_cast<int>(transform_component->position.x);
+		collider.y = static_cast<int>(transform_component->position.y);
+		collider.w = dimensions.x * static_cast<int>(transform_component->scale.x);
+		collider.h = dimensions.y * static_cast<int>(transform_component->scale.y);
+		destination_rect.x = collider.x - Game::camera.x;
+		destination_rect.y = collider.y - Game::camera.y;
 	}
 }

@@ -9,12 +9,12 @@ namespace Radix
 
 	EntityManager::~EntityManager()
 	{
-		this->clear_entities();
+		clear_entities();
 	}
 
 	void EntityManager::clear_entities()
 	{
-		this->entities.clear();
+		entities.clear();
 	}
 
 	void EntityManager::update(float delta_time)
@@ -49,7 +49,7 @@ namespace Radix
 		return entity;
 	}
 
-	Entity* EntityManager::get_entity_by_id(unsigned int id)
+	Entity* EntityManager::get_entity_by_id(const unsigned int& id)
 	{
 		for(Entity* entity : entities)
 		{
@@ -67,7 +67,7 @@ namespace Radix
 		return entities;
 	}
 
-	std::vector<Entity*> EntityManager::get_entities_by_render_layer(unsigned int render_layer)
+	std::vector<Entity*> EntityManager::get_entities_by_render_layer(const unsigned int& render_layer)
 	{
 		std::vector<Entity*> selected_entities;
 

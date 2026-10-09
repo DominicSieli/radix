@@ -3,6 +3,8 @@
 
 #include <string>
 
+#include "vector_2.h"
+
 namespace Radix
 {
 	class TileMap
@@ -15,11 +17,11 @@ namespace Radix
 		public:
 			TileMap();
 
-			TileMap(unsigned int, unsigned int, unsigned int);
+			TileMap(const unsigned int&, const unsigned int&, const unsigned int&);
 
-			void load_map(std::string, int, int, std::string name, unsigned int render_layer);
+			void load_map(const std::string&, const Vector2<int>&, const std::string& name, const unsigned int& render_layer);
 
-			void add_tile(int, int, int, int, std::string name, unsigned int render_layer);
+			void add_tile(const Vector2<float>&, const Vector2<float>&, const std::string& name, const unsigned int& render_layer);
 	};
 }
 

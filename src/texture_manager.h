@@ -13,7 +13,7 @@ namespace Radix
 
 			static SDL_Texture* load_texture(const char*);
 
-			static void draw(SDL_Texture*, SDL_FRect, SDL_FRect, SDL_FlipMode);
+			static void draw(SDL_Texture*, const SDL_FRect&, const SDL_FRect&, const SDL_FlipMode&);
 	};
 }
 

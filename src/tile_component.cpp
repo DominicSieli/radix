@@ -4,21 +4,21 @@
 
 namespace Radix
 {
-	TileComponent::TileComponent(float source_rect_x, float source_rect_y, float x, float y, int tile_size, float tile_scale, unsigned int texture_id):
+	TileComponent::TileComponent(const Vector2<float>& rect_source, const Vector2<float>& rect_position, const int& tile_size, const float& tile_scale, const unsigned int& texture_id):
 		texture{Game::asset_manager.get_texture(texture_id)}
 	{
-		source_rect.x = source_rect_x;
-		source_rect.y = source_rect_y;
+		source_rect.x = rect_source.x;
+		source_rect.y = rect_source.y;
 		source_rect.w = static_cast<float>(tile_size);
 		source_rect.h = static_cast<float>(tile_size);
 
-		destination_rect.x = x;
-		destination_rect.y = y;
+		destination_rect.x = rect_position.x;
+		destination_rect.y = rect_position.y;
 		destination_rect.w = static_cast<float>(tile_size) * tile_scale;
 		destination_rect.h = static_cast<float>(tile_size) * tile_scale;
 
-		position.x = x;
-		position.y = y;
+		position.x = rect_position.x;
+		position.y = rect_position.y;
 	}
 
 	TileComponent::~TileComponent()

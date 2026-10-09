@@ -3,7 +3,6 @@
 
 #include <map>
 
-//#include "game.h"
 #include "font_manager.h"
 #include "entity_manager.h"
 #include "texture_manager.h"
@@ -23,13 +22,13 @@ namespace Radix
 
 			void clear();
 
-			TTF_Font* get_font(unsigned int);
+			TTF_Font* get_font(const unsigned int&);
 
-			SDL_Texture* get_texture(unsigned int);
+			SDL_Texture* get_texture(const unsigned int&);
 
-			void add_texture(unsigned int, const char*);
+			void add_texture(const unsigned int&, const char*);
 
-			void add_font(unsigned int, const char*, float);
+			void add_font(const unsigned int&, const char*, const float&);
 	};
 }
 
