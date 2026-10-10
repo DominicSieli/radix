@@ -18,7 +18,7 @@ namespace Radix
 
 			void clear_entities();
 
-			void update(float);
+			void update(const float&);
 
 			bool is_empty();
 

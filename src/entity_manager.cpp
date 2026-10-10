@@ -1,4 +1,3 @@
-#include "game.h"
 #include "entity.h"
 #include "entity_manager.h"
 
@@ -17,7 +16,7 @@ namespace Radix
 		entities.clear();
 	}
 
-	void EntityManager::update(float delta_time)
+	void EntityManager::update(const float& delta_time)
 	{
 		for(Entity* entity : entities)
 		{

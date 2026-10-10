@@ -12,7 +12,7 @@ namespace Radix
 	{
 		for(unsigned int i = 0; i < Game::entity_manager.entities.size() - 1; i++)
 		{
-			Entity* entity_1 = Game::entity_manager.entities[i];
+			Entity* entity_1 = Game::entity_manager.entities.at(i);
 
 			if(entity_1->has_component<ColliderComponent>() == true)
 			{
@@ -20,7 +20,7 @@ namespace Radix
 
 				for(unsigned int j = i + 1; j < Game::entity_manager.entities.size(); j++)
 				{
-					Entity* entity_2 = Game::entity_manager.entities[j];
+					Entity* entity_2 = Game::entity_manager.entities.at(j);
 
 					if(entity_1->get_name().compare(entity_2->get_name()) != 0 && entity_2->has_component<ColliderComponent>() == true)
 					{

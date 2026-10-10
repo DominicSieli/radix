@@ -32,7 +32,7 @@ namespace Radix
 	{
 		if(!textures.contains(id))
 		{
-			textures.emplace(id, TextureManager::load_texture(file_path));
+			textures.try_emplace(id, TextureManager::load_texture(file_path));
 		}
 	}
 
@@ -40,7 +40,7 @@ namespace Radix
 	{
 		if(!fonts.contains(id))
 		{
-			fonts.emplace(id, FontManager::load_font(file_path, size));
+			fonts.try_emplace(id, FontManager::load_font(file_path, size));
 		}
 	}
 }
