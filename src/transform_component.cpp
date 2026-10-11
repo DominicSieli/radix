@@ -17,10 +17,10 @@ namespace Radix
 		rotation = new_rotation;
 	}
 
-	void TransformComponent::scaling(const Vector2<float>& factor)
+	void TransformComponent::scaling(const Vector2<float>& value)
 	{
-		scale.x *= factor.x * Game::delta_time;
-		scale.y *= factor.y * Game::delta_time;
+		scale.x += value.x * Game::delta_time;
+		scale.y += value.y * Game::delta_time;
 	}
 
 	void TransformComponent::set_scale(const Vector2<float>& new_scale)

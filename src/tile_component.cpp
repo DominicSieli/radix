@@ -34,6 +34,6 @@ namespace Radix
 
 	void TileComponent::render()
 	{
-		TextureManager::draw(texture, source_rect, destination_rect, SDL_FLIP_NONE);
+		TextureManager::draw(texture, source_rect, destination_rect, 0.00f, SDL_FLIP_NONE);
 	}
 }

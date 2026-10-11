@@ -34,7 +34,7 @@ namespace Radix
 
 	void AnimatedSpriteComponent::render()
 	{
-		TextureManager::draw(texture, source, destination, sprite_flip);
+		TextureManager::draw(texture, source, destination, transform_component->rotation, sprite_flip);
 	}
 
 	void AnimatedSpriteComponent::play(const unsigned int& animation)

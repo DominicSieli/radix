@@ -34,6 +34,6 @@ namespace Radix
 
 	void StaticSpriteComponent::render()
 	{
-		TextureManager::draw(texture, source, destination, sprite_flip);
+		TextureManager::draw(texture, source, destination, transform_component->rotation, sprite_flip);
 	}
 }
