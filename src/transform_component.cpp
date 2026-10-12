@@ -9,7 +9,7 @@ namespace Radix
 
 	void TransformComponent::rotate(const float& degree)
 	{
-		rotation += degree * Game::delta_time;
+		rotation += degree * Game::time_manager.get_delta_time();
 	}
 
 	void TransformComponent::set_rotation(const float& new_rotation)
@@ -19,8 +19,8 @@ namespace Radix
 
 	void TransformComponent::scaling(const Vector2<float>& value)
 	{
-		scale.x += value.x * Game::delta_time;
-		scale.y += value.y * Game::delta_time;
+		scale.x += value.x * Game::time_manager.get_delta_time();
+		scale.y += value.y * Game::time_manager.get_delta_time();
 	}
 
 	void TransformComponent::set_scale(const Vector2<float>& new_scale)
@@ -31,8 +31,8 @@ namespace Radix
 
 	void TransformComponent::translate(const Vector2<float>& speed)
 	{
-		position.x += speed.x * Game::delta_time;
-		position.y += speed.y * Game::delta_time;
+		position.x += speed.x * Game::time_manager.get_delta_time();
+		position.y += speed.y * Game::time_manager.get_delta_time();
 	}
 
 	void TransformComponent::set_position(const Vector2<float>& new_position)

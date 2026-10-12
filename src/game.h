@@ -5,6 +5,7 @@
 #include <SDL3_ttf/SDL_ttf.h>
 #include <SDL3_image/SDL_image.h>
 
+#include "time_manager.h"
 #include "asset_manager.h"
 #include "render_manager.h"
 #include "entity_manager.h"
@@ -19,11 +20,10 @@ namespace Radix
 			SDL_Window* window = nullptr;
 
 		public:
-			Uint64 previous_tick;
 			static SDL_Rect camera;
-			static float delta_time;
 			static SDL_Event input_event;
 			static SDL_Renderer* renderer;
+			inline static TimeManager time_manager{};
 			inline static AssetManager asset_manager{};
 			inline static RenderManager render_manager{};
 			inline static EntityManager entity_manager{};
