@@ -9,9 +9,10 @@ namespace Radix
 {
 	class EntityManager
 	{
-		public:
+		private:
 			std::vector<Entity*> entities;
 
+		public:
 			EntityManager();
 
 			~EntityManager();

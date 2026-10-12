@@ -12,7 +12,7 @@ namespace Radix
 {
 	class ColliderComponent: public Component
 	{
-		public:
+		private:
 			unsigned int tag;
 			SDL_Rect collider;
 			SDL_Rect source_rect;
@@ -20,11 +20,16 @@ namespace Radix
 			Vector2<int> dimensions;
 			TransformComponent* transform_component;
 
+		public:
 			ColliderComponent(const unsigned int&, const Vector2<int>&);
 
 			void initialize() override;
 
 			void update(const float&) override;
+
+			unsigned int get_tag();
+
+			SDL_Rect get_collider();
 	};
 }
 

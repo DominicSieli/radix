@@ -11,12 +11,15 @@ namespace Radix
 
 	void StaticSpriteComponent::initialize()
 	{
-		transform_component = entity->get_component<TransformComponent>();
+		if(entity->has_component<TransformComponent>())
+		{
+			transform_component = entity->get_component<TransformComponent>();
 
-		source.x = 0;
-		source.y = 0;
-		source.w = dimensions.x;
-		source.h = dimensions.y;
+			source.x = 0;
+			source.y = 0;
+			source.w = dimensions.x;
+			source.h = dimensions.y;
+		}
 	}
 
 	void StaticSpriteComponent::set_texture(const unsigned int& id)
@@ -26,14 +29,23 @@ namespace Radix
 
 	void StaticSpriteComponent::update(const float&)
 	{
-		destination.x = transform_component->position.x - ((fixed == true) ? 0.00f : static_cast<float>(Game::camera.x));
-		destination.y = transform_component->position.y - ((fixed == true) ? 0.00f : static_cast<float>(Game::camera.y));
-		destination.w = dimensions.x * transform_component->scale.x;
-		destination.h = dimensions.y * transform_component->scale.y;
+		if(entity->has_component<TransformComponent>())
+		{
+			Vector2<float> scale = transform_component->get_scale();
+			Vector2<float> position = transform_component->get_position();
+
+			destination.x = position.x - ((fixed == true) ? 0.00f : static_cast<float>(Game::camera.x));
+			destination.y = position.y - ((fixed == true) ? 0.00f : static_cast<float>(Game::camera.y));
+			destination.w = dimensions.x * scale.x;
+			destination.h = dimensions.y * scale.y;
+		}
 	}
 
 	void StaticSpriteComponent::render()
 	{
-		TextureManager::draw(texture, source, destination, transform_component->rotation, sprite_flip);
+		if(entity->has_component<TransformComponent>())
+		{
+			TextureManager::draw(texture, source, destination, transform_component->get_rotation(), sprite_flip);
+		}
 	}
 }

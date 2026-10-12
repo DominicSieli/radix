@@ -10,29 +10,29 @@ namespace Radix
 
 	unsigned int CollisionManager::check_collisions(const std::vector<Collision>& collisions, const unsigned int& no_collision)
 	{
-		for(unsigned int i = 0; i < Game::entity_manager.entities.size() - 1; i++)
+		for(unsigned int i = 0; i < Game::entity_manager.get_entities().size() - 1; i++)
 		{
-			Entity* entity_1 = Game::entity_manager.entities.at(i);
+			Entity* entity_1 = Game::entity_manager.get_entities().at(i);
 
 			if(entity_1->has_component<ColliderComponent>() == true)
 			{
 				ColliderComponent* entity_1_collider = entity_1->get_component<ColliderComponent>();
 
-				for(unsigned int j = i + 1; j < Game::entity_manager.entities.size(); j++)
+				for(unsigned int j = i + 1; j < Game::entity_manager.get_entities().size(); j++)
 				{
-					Entity* entity_2 = Game::entity_manager.entities.at(j);
+					Entity* entity_2 = Game::entity_manager.get_entities().at(j);
 
 					if(entity_1->get_name().compare(entity_2->get_name()) != 0 && entity_2->has_component<ColliderComponent>() == true)
 					{
 						ColliderComponent* entity_2_collider = entity_2->get_component<ColliderComponent>();
 
-						if(check_rect_collision(entity_1_collider->collider, entity_2_collider->collider) == true)
+						if(check_rect_collision(entity_1_collider->get_collider(), entity_2_collider->get_collider()) == true)
 						{
 							for(const Collision& collision : collisions)
 							{
-								if(entity_1_collider->tag == collision.collider_tag_1 && entity_2_collider->tag == collision.collider_tag_2)
+								if(entity_1_collider->get_tag() == collision.get_collider_tag_1() && entity_2_collider->get_tag() == collision.get_collider_tag_2())
 								{
-									return collision.collision_type;
+									return collision.get_collision_type();
 								}
 							}
 						}
