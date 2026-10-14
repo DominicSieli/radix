@@ -17,6 +17,6 @@ namespace Radix
 
 	void TextureManager::draw(SDL_Texture* texture, const SDL_FRect& source, const SDL_FRect& destination, const float& rotation, const SDL_FlipMode& flip_mode)
 	{
-		SDL_RenderTextureRotated(Game::renderer, texture, &source, &destination, rotation, NULL, flip_mode);
+		SDL_RenderTextureRotated(Game::renderer, texture, &source, &destination, rotation, nullptr, flip_mode);
 	}
 }

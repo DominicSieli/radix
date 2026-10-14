@@ -9,6 +9,9 @@ namespace Radix
 
 	class Component
 	{
+		private:
+			bool active = true;
+
 		public:
 			Entity* entity;
 
@@ -23,6 +26,21 @@ namespace Radix
 
 			virtual void render()
 			{}
+
+			bool is_active()
+			{
+				return active;
+			}
+
+			void set_active()
+			{
+				active = true;
+			}
+
+			void set_inactive()
+			{
+				active = false;
+			}
 	};
 }
 

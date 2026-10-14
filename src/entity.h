@@ -17,9 +17,8 @@ namespace Radix
 			unsigned int id;
 			std::string name;
 			unsigned int render_layer;
-			inline static unsigned int current_id = 0;
-
 			std::vector<Component*> components;
+			inline static unsigned int current_id = 0;
 			std::map<const std::type_info*, Component*> component_map;
 
 		public:
@@ -33,9 +32,11 @@ namespace Radix
 
 			void render();
 
-			void deactivate();
-
 			bool is_active();
+
+			void set_active();
+
+			void set_inactive();
 
 			unsigned int get_id();
 
@@ -53,6 +54,7 @@ namespace Radix
 					components.emplace_back(component);
 					component_map[&typeid(*component)] = component;
 					component->initialize();
+
 					return component;
 				}
 

@@ -8,10 +8,10 @@ namespace Radix
 
 	EntityManager::~EntityManager()
 	{
-		clear_entities();
+		delete_entities();
 	}
 
-	void EntityManager::clear_entities()
+	void EntityManager::delete_entities()
 	{
 		entities.clear();
 	}
@@ -20,17 +20,21 @@ namespace Radix
 	{
 		for(Entity* entity : entities)
 		{
-			entity->update(delta_time);
+			if(entity->is_active())
+			{
+				entity->update(delta_time);
+			}
 		}
 	}
 
-	void EntityManager::destroy_inactive_entities()
+	void EntityManager::delete_inactive_entities()
 	{
-		for(Entity* entity : entities)
+		for(unsigned int i = 0; i < entities.size(); ++i)
 		{
-			if(entity->is_active() == false)
+			if(!entities.at(i)->is_active())
 			{
-				delete entity;
+				delete entities.at(i);
+				entities.at(i) = nullptr;
 			}
 		}
 	}
@@ -40,9 +44,20 @@ namespace Radix
 		return entities.size() == 0;
 	}
 
-	Entity* EntityManager::add_entity(const std::string& name, const unsigned int& render_layer)
+	Entity* EntityManager::create_entity(const std::string& name, const unsigned int& render_layer)
 	{
 		Entity* entity = new Entity(name, render_layer);
+
+		for(unsigned int i = 0; i < entities.size(); ++i)
+		{
+			if(entities.at(i) == nullptr)
+			{
+				entities.at(i) = entity;
+
+				return entity;
+			}
+		}
+
 		entities.emplace_back(entity);
 
 		return entity;
@@ -70,9 +85,12 @@ namespace Radix
 	{
 		std::vector<Entity*> selected_entities;
 
-		for(auto* entity: entities)
+		for(Entity* entity : entities)
 		{
-			if(entity->get_render_layer() == render_layer) selected_entities.emplace_back(entity);
+			if(entity->get_render_layer() == render_layer)
+			{
+				selected_entities.emplace_back(entity);
+			}
 		}
 
 		return selected_entities;

@@ -17,13 +17,13 @@ namespace Radix
 
 			~EntityManager();
 
-			void clear_entities();
+			void delete_entities();
 
 			void update(const float&);
 
 			bool is_empty();
 
-			Entity* add_entity(const std::string&, const unsigned int&);
+			Entity* create_entity(const std::string&, const unsigned int&);
 
 			Entity* get_entity_by_id(const unsigned int&);
 
@@ -31,7 +31,7 @@ namespace Radix
 
 			std::vector<Entity*> get_entities_by_render_layer(const unsigned int&);
 
-			void destroy_inactive_entities();
+			void delete_inactive_entities();
 
 			unsigned int entity_count();
 	};

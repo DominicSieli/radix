@@ -9,16 +9,26 @@ namespace Radix
 	TimeManager::~TimeManager()
 	{}
 
+	float TimeManager::get_fps()
+	{
+		return fps;
+	}
+
+	void TimeManager::calculate_fps()
+	{
+		fps = 1.00f / delta_time;
+	}
+
 	float TimeManager::get_delta_time()
 	{
 		return delta_time;
 	}
 
-	void TimeManager::update_delta_time(const unsigned int& frame_target_time)
+	void TimeManager::calculate_delta_time(const unsigned int& frame_target_time)
 	{
-		Uint64 previous_tick = 0;
-		Uint64 frameStart = SDL_GetTicks();
-		Uint64 frameTime = SDL_GetTicks() - frameStart;
+		previous_tick = 0;
+		frameStart = SDL_GetTicks();
+		frameTime = SDL_GetTicks() - frameStart;
 
 		if(frameTime < frame_target_time)
 		{

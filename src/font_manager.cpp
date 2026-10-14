@@ -8,7 +8,7 @@ namespace Radix
 
 	void FontManager::draw_font(SDL_Texture* texture, const SDL_FRect& position)
 	{
-		SDL_RenderTexture(Game::renderer, texture, NULL, &position);
+		SDL_RenderTexture(Game::renderer, texture, nullptr, &position);
 	}
 
 	TTF_Font* FontManager::load_font(const char* file_name, const float& font_size)

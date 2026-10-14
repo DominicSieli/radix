@@ -18,9 +18,9 @@ namespace Radix
 		std::fstream map_file;
 		map_file.open(file_path);
 
-		for(int y = 0; y < map_size.y; y++)
+		for(int y = 0; y < map_size.y; ++y)
 		{
-			for(int x = 0; x < map_size.x; x++)
+			for(int x = 0; x < map_size.x; ++x)
 			{
 				char character = 0;
 				map_file.get(character);
@@ -37,7 +37,7 @@ namespace Radix
 
 	void TileMap::add_tile(const Vector2<float>& rect_source, const Vector2<float>& rect_position, const std::string& name, const unsigned int& render_layer)
 	{
-		Entity* new_tile = Game::entity_manager.add_entity(name, render_layer);
+		Entity* new_tile = Game::entity_manager.create_entity(name, render_layer);
 		new_tile->add_component<TileComponent>(rect_source, rect_position, tile_size, scale, texture_id);
 	}
 }

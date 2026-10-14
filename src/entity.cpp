@@ -16,28 +16,45 @@ namespace Radix
 
 	void Entity::update(const float& delta_time)
 	{
-		for(auto& component : components)
+		if(active)
 		{
-			component->update(delta_time);
+			for(const auto& component : components)
+			{
+				if(component->is_active())
+				{
+					component->update(delta_time);
+				}
+			}
 		}
 	}
 
 	void Entity::render()
 	{
-		for(auto& component : components)
+		if(active)
 		{
-			component->render();
+			for(const auto& component : components)
+			{
+				if(component->is_active())
+				{
+					component->render();
+				}
+			}
 		}
-	}
-
-	void Entity::deactivate()
-	{
-		active = false;
 	}
 
 	bool Entity::is_active()
 	{
 		return active;
+	}
+
+	void Entity::set_active()
+	{
+		active = true;
+	}
+
+	void Entity::set_inactive()
+	{
+		active = false;
 	}
 
 	unsigned int Entity::get_id()
