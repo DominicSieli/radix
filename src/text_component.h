@@ -6,7 +6,6 @@
 
 #include "game.h"
 #include "vector_2.h"
-#include "font_manager.h"
 #include "asset_manager.h"
 #include "entity_manager.h"
 

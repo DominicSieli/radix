@@ -5,7 +5,6 @@
 
 #include "vector_2.h"
 #include "asset_manager.h"
-#include "texture_manager.h"
 #include "transform_component.h"
 
 namespace Radix

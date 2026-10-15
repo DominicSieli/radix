@@ -1,6 +1,5 @@
-#include "font_manager.h"
+#include "game.h"
 #include "asset_manager.h"
-#include "texture_manager.h"
 
 namespace Radix
 {
@@ -22,7 +21,7 @@ namespace Radix
 	{
 		for(auto& [id, font] : fonts)
 		{
-			FontManager::delete_font(font);
+			TTF_CloseFont(font);
 		}
 
 		fonts.clear();
@@ -32,7 +31,7 @@ namespace Radix
 	{
 		for(auto& [id, texture] : textures)
 		{
-			TextureManager::delete_texture(texture);
+			SDL_DestroyTexture(texture);
 		}
 
 		textures.clear();
@@ -40,12 +39,14 @@ namespace Radix
 
 	void AssetManager::delete_font(const unsigned int& id)
 	{
-		FontManager::delete_font(fonts[id]);
+		TTF_CloseFont(fonts[id]);
+		fonts.erase(id);
 	}
 
 	void AssetManager::delete_texture(const unsigned int& id)
 	{
-		TextureManager::delete_texture(textures[id]);
+		SDL_DestroyTexture(textures[id]);
+		textures.erase(id);
 	}
 
 	TTF_Font* AssetManager::get_font(const unsigned int& id)
@@ -60,11 +61,14 @@ namespace Radix
 
 	void AssetManager::add_texture(const unsigned int& id, const char* file_path)
 	{
-		textures.try_emplace(id, TextureManager::load_texture(file_path));
+		SDL_Surface* surface = IMG_Load(file_path);
+		SDL_Texture* texture = SDL_CreateTextureFromSurface(Game::renderer, surface);
+		SDL_DestroySurface(surface);
+		textures.try_emplace(id, texture);
 	}
 
 	void AssetManager::add_font(const unsigned int& id, const char* file_path, const float& size)
 	{
-		fonts.try_emplace(id, FontManager::load_font(file_path, size));
+		fonts.try_emplace(id, TTF_OpenFont(file_path, size));
 	}
 }

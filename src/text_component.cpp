@@ -1,3 +1,6 @@
+#include <SDL3/SDL.h>
+#include <SDL3_image/SDL_image.h>
+
 #include "game.h"
 #include "text_component.h"
 
@@ -21,6 +24,6 @@ namespace Radix
 
 	void TextComponent::render()
 	{
-		FontManager::draw_font(texture, position);
+		SDL_RenderTexture(Game::renderer, texture, nullptr, &position);
 	}
 }

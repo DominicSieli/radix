@@ -1,3 +1,6 @@
+#include <SDL3/SDL.h>
+#include <SDL3_image/SDL_image.h>
+
 #include "game.h"
 #include "static_sprite_component.h"
 
@@ -36,6 +39,6 @@ namespace Radix
 
 	void StaticSpriteComponent::render()
 	{
-		TextureManager::draw(texture, source, destination, transform_component->get_rotation(), sprite_flip);
+		SDL_RenderTextureRotated(Game::renderer, texture, &source, &destination, transform_component->get_rotation(), nullptr, sprite_flip);
 	}
 }

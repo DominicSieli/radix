@@ -2,10 +2,11 @@
 #define ASSET_MANAGER_H
 
 #include <map>
+#include <SDL3/SDL.h>
+#include <SDL3_ttf/SDL_ttf.h>
+#include <SDL3_image/SDL_image.h>
 
-#include "font_manager.h"
 #include "entity_manager.h"
-#include "texture_manager.h"
 
 namespace Radix
 {

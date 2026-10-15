@@ -1,6 +1,8 @@
+#include <SDL3/SDL.h>
+#include <SDL3_image/SDL_image.h>
+
 #include "game.h"
 #include "tile_component.h"
-#include "texture_manager.h"
 
 namespace Radix
 {
@@ -34,6 +36,6 @@ namespace Radix
 
 	void TileComponent::render()
 	{
-		TextureManager::draw(texture, source_rect, destination_rect, 0.00f, SDL_FLIP_NONE);
+		SDL_RenderTextureRotated(Game::renderer, texture, &source_rect, &destination_rect, 0.00f, nullptr, SDL_FLIP_NONE);
 	}
 }
