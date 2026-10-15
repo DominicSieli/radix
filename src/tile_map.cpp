@@ -1,4 +1,5 @@
 #include <fstream>
+#include <cstdlib>
 
 #include "game.h"
 #include "tile_map.h"
@@ -24,9 +25,9 @@ namespace Radix
 			{
 				char character = 0;
 				map_file.get(character);
-				float source_rect_y = static_cast<float>(std::stoi(&character) * tile_size);
+				float source_rect_y = static_cast<float>(std::strtol(&character, nullptr, 10) * tile_size);
 				map_file.get(character);
-				float source_rect_x = static_cast<float>(std::stoi(&character) * tile_size);
+				float source_rect_x = static_cast<float>(std::strtol(&character, nullptr, 10) * tile_size);
 				add_tile(Vector2<float>(source_rect_x, source_rect_y), Vector2<float>(x * (scale * tile_size), y * (scale * tile_size)), name, render_layer);
 				map_file.ignore();
 			}

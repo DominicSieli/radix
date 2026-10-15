@@ -6,6 +6,11 @@ namespace Radix
 	TextureManager::TextureManager()
 	{}
 
+	void TextureManager::delete_texture(SDL_Texture* texture)
+	{
+		SDL_DestroyTexture(texture);
+	}
+
 	SDL_Texture* TextureManager::load_texture(const char* file_name)
 	{
 		SDL_Surface* surface = IMG_Load(file_name);

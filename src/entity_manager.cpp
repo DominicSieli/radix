@@ -46,18 +46,28 @@ namespace Radix
 
 	Entity* EntityManager::create_entity(const std::string& name, const unsigned int& render_layer)
 	{
-		Entity* entity = new Entity(name, render_layer);
-
 		for(unsigned int i = 0; i < entities.size(); ++i)
 		{
+			if(entities.at(i) != nullptr)
+			{
+				if(entities.at(i)->get_name() == name)
+				{
+					entities.at(i)->set_active();
+
+					return entities.at(i);
+				}
+			}
+
 			if(entities.at(i) == nullptr)
 			{
+				Entity* entity = new Entity(name, render_layer);
 				entities.at(i) = entity;
 
 				return entity;
 			}
 		}
 
+		Entity* entity = new Entity(name, render_layer);
 		entities.emplace_back(entity);
 
 		return entity;

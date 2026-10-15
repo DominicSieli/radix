@@ -6,6 +6,11 @@ namespace Radix
 	FontManager::FontManager()
 	{}
 
+	void FontManager::delete_font(TTF_Font* font)
+	{
+		TTF_CloseFont(font);
+	}
+
 	void FontManager::draw_font(SDL_Texture* texture, const SDL_FRect& position)
 	{
 		SDL_RenderTexture(Game::renderer, texture, nullptr, &position);

@@ -70,6 +70,7 @@ namespace Radix
 	void Entity::clear_components()
 	{
 		components.clear();
+		component_map.clear();
 	}
 
 	unsigned int Entity::get_render_layer()

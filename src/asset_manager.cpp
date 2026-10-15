@@ -9,13 +9,43 @@ namespace Radix
 
 	AssetManager::~AssetManager()
 	{
-		clear();
+		clear_all();
 	}
 
-	void AssetManager::clear()
+	void AssetManager::clear_all()
 	{
+		clear_fonts();
+		clear_textures();
+	}
+
+	void AssetManager::clear_fonts()
+	{
+		for(auto& [id, font] : fonts)
+		{
+			FontManager::delete_font(font);
+		}
+
 		fonts.clear();
+	}
+
+	void AssetManager::clear_textures()
+	{
+		for(auto& [id, texture] : textures)
+		{
+			TextureManager::delete_texture(texture);
+		}
+
 		textures.clear();
+	}
+
+	void AssetManager::delete_font(const unsigned int& id)
+	{
+		FontManager::delete_font(fonts[id]);
+	}
+
+	void AssetManager::delete_texture(const unsigned int& id)
+	{
+		TextureManager::delete_texture(textures[id]);
 	}
 
 	TTF_Font* AssetManager::get_font(const unsigned int& id)
@@ -30,17 +60,11 @@ namespace Radix
 
 	void AssetManager::add_texture(const unsigned int& id, const char* file_path)
 	{
-		if(!textures.contains(id))
-		{
-			textures.try_emplace(id, TextureManager::load_texture(file_path));
-		}
+		textures.try_emplace(id, TextureManager::load_texture(file_path));
 	}
 
 	void AssetManager::add_font(const unsigned int& id, const char* file_path, const float& size)
 	{
-		if(!fonts.contains(id))
-		{
-			fonts.try_emplace(id, FontManager::load_font(file_path, size));
-		}
+		fonts.try_emplace(id, FontManager::load_font(file_path, size));
 	}
 }

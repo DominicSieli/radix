@@ -20,7 +20,15 @@ namespace Radix
 
 			~AssetManager();
 
-			void clear();
+			void clear_all();
+
+			void clear_fonts();
+
+			void clear_textures();
+
+			void delete_font(const unsigned int&);
+
+			void delete_texture(const unsigned int&);
 
 			TTF_Font* get_font(const unsigned int&);
 
