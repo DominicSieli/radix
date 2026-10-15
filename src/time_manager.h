@@ -10,9 +10,12 @@ namespace Radix
 		private:
 			float fps;
 			float delta_time;
-			Uint64 frameTime;
-			Uint64 frameStart;
-			Uint64 previous_tick;
+			float elapsed_time;
+			Uint64 frame_time;
+			Uint64 frame_start;
+			Uint64 frame_count;
+			Uint64 previous_tick = SDL_GetPerformanceCounter();
+			Uint64 fps_timer = previous_tick;
 
 		public:
 			TimeManager();
