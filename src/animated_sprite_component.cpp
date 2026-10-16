@@ -20,7 +20,7 @@ namespace Radix
 		source.y = 0;
 		source.w = static_cast<float>(dimensions.x);
 		source.h = static_cast<float>(dimensions.y);
-		transform_component = entity->get_component<TransformComponent>();
+		transform_component = get_entity()->get_component<TransformComponent>();
 	}
 
 	void AnimatedSpriteComponent::update(const float&)

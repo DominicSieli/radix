@@ -10,11 +10,10 @@ namespace Radix
 	class Component
 	{
 		private:
+			Entity* entity;
 			bool active = true;
 
 		public:
-			Entity* entity;
-
 			virtual ~Component()
 			{}
 
@@ -26,6 +25,16 @@ namespace Radix
 
 			virtual void render()
 			{}
+
+			Entity* get_entity()
+			{
+				return entity;
+			}
+
+			void set_entity(Entity* new_entity)
+			{
+				entity = new_entity;
+			}
 
 			bool is_active()
 			{

@@ -18,7 +18,7 @@ namespace Radix
 			std::string name;
 			unsigned int render_layer;
 			std::vector<Component*> components;
-			inline static unsigned int current_id = 0;
+			inline static unsigned int current_id;
 			std::map<const std::type_info*, Component*> component_map;
 
 		public:
@@ -50,7 +50,7 @@ namespace Radix
 				T* add_component(T_ARGS&&... args)
 				{
 					T* component(new T(std::forward<T_ARGS>(args)...));
-					component->entity = this;
+					component->set_entity(this);
 					components.emplace_back(component);
 					component_map[&typeid(*component)] = component;
 					component->initialize();

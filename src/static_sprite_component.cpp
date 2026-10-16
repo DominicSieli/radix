@@ -18,7 +18,7 @@ namespace Radix
 		source.y = 0;
 		source.w = dimensions.x;
 		source.h = dimensions.y;
-		transform_component = entity->get_component<TransformComponent>();
+		transform_component = get_entity()->get_component<TransformComponent>();
 	}
 
 	void StaticSpriteComponent::set_texture(const unsigned int& id)

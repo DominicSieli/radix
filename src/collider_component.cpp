@@ -9,7 +9,7 @@ namespace Radix
 
 	void ColliderComponent::initialize()
 	{
-		transform_component = entity->get_component<TransformComponent>();
+		transform_component = get_entity()->get_component<TransformComponent>();
 		Vector2<float> position = transform_component->get_position();
 
 		source_rect = {0, 0, dimensions.x, dimensions.y};
