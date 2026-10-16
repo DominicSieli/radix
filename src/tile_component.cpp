@@ -2,6 +2,7 @@
 #include <SDL3_image/SDL_image.h>
 
 #include "game.h"
+#include "constraints.h"
 #include "tile_component.h"
 
 namespace Radix
@@ -36,6 +37,9 @@ namespace Radix
 
 	void TileComponent::render()
 	{
-		SDL_RenderTextureRotated(Game::renderer, texture, &source_rect, &destination_rect, 0.00f, nullptr, SDL_FLIP_NONE);
+		if(inside_camera_bounds(position, Vector2<float>(source_rect.w, source_rect.h)))
+		{
+			SDL_RenderTextureRotated(Game::renderer, texture, &source_rect, &destination_rect, 0.00f, nullptr, SDL_FLIP_NONE);
+		}
 	}
 }

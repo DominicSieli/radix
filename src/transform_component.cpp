@@ -3,8 +3,8 @@
 
 namespace Radix
 {
-	TransformComponent::TransformComponent(const Vector2<float>& position, const Vector2<float>& scale, const float& rotation):
-		position{position}, scale{scale}, rotation{rotation}
+	TransformComponent::TransformComponent(const Vector2<float>& position, const Vector2<float>& scale, const float& rotation, const Vector2<unsigned int>& dimensions):
+		position{position}, scale{scale}, rotation{rotation}, dimensions{dimensions}
 	{}
 
 	void TransformComponent::rotate(const float& degree)
@@ -54,5 +54,16 @@ namespace Radix
 	{
 		position.x = new_position.x;
 		position.y = new_position.y;
+	}
+
+	Vector2<unsigned int> TransformComponent::get_dimensions()
+	{
+		return dimensions;
+	}
+
+	void TransformComponent::set_dimensions(const Vector2<unsigned int>& new_dimensions)
+	{
+		dimensions.x = new_dimensions.x;
+		dimensions.y = new_dimensions.y;
 	}
 }

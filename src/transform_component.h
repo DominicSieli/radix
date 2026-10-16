@@ -15,9 +15,11 @@ namespace Radix
 			Vector2<float> position;
 			Vector2<float> scale;
 			float rotation;
+			Vector2<unsigned int> dimensions;
+
 
 		public:
-			TransformComponent(const Vector2<float>&, const Vector2<float>&, const float&);
+			TransformComponent(const Vector2<float>&, const Vector2<float>&, const float&, const Vector2<unsigned int>&);
 
 			void rotate(const float&);
 
@@ -36,6 +38,10 @@ namespace Radix
 			Vector2<float> get_position();
 
 			void set_position(const Vector2<float>&);
+
+			Vector2<unsigned int> get_dimensions();
+
+			void set_dimensions(const Vector2<unsigned int>&);
 	};
 }
 
