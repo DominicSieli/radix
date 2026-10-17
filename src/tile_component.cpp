@@ -37,7 +37,7 @@ namespace Radix
 
 	void TileComponent::render()
 	{
-		if(inside_camera_bounds(position, Vector2<float>(source_rect.w, source_rect.h)))
+		if(inside_camera_bounds(position, Vector2<unsigned int>(static_cast<unsigned int>(destination_rect.w), static_cast<unsigned int>(destination_rect.h))))
 		{
 			SDL_RenderTextureRotated(Game::renderer, texture, &source_rect, &destination_rect, 0.00f, nullptr, SDL_FLIP_NONE);
 		}

@@ -2,6 +2,7 @@
 #include <SDL3_image/SDL_image.h>
 
 #include "game.h"
+#include "constraints.h"
 #include "asset_manager.h"
 #include "animated_sprite_component.h"
 
@@ -41,7 +42,10 @@ namespace Radix
 
 	void AnimatedSpriteComponent::render()
 	{
-		SDL_RenderTextureRotated(Game::renderer, texture, &source, &destination, transform_component->get_rotation(), nullptr, sprite_flip);
+		if(fixed == true || (fixed == false && inside_camera_bounds(transform_component->get_position(), transform_component->get_dimensions())))
+		{
+			SDL_RenderTextureRotated(Game::renderer, texture, &source, &destination, transform_component->get_rotation(), nullptr, sprite_flip);
+		}
 	}
 
 	void AnimatedSpriteComponent::play(const unsigned int& animation)

@@ -2,6 +2,7 @@
 #include <SDL3_image/SDL_image.h>
 
 #include "game.h"
+#include "constraints.h"
 #include "static_sprite_component.h"
 
 namespace Radix
@@ -21,11 +22,6 @@ namespace Radix
 		transform_component = get_entity()->get_component<TransformComponent>();
 	}
 
-	void StaticSpriteComponent::set_texture(const unsigned int& id)
-	{
-		texture = Game::asset_manager.get_texture(id);
-	}
-
 	void StaticSpriteComponent::update(const float&)
 	{
 		Vector2<float> scale = transform_component->get_scale();
@@ -39,6 +35,14 @@ namespace Radix
 
 	void StaticSpriteComponent::render()
 	{
-		SDL_RenderTextureRotated(Game::renderer, texture, &source, &destination, transform_component->get_rotation(), nullptr, sprite_flip);
+		if(fixed == true || (fixed == false && inside_camera_bounds(transform_component->get_position(), transform_component->get_dimensions())))
+		{
+			SDL_RenderTextureRotated(Game::renderer, texture, &source, &destination, transform_component->get_rotation(), nullptr, sprite_flip);
+		}
+	}
+
+	void StaticSpriteComponent::set_texture(const unsigned int& id)
+	{
+		texture = Game::asset_manager.get_texture(id);
 	}
 }

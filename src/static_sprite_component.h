@@ -27,11 +27,11 @@ namespace Radix
 
 			void initialize() override;
 
-			void set_texture(const unsigned int&);
-
 			void update(const float&) override;
 
 			void render() override;
+
+			void set_texture(const unsigned int&);
 	};
 }
 

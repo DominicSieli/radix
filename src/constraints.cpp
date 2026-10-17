@@ -4,14 +4,12 @@
 
 namespace Radix
 {
-	bool inside_camera_bounds(const Vector2<float>& position, const Vector2<float>& dimensions)
+	bool inside_camera_bounds(const Vector2<float>& position, const Vector2<unsigned int>& dimensions)
 	{
-		float camera_x = static_cast<float>(Game::camera.x);
-		float camera_y = static_cast<float>(Game::camera.y);
-		float camera_w = static_cast<float>(Game::camera.w);
-		float camera_h = static_cast<float>(Game::camera.h);
+		float position_x = static_cast<int>(position.x);
+		float position_y = static_cast<int>(position.y);
 
-		if((position.x + (dimensions.x * 2.00f)) >= camera_x && (position.y + (dimensions.y * 2.00f)) >= camera_y && position.x <= (camera_x + camera_w) && position.y <= (camera_y + camera_h))
+		if(position_x + (dimensions.x * 2) >= Game::camera.x && position_y + (dimensions.y * 2) >= Game::camera.y && position_x - dimensions.x <= Game::camera.x + Game::camera.w && position_y - dimensions.y <= Game::camera.y + Game::camera.h)
 		{
 			return true;
 		}
