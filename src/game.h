@@ -20,7 +20,7 @@ namespace Radix
 			SDL_Window* window = nullptr;
 
 		public:
-			static SDL_Rect camera;
+			static SDL_FRect camera;
 			static SDL_Event input_event;
 			static SDL_Renderer* renderer;
 			inline static TimeManager time_manager{};

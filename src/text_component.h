@@ -5,7 +5,7 @@
 #include <SDL3_ttf/SDL_ttf.h>
 
 #include "game.h"
-#include "vector_2.h"
+#include "vectors.h"
 #include "asset_manager.h"
 #include "entity_manager.h"
 

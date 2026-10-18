@@ -3,7 +3,7 @@
 
 #include <SDL3/SDL.h>
 
-#include "vector_2.h"
+#include "vectors.h"
 #include "animation.h"
 #include "transform_component.h"
 
@@ -16,7 +16,7 @@ namespace Radix
 			unsigned int texture_id;
 			unsigned int default_animation;
 			unsigned int current_animation;
-			Vector2<int> dimensions;
+			Vector2<float> dimensions;
 			bool fixed;
 
 			SDL_FRect source;
@@ -27,7 +27,7 @@ namespace Radix
 			SDL_FlipMode sprite_flip = SDL_FLIP_NONE;
 
 		public:
-			AnimatedSpriteComponent(const std::map<unsigned int, Animation>&, const unsigned int&, const unsigned int&, const Vector2<int>&, const bool&);
+			AnimatedSpriteComponent(const std::map<unsigned int, Animation>&, const unsigned int&, const unsigned int&, const Vector2<float>&, const bool&);
 
 			void initialize() override;
 

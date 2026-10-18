@@ -3,7 +3,7 @@
 
 #include <SDL3/SDL.h>
 
-#include "vector_2.h"
+#include "vectors.h"
 #include "asset_manager.h"
 #include "transform_component.h"
 

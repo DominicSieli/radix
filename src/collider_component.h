@@ -4,7 +4,7 @@
 #include <SDL3/SDL.h>
 
 #include "game.h"
-#include "vector_2.h"
+#include "vectors.h"
 #include "entity_manager.h"
 #include "transform_component.h"
 
