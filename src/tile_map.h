@@ -11,17 +11,22 @@ namespace Radix
 	{
 		private:
 			unsigned int scale;
+			Vector2<int> map_size;
 			unsigned int tile_size;
 			unsigned int texture_id;
+
+			Vector2<int> map_dimensions;
 
 		public:
 			TileMap();
 
-			TileMap(const unsigned int&, const unsigned int&, const unsigned int&);
+			TileMap(const unsigned int&, const Vector2<int>&, const unsigned int&, const unsigned int&);
 
-			void load_map(const std::string&, const Vector2<int>&, const std::string& name, const unsigned int& render_layer);
+			void load_map(const std::string&, const std::string&, const unsigned int&);
 
-			void add_tile(const Vector2<float>&, const Vector2<float>&, const std::string& name, const unsigned int& render_layer);
+			void add_tile(const Vector2<float>&, const Vector2<float>&, const std::string&, const unsigned int&);
+
+			Vector2<int> get_map_dimensions();
 	};
 }
 
