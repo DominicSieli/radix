@@ -14,7 +14,6 @@ namespace Radix
 			Vector2<int> map_size;
 			unsigned int tile_size;
 			unsigned int texture_id;
-
 			Vector2<int> map_dimensions;
 
 		public:

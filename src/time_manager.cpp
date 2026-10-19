@@ -2,8 +2,7 @@
 
 namespace Radix
 {
-	TimeManager::TimeManager():
-		delta_time{}
+	TimeManager::TimeManager()
 	{}
 
 	TimeManager::~TimeManager()
@@ -24,7 +23,7 @@ namespace Radix
 
 		if(elapsed_time >= 1.00f)
 		{
-			fps = static_cast<float>(frame_count / elapsed_time);
+			fps = static_cast<float>(frame_count) / elapsed_time;
 
 			frame_count = 0;
 			fps_timer = current_tick;
@@ -36,15 +35,14 @@ namespace Radix
 		return delta_time;
 	}
 
-	void TimeManager::calculate_delta_time(const unsigned int& frame_target_time)
+	void TimeManager::calculate_delta_time(const float& target_frame_time)
 	{
-		previous_tick = 0;
-		frame_start = SDL_GetTicks();
-		frame_time = SDL_GetTicks() - frame_start;
+		Uint64 frame_start = SDL_GetTicks();
+		Uint64 frame_time = SDL_GetTicks() - frame_start;
 
-		if(frame_time < frame_target_time)
+		if(static_cast<float>(frame_time) < target_frame_time)
 		{
-			SDL_Delay(frame_target_time - frame_time);
+			SDL_Delay(static_cast<Uint64>(target_frame_time) - frame_time);
 		}
 
 		delta_time = (SDL_GetTicks() - previous_tick) / 1000.00f;

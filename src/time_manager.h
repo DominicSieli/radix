@@ -11,11 +11,9 @@ namespace Radix
 			float fps;
 			float delta_time;
 			float elapsed_time;
-			Uint64 frame_time;
-			Uint64 frame_start;
 			Uint64 frame_count;
+			Uint64 fps_timer = SDL_GetPerformanceCounter();
 			Uint64 previous_tick = SDL_GetPerformanceCounter();
-			Uint64 fps_timer = previous_tick;
 
 		public:
 			TimeManager();
@@ -28,7 +26,7 @@ namespace Radix
 
 			float get_delta_time();
 
-			void calculate_delta_time(const unsigned int&);
+			void calculate_delta_time(const float&);
 	};
 }
 

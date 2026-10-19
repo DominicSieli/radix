@@ -12,18 +12,18 @@ namespace Radix
 	class StaticSpriteComponent: public Component
 	{
 		private:
+			bool fixed;
+			SDL_FlipMode flip;
 			unsigned int texture_id;
 			Vector2<float> dimensions;
-			bool fixed;
 
 			SDL_FRect source;
 			SDL_Texture* texture;
 			SDL_FRect destination;
 			TransformComponent* transform_component;
-			SDL_FlipMode sprite_flip = SDL_FLIP_NONE;
 
 		public:
-			StaticSpriteComponent(const unsigned int&, const Vector2<float>&, const bool&);
+			StaticSpriteComponent(const bool&, const SDL_FlipMode&, const unsigned int&, const Vector2<float>&);
 
 			void initialize() override;
 

@@ -7,8 +7,8 @@
 
 namespace Radix
 {
-	StaticSpriteComponent::StaticSpriteComponent(const unsigned int& texture_id, const Vector2<float>& dimensions, const bool& fixed):
-		texture_id{texture_id}, dimensions{dimensions}, fixed{fixed}
+	StaticSpriteComponent::StaticSpriteComponent(const bool& fixed, const SDL_FlipMode& flip, const unsigned int& texture_id, const Vector2<float>& dimensions):
+		fixed{fixed}, flip{flip}, texture_id{texture_id}, dimensions{dimensions}
 	{
 		set_texture(texture_id);
 	}
@@ -37,7 +37,7 @@ namespace Radix
 	{
 		if(fixed == true || (fixed == false && inside_camera_bounds(transform_component->get_position(), transform_component->get_dimensions())))
 		{
-			SDL_RenderTextureRotated(Game::renderer, texture, &source, &destination, transform_component->get_rotation(), nullptr, sprite_flip);
+			SDL_RenderTextureRotated(Game::renderer, texture, &source, &destination, transform_component->get_rotation(), nullptr, flip);
 		}
 	}
 
