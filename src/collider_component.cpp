@@ -3,7 +3,7 @@
 
 namespace Radix
 {
-	ColliderComponent::ColliderComponent(const unsigned int& tag, const Vector2<int>& dimensions):
+	ColliderComponent::ColliderComponent(const unsigned int& tag, const Vector2<float>& dimensions):
 		tag{tag}, dimensions{dimensions}
 	{}
 
@@ -14,7 +14,7 @@ namespace Radix
 
 		source_rect = {0, 0, dimensions.x, dimensions.y};
 		destination_rect = {collider.x, collider.y, collider.w, collider.h};
-		collider = {static_cast<int>(position.x), static_cast<int>(position.y), dimensions.x, dimensions.y};
+		collider = {position.x, position.y, dimensions.x, dimensions.y};
 	}
 
 	void ColliderComponent::update(const float&)
@@ -22,10 +22,10 @@ namespace Radix
 		Vector2<float> scale = transform_component->get_scale();
 		Vector2<float> position = transform_component->get_position();
 
-		collider.x = static_cast<int>(position.x);
-		collider.y = static_cast<int>(position.y);
-		collider.w = dimensions.x * static_cast<int>(scale.x);
-		collider.h = dimensions.y * static_cast<int>(scale.y);
+		collider.x = position.x;
+		collider.y = position.y;
+		collider.w = dimensions.x * scale.x;
+		collider.h = dimensions.y * scale.y;
 		destination_rect.x = collider.x - Game::camera.x;
 		destination_rect.y = collider.y - Game::camera.y;
 	}
@@ -35,7 +35,7 @@ namespace Radix
 		return tag;
 	}
 
-	SDL_Rect ColliderComponent::get_collider()
+	SDL_FRect ColliderComponent::get_collider()
 	{
 		return collider;
 	}

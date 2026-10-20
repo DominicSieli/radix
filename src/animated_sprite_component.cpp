@@ -8,8 +8,8 @@
 
 namespace Radix
 {
-	AnimatedSpriteComponent::AnimatedSpriteComponent(const std::map<unsigned int, Animation>& animations, const unsigned int& texture_id, const unsigned int& default_animation, const Vector2<float>& dimensions, const bool& fixed):
-		animations{animations}, texture_id{texture_id}, default_animation{default_animation}, current_animation{default_animation}, dimensions{dimensions}, fixed{fixed}
+	AnimatedSpriteComponent::AnimatedSpriteComponent(const bool& fixed, const SDL_FlipMode& flip, const unsigned int& texture_id, const Vector2<float>& dimensions, const unsigned int& default_animation, const std::map<unsigned int, Animation>& animations):
+		fixed{fixed}, flip{flip}, texture_id{texture_id}, dimensions{dimensions}, default_animation{default_animation}, animations{animations}, current_animation{default_animation}
 	{
 		set_texture(texture_id);
 		play(default_animation);
@@ -34,17 +34,17 @@ namespace Radix
 		source.x = source.w * static_cast<float>((SDL_GetTicks() / speed) % frames);
 		source.y = static_cast<float>(index) * dimensions.y;
 
-		destination.x = position.x - ((fixed == true) ? 0.00f : Game::camera.x);
-		destination.y = position.y - ((fixed == true) ? 0.00f : Game::camera.y);
 		destination.w = dimensions.x * scale.x;
 		destination.h = dimensions.y * scale.y;
+		destination.x = position.x - ((fixed == true) ? 0.00f : Game::camera.x);
+		destination.y = position.y - ((fixed == true) ? 0.00f : Game::camera.y);
 	}
 
 	void AnimatedSpriteComponent::render()
 	{
 		if(fixed == true || (fixed == false && inside_camera_bounds(transform_component->get_position(), transform_component->get_dimensions())))
 		{
-			SDL_RenderTextureRotated(Game::renderer, texture, &source, &destination, transform_component->get_rotation(), nullptr, sprite_flip);
+			SDL_RenderTextureRotated(Game::renderer, texture, &source, &destination, transform_component->get_rotation(), nullptr, flip);
 		}
 	}
 

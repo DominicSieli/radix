@@ -14,14 +14,14 @@ namespace Radix
 	{
 		private:
 			unsigned int tag;
-			SDL_Rect collider;
-			SDL_Rect source_rect;
-			SDL_Rect destination_rect;
-			Vector2<int> dimensions;
+			SDL_FRect collider;
+			SDL_FRect source_rect;
+			SDL_FRect destination_rect;
+			Vector2<float> dimensions;
 			TransformComponent* transform_component;
 
 		public:
-			ColliderComponent(const unsigned int&, const Vector2<int>&);
+			ColliderComponent(const unsigned int&, const Vector2<float>&);
 
 			void initialize() override;
 
@@ -29,7 +29,7 @@ namespace Radix
 
 			unsigned int get_tag();
 
-			SDL_Rect get_collider();
+			SDL_FRect get_collider();
 	};
 }
 
