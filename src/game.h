@@ -6,6 +6,7 @@
 #include <SDL3_image/SDL_image.h>
 
 #include "time_manager.h"
+#include "audio_manager.h"
 #include "asset_manager.h"
 #include "render_manager.h"
 #include "entity_manager.h"
@@ -24,6 +25,7 @@ namespace Radix
 			static SDL_Event input_event;
 			static SDL_Renderer* renderer;
 			inline static TimeManager time_manager{};
+			inline static AudioManager audio_manager{};
 			inline static AssetManager asset_manager{};
 			inline static RenderManager render_manager{};
 			inline static EntityManager entity_manager{};
