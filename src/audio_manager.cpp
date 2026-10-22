@@ -5,6 +5,7 @@
 #include <string>
 #include <unordered_map>
 
+#include "utilities.h"
 #include "audio_manager.h"
 
 namespace Radix
@@ -20,7 +21,9 @@ namespace Radix
 	bool AudioManager::init()
 	{
 		if(mixer)
+		{
 			return true;
+		}
 
 		if(!MIX_Init())
 		{
@@ -61,8 +64,7 @@ namespace Radix
 			return nullptr;
 		}
 
-		if(auto it = audio_cache.find(path);
-				it != audio_cache.end())
+		if(auto it = audio_cache.find(path); it != audio_cache.end())
 		{
 			return it->second;
 		}
@@ -76,12 +78,12 @@ namespace Radix
 			return nullptr;
 		}
 
-		audio_cache.emplace(path, audio);
+		audio_cache.try_emplace(path, audio);
 
 		return audio;
 	}
 
-	bool AudioManager::play_music(const std::string& path, int loops)
+	bool AudioManager::play_music(const std::string& path, const int& loops)
 	{
 		if(!music_track || loops < -1)
 		{
@@ -118,22 +120,24 @@ namespace Radix
 		SDL_DestroyProperties(options);
 
 		if(!played)
+		{
 			SDL_Log("Playing music failed: %s", SDL_GetError());
+		}
 
 		return played;
 	}
 
 	void AudioManager::stop_music()
 	{
-		if (music_track)
+		if(music_track)
 		{
 			MIX_StopTrack(music_track, 0);
 		}
 	}
 
-	bool AudioManager::play_sound(const std::string& path, float volume = 1.0f)
+	bool AudioManager::play_sound(const std::string& path, const float& new_volume = 1.00f)
 	{
-		if(!mixer || volume < 0.0f)
+		if(!mixer || new_volume < 0.00f)
 		{
 			return false;
 		}
@@ -170,7 +174,7 @@ namespace Radix
 			sound_tracks.push_back(track);
 		}
 
-		if(!MIX_SetTrackAudio(track, audio) || !MIX_SetTrackGain(track, clamp_volume(volume) * sound_volume))
+		if(!MIX_SetTrackAudio(track, audio) || !MIX_SetTrackGain(track, clamp_float(new_volume, 0.00f, 1.00f) * sound_volume))
 		{
 			SDL_Log("Configuring sound effect failed: %s", SDL_GetError());
 
@@ -195,17 +199,17 @@ namespace Radix
 		}
 	}
 
-	void AudioManager::set_music_volume(float volume)
+	void AudioManager::set_music_volume(const float& new_volume)
 	{
 		if(music_track)
 		{
-			MIX_SetTrackGain(music_track, clamp_volume(volume));
+			MIX_SetTrackGain(music_track, clamp_float(new_volume, 0.00f, 1.00f));
 		}
 	}
 
-	void AudioManager::set_sound_volume(float volume)
+	void AudioManager::set_sound_volume(const float& new_volume)
 	{
-		sound_volume = clamp_volume(volume);
+		sound_volume = clamp_float(new_volume, 0.00f, 1.00f);
 
 		for(MIX_Track* track : sound_tracks)
 		{
