@@ -1,10 +1,3 @@
-#include <SDL3/SDL.h>
-#include <SDL3_mixer/SDL_mixer.h>
-
-#include <vector>
-#include <string>
-#include <unordered_map>
-
 #include "utilities.h"
 #include "audio_manager.h"
 
@@ -55,7 +48,7 @@ namespace Radix
 		return true;
 	}
 
-	MIX_Audio* AudioManager::load_audio(const std::string& path)
+	MIX_Audio* AudioManager::load_audio(const std::string& path, const unsigned int& id)
 	{
 		if(!mixer)
 		{
@@ -64,7 +57,7 @@ namespace Radix
 			return nullptr;
 		}
 
-		if(auto it = audio_cache.find(path); it != audio_cache.end())
+		if(auto it = audio_map.find(id); it != audio_map.end())
 		{
 			return it->second;
 		}
@@ -78,19 +71,24 @@ namespace Radix
 			return nullptr;
 		}
 
-		audio_cache.try_emplace(path, audio);
+		audio_map.try_emplace(id, audio);
 
 		return audio;
 	}
 
-	bool AudioManager::play_music(const std::string& path, const int& loops)
+	bool AudioManager::play_music(const unsigned int& id)
 	{
-		if(!music_track || loops < -1)
+		if(!music_track)
 		{
 			return false;
 		}
 
-		MIX_Audio* audio = load_audio(path);
+		MIX_Audio* audio = nullptr;
+
+		if(auto it = audio_map.find(id); it != audio_map.end())
+		{
+			audio = it->second;
+		}
 
 		if(!audio)
 		{
@@ -113,7 +111,7 @@ namespace Radix
 			return false;
 		}
 
-		const bool configured = SDL_SetNumberProperty(options, MIX_PROP_PLAY_LOOPS_NUMBER, loops);
+		const bool configured = SDL_SetNumberProperty(options, MIX_PROP_PLAY_LOOPS_NUMBER, -1);
 
 		const bool played = configured && MIX_PlayTrack(music_track, options);
 
@@ -135,14 +133,19 @@ namespace Radix
 		}
 	}
 
-	bool AudioManager::play_sound(const std::string& path, const float& new_volume = 1.00f)
+	bool AudioManager::play_sound(const unsigned int& id, const float& volume = 1.00f)
 	{
-		if(!mixer || new_volume < 0.00f)
+		if(!mixer || volume < 0.00f)
 		{
 			return false;
 		}
 
-		MIX_Audio* audio = load_audio(path);
+		MIX_Audio* audio = nullptr;
+
+		if(auto it = audio_map.find(id); it != audio_map.end())
+		{
+			audio = it->second;
+		}
 
 		if(!audio)
 		{
@@ -151,7 +154,7 @@ namespace Radix
 
 		MIX_Track* track = nullptr;
 
-		for(MIX_Track* candidate : sound_tracks)
+		for(MIX_Track* candidate : sounds)
 		{
 			if(!MIX_TrackPlaying(candidate))
 			{
@@ -171,10 +174,10 @@ namespace Radix
 				return false;
 			}
 
-			sound_tracks.push_back(track);
+			sounds.push_back(track);
 		}
 
-		if(!MIX_SetTrackAudio(track, audio) || !MIX_SetTrackGain(track, clamp_float(new_volume, 0.00f, 1.00f) * sound_volume))
+		if(!MIX_SetTrackAudio(track, audio) || !MIX_SetTrackGain(track, clamp_float(volume, 0.00f, 1.00f) * sound_volume))
 		{
 			SDL_Log("Configuring sound effect failed: %s", SDL_GetError());
 
@@ -193,27 +196,39 @@ namespace Radix
 
 	void AudioManager::stop_sounds()
 	{
-		for(MIX_Track* track : sound_tracks)
+		for(MIX_Track* sound : sounds)
 		{
-			MIX_StopTrack(track, 0);
+			MIX_StopTrack(sound, 0);
 		}
 	}
 
-	void AudioManager::set_music_volume(const float& new_volume)
+	float AudioManager::get_music_volume()
 	{
+		return music_volume;
+	}
+
+	float AudioManager::get_sound_volume()
+	{
+		return sound_volume;
+	}
+
+	void AudioManager::set_music_volume(const float& volume)
+	{
+		music_volume = clamp_float(volume, 0.00f, 1.00f);
+
 		if(music_track)
 		{
-			MIX_SetTrackGain(music_track, clamp_float(new_volume, 0.00f, 1.00f));
+			MIX_SetTrackGain(music_track, music_volume);
 		}
 	}
 
-	void AudioManager::set_sound_volume(const float& new_volume)
+	void AudioManager::set_sound_volume(const float& volume)
 	{
-		sound_volume = clamp_float(new_volume, 0.00f, 1.00f);
+		sound_volume = clamp_float(volume, 0.00f, 1.00f);
 
-		for(MIX_Track* track : sound_tracks)
+		for(MIX_Track* sound : sounds)
 		{
-			MIX_SetTrackGain(track, sound_volume);
+			MIX_SetTrackGain(sound, sound_volume);
 		}
 	}
 
@@ -230,19 +245,19 @@ namespace Radix
 			music_track = nullptr;
 		}
 
-		for(MIX_Track* track : sound_tracks)
+		for(MIX_Track* sound : sounds)
 		{
-			MIX_DestroyTrack(track);
+			MIX_DestroyTrack(sound);
 		}
 
-		sound_tracks.clear();
+		sounds.clear();
 
-		for(auto& [path, audio] : audio_cache)
+		for(auto& [id, audio] : audio_map)
 		{
 			MIX_DestroyAudio(audio);
 		}
 
-		audio_cache.clear();
+		audio_map.clear();
 
 		MIX_DestroyMixer(mixer);
 		mixer = nullptr;

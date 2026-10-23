@@ -1,8 +1,8 @@
 #ifndef ASSET_MANAGER_H
 #define ASSET_MANAGER_H
 
-#include <map>
 #include <SDL3/SDL.h>
+#include <unordered_map>
 #include <SDL3_ttf/SDL_ttf.h>
 #include <SDL3_image/SDL_image.h>
 
@@ -13,8 +13,8 @@ namespace Radix
 	class AssetManager
 	{
 		private:
-			std::map<unsigned int, TTF_Font*> fonts;
-			std::map<unsigned int, SDL_Texture*> textures;
+			std::unordered_map<unsigned int, TTF_Font*> fonts;
+			std::unordered_map<unsigned int, SDL_Texture*> textures;
 
 		public:
 			AssetManager();

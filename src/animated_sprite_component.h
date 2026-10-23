@@ -17,7 +17,7 @@ namespace Radix
 			unsigned int texture_id;
 			Vector2<float> dimensions;
 			unsigned int default_animation;
-			std::map<unsigned int, Animation> animations;
+			std::unordered_map<unsigned int, Animation> animations;
 
 			SDL_FRect source;
 			unsigned int index;
@@ -27,7 +27,7 @@ namespace Radix
 			TransformComponent* transform_component;
 
 		public:
-			AnimatedSpriteComponent(const bool&, const SDL_FlipMode&, const unsigned int&, const Vector2<float>&, const unsigned int&, const std::map<unsigned int, Animation>&);
+			AnimatedSpriteComponent(const bool&, const SDL_FlipMode&, const unsigned int&, const Vector2<float>&, const unsigned int&, const std::unordered_map<unsigned int, Animation>&);
 
 			void initialize() override;
 

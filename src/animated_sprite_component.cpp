@@ -8,7 +8,7 @@
 
 namespace Radix
 {
-	AnimatedSpriteComponent::AnimatedSpriteComponent(const bool& fixed, const SDL_FlipMode& flip, const unsigned int& texture_id, const Vector2<float>& dimensions, const unsigned int& default_animation, const std::map<unsigned int, Animation>& animations):
+	AnimatedSpriteComponent::AnimatedSpriteComponent(const bool& fixed, const SDL_FlipMode& flip, const unsigned int& texture_id, const Vector2<float>& dimensions, const unsigned int& default_animation, const std::unordered_map<unsigned int, Animation>& animations):
 		fixed{fixed}, flip{flip}, texture_id{texture_id}, dimensions{dimensions}, default_animation{default_animation}, animations{animations}, current_animation{default_animation}
 	{
 		set_texture(texture_id);

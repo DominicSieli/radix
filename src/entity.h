@@ -1,10 +1,10 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include <map>
 #include <vector>
 #include <string>
 #include <typeinfo>
+#include <unordered_map>
 
 #include "component.h"
 
@@ -19,7 +19,7 @@ namespace Radix
 			unsigned int render_layer;
 			std::vector<Component*> components;
 			inline static unsigned int current_id;
-			std::map<const std::type_info*, Component*> component_map;
+			std::unordered_map<const std::type_info*, Component*> component_map;
 
 		public:
 			Entity();
