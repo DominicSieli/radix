@@ -122,6 +122,8 @@ namespace Radix
 			SDL_Log("Playing music failed: %s", SDL_GetError());
 		}
 
+		current_music_id = id;
+
 		return played;
 	}
 
@@ -152,39 +154,39 @@ namespace Radix
 			return false;
 		}
 
-		MIX_Track* track = nullptr;
+		MIX_Track* new_track = nullptr;
 
-		for(MIX_Track* sound : sounds)
+		for(MIX_Track* track : tracks)
 		{
-			if(!MIX_TrackPlaying(sound))
+			if(!MIX_TrackPlaying(track))
 			{
-				track = sound;
+				new_track = track;
 				break;
 			}
 		}
 
-		if(!track)
+		if(!new_track)
 		{
-			track = MIX_CreateTrack(mixer);
+			new_track = MIX_CreateTrack(mixer);
 
-			if(!track)
+			if(!new_track)
 			{
 				SDL_Log("Creating sound track failed: %s", SDL_GetError());
 
 				return false;
 			}
 
-			sounds.push_back(track);
+			tracks.push_back(new_track);
 		}
 
-		if(!MIX_SetTrackAudio(track, audio) || !MIX_SetTrackGain(track, clamp_float(volume, 0.00f, 1.00f) * sound_volume))
+		if(!MIX_SetTrackAudio(new_track, audio) || !MIX_SetTrackGain(new_track, clamp_float(volume, 0.00f, 1.00f) * sound_volume))
 		{
 			SDL_Log("Configuring sound effect failed: %s", SDL_GetError());
 
 			return false;
 		}
 
-		if(!MIX_PlayTrack(track, 0))
+		if(!MIX_PlayTrack(new_track, 0))
 		{
 			SDL_Log("Playing sound effect failed: %s", SDL_GetError());
 
@@ -196,9 +198,9 @@ namespace Radix
 
 	void AudioManager::stop_sounds()
 	{
-		for(MIX_Track* sound : sounds)
+		for(MIX_Track* track : tracks)
 		{
-			MIX_StopTrack(sound, 0);
+			MIX_StopTrack(track, 0);
 		}
 	}
 
@@ -226,10 +228,32 @@ namespace Radix
 	{
 		sound_volume = clamp_float(volume, 0.00f, 1.00f);
 
-		for(MIX_Track* sound : sounds)
+		for(MIX_Track* track : tracks)
 		{
-			MIX_SetTrackGain(sound, sound_volume);
+			MIX_SetTrackGain(track, sound_volume);
 		}
+	}
+
+	bool AudioManager::delete_audio(const unsigned int& id)
+	{
+		MIX_Audio* audio = audio_map[id];
+
+		if(!audio)
+		{
+			SDL_Log("No audio data to delete");
+
+			return false;
+		}
+
+		if(current_music_id == id)
+		{
+			stop_music();
+		}
+
+		MIX_DestroyAudio(audio);
+		audio_map.erase(id);
+
+		return true;
 	}
 
 	void AudioManager::shut_down()
@@ -245,12 +269,12 @@ namespace Radix
 			music_track = nullptr;
 		}
 
-		for(MIX_Track* sound : sounds)
+		for(MIX_Track* track : tracks)
 		{
-			MIX_DestroyTrack(sound);
+			MIX_DestroyTrack(track);
 		}
 
-		sounds.clear();
+		tracks.clear();
 
 		for(auto& [id, audio] : audio_map)
 		{

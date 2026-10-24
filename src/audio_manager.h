@@ -16,7 +16,8 @@ namespace Radix
 			float music_volume = 1.00f;
 			float sound_volume = 1.00f;
 			MIX_Mixer* mixer = nullptr;
-			std::vector<MIX_Track*> sounds;
+			unsigned int current_music_id;
+			std::vector<MIX_Track*> tracks;
 			MIX_Track* music_track = nullptr;
 			std::unordered_map<unsigned int, MIX_Audio*> audio_map;
 
@@ -44,6 +45,8 @@ namespace Radix
 			void set_music_volume(const float&);
 
 			void set_sound_volume(const float&);
+
+			bool delete_audio(const unsigned int&);
 
 			void shut_down();
 	};
