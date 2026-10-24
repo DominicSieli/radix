@@ -27,6 +27,10 @@ namespace Radix
 
 			Entity* get_entity_by_id(const unsigned int&);
 
+			bool delete_entity_by_id(const unsigned int&);
+
+			void delete_entities_by_name(const std::string&);
+
 			std::vector<Entity*> get_entities();
 
 			std::vector<Entity*> get_entities_by_render_layer(const unsigned int&);

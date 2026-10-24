@@ -57,9 +57,9 @@ namespace Radix
 			return nullptr;
 		}
 
-		if(const auto& it = audio_map.find(id); it != audio_map.end())
+		if(audio_map.contains(id))
 		{
-			return it->second;
+			return audio_map.at(id);
 		}
 
 		MIX_Audio* audio = MIX_LoadAudio(mixer, path.c_str(), true);
@@ -85,9 +85,9 @@ namespace Radix
 
 		MIX_Audio* audio = nullptr;
 
-		if(const auto& it = audio_map.find(id); it != audio_map.end())
+		if(audio_map.contains(id))
 		{
-			audio = it->second;
+			audio = audio_map.at(id);
 		}
 
 		if(!audio)
@@ -144,9 +144,9 @@ namespace Radix
 
 		MIX_Audio* audio = nullptr;
 
-		if(const auto& it = audio_map.find(id); it != audio_map.end())
+		if(audio_map.contains(id))
 		{
-			audio = it->second;
+			audio = audio_map.at(id);
 		}
 
 		if(!audio)

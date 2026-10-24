@@ -13,6 +13,12 @@ namespace Radix
 
 	void EntityManager::delete_entities()
 	{
+		for(auto* entity : entities)
+		{
+			delete entity;
+			entity = nullptr;
+		}
+
 		entities.clear();
 	}
 
@@ -84,6 +90,38 @@ namespace Radix
 		}
 
 		return nullptr;
+	}
+
+	bool EntityManager::delete_entity_by_id(const unsigned int& id)
+	{
+		Entity* entity = nullptr;
+
+		for(unsigned int i = 0; i < entities.size(); ++i)
+		{
+			if(entities.at(i)->get_id() == id)
+			{
+				delete entities.at(i);
+				entities.at(i) = nullptr;
+
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	void EntityManager::delete_entities_by_name(const std::string& name)
+	{
+		Entity* entity = nullptr;
+
+		for(unsigned int i = 0; i < entities.size(); ++i)
+		{
+			if(entities.at(i)->get_name() == name)
+			{
+				delete entities.at(i);
+				entities.at(i) = nullptr;
+			}
+		}
 	}
 
 	std::vector<Entity*> EntityManager::get_entities()

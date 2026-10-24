@@ -69,6 +69,18 @@ namespace Radix
 
 	void Entity::clear_components()
 	{
+		for(auto* component : components)
+		{
+			delete component;
+			component = nullptr;
+		}
+
+		for(auto& [key, component] : component_map)
+		{
+			delete component;
+			component = nullptr;
+		}
+
 		components.clear();
 		component_map.clear();
 	}
