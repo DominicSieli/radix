@@ -2,7 +2,6 @@
 #include <SDL3_image/SDL_image.h>
 
 #include "game.h"
-#include "constraints.h"
 #include "static_sprite_component.h"
 
 namespace Radix
@@ -29,13 +28,13 @@ namespace Radix
 
 		destination.w = dimensions.x * scale.x;
 		destination.h = dimensions.y * scale.y;
-		destination.x = position.x - ((fixed == true) ? 0.00f : static_cast<float>(Game::camera.x));
-		destination.y = position.y - ((fixed == true) ? 0.00f : static_cast<float>(Game::camera.y));
+		destination.x = position.x - ((fixed == true) ? 0.00f : static_cast<float>(Game::camera_manager.get_camera().x));
+		destination.y = position.y - ((fixed == true) ? 0.00f : static_cast<float>(Game::camera_manager.get_camera().y));
 	}
 
 	void StaticSpriteComponent::render()
 	{
-		if(fixed == true || (fixed == false && inside_camera_bounds(transform_component->get_position(), transform_component->get_dimensions())))
+		if(fixed == true || (fixed == false && Game::camera_manager.is_inside_bounds(transform_component->get_position(), transform_component->get_dimensions())))
 		{
 			SDL_RenderTextureRotated(Game::render_manager.get_renderer(), texture, &source, &destination, transform_component->get_rotation(), nullptr, flip);
 		}

@@ -26,8 +26,8 @@ namespace Radix
 		collider.y = position.y;
 		collider.w = dimensions.x * scale.x;
 		collider.h = dimensions.y * scale.y;
-		destination_rect.x = collider.x - Game::camera.x;
-		destination_rect.y = collider.y - Game::camera.y;
+		destination_rect.x = collider.x - Game::camera_manager.get_camera().x;
+		destination_rect.y = collider.y - Game::camera_manager.get_camera().y;
 	}
 
 	unsigned int ColliderComponent::get_tag()

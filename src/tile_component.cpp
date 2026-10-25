@@ -2,7 +2,6 @@
 #include <SDL3_image/SDL_image.h>
 
 #include "game.h"
-#include "constraints.h"
 #include "tile_component.h"
 
 namespace Radix
@@ -31,13 +30,13 @@ namespace Radix
 
 	void TileComponent::update(const float&)
 	{
-		destination_rect.x = position.x - static_cast<float>(Game::camera.x);
-		destination_rect.y = position.y - static_cast<float>(Game::camera.y);
+		destination_rect.x = position.x - static_cast<float>(Game::camera_manager.get_camera().x);
+		destination_rect.y = position.y - static_cast<float>(Game::camera_manager.get_camera().y);
 	}
 
 	void TileComponent::render()
 	{
-		if(inside_camera_bounds(position, Vector2<float>(destination_rect.w, destination_rect.h)))
+		if(Game::camera_manager.is_inside_bounds(position, Vector2<float>(destination_rect.w, destination_rect.h)))
 		{
 			SDL_RenderTextureRotated(Game::render_manager.get_renderer(), texture, &source_rect, &destination_rect, 0.00f, nullptr, SDL_FLIP_NONE);
 		}

@@ -9,6 +9,7 @@
 #include "input_manager.h"
 #include "audio_manager.h"
 #include "asset_manager.h"
+#include "camera_manager.h"
 #include "render_manager.h"
 #include "entity_manager.h"
 #include "collision_manager.h"
@@ -22,11 +23,11 @@ namespace Radix
 			SDL_Window* window = nullptr;
 
 		public:
-			static SDL_FRect camera;
 			inline static TimeManager time_manager{};
 			inline static InputManager input_manager{};
 			inline static AudioManager audio_manager{};
 			inline static AssetManager asset_manager{};
+			inline static CameraManager camera_manager{};
 			inline static RenderManager render_manager{};
 			inline static EntityManager entity_manager{};
 			inline static CollisionManager collision_manager{};
