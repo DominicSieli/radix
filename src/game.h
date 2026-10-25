@@ -6,6 +6,7 @@
 #include <SDL3_image/SDL_image.h>
 
 #include "time_manager.h"
+#include "input_manager.h"
 #include "audio_manager.h"
 #include "asset_manager.h"
 #include "render_manager.h"
@@ -22,8 +23,8 @@ namespace Radix
 
 		public:
 			static SDL_FRect camera;
-			static SDL_Event input_event;
 			inline static TimeManager time_manager{};
+			inline static InputManager input_manager{};
 			inline static AudioManager audio_manager{};
 			inline static AssetManager asset_manager{};
 			inline static RenderManager render_manager{};

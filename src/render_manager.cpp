@@ -33,6 +33,9 @@ namespace Radix
 
 	void RenderManager::render(const unsigned int& layer_count)
 	{
+		SDL_RenderClear(renderer);
+		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+
 		for(unsigned int i = 0; i < layer_count; ++i)
 		{
 			for(Entity* entity : Game::entity_manager.get_entities_by_render_layer(i))
@@ -43,6 +46,8 @@ namespace Radix
 				}
 			}
 		}
+
+		SDL_RenderPresent(renderer);
 	}
 
 	void RenderManager::destroy()
