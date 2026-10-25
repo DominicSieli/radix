@@ -23,7 +23,6 @@ namespace Radix
 		public:
 			static SDL_FRect camera;
 			static SDL_Event input_event;
-			static SDL_Renderer* renderer;
 			inline static TimeManager time_manager{};
 			inline static AudioManager audio_manager{};
 			inline static AssetManager asset_manager{};

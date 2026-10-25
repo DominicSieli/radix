@@ -8,10 +8,10 @@ namespace Radix
 
 	AudioManager::~AudioManager()
 	{
-		shut_down();
+		destroy();
 	}
 
-	bool AudioManager::init()
+	bool AudioManager::initialize()
 	{
 		if(mixer)
 		{
@@ -40,7 +40,7 @@ namespace Radix
 		if(!music_track)
 		{
 			SDL_Log("Creating music track failed: %s", SDL_GetError());
-			shut_down();
+			destroy();
 
 			return false;
 		}
@@ -256,7 +256,7 @@ namespace Radix
 		return true;
 	}
 
-	void AudioManager::shut_down()
+	void AudioManager::destroy()
 	{
 		if(!mixer)
 		{

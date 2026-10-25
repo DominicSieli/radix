@@ -13,12 +13,12 @@ namespace Radix
 	class AudioManager
 	{
 		private:
+			MIX_Mixer* mixer;
+			MIX_Track* music_track;
 			float music_volume = 1.00f;
 			float sound_volume = 1.00f;
-			MIX_Mixer* mixer = nullptr;
 			unsigned int current_music_id;
 			std::vector<MIX_Track*> tracks;
-			MIX_Track* music_track = nullptr;
 			std::unordered_map<unsigned int, MIX_Audio*> audio_map;
 
 		public:
@@ -26,7 +26,7 @@ namespace Radix
 
 			~AudioManager();
 
-			bool init();
+			bool initialize();
 
 			MIX_Audio* load_audio(const std::string&, const unsigned int&);
 
@@ -48,7 +48,7 @@ namespace Radix
 
 			bool delete_audio(const unsigned int&);
 
-			void shut_down();
+			void destroy();
 	};
 }
 

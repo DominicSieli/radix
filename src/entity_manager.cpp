@@ -94,8 +94,6 @@ namespace Radix
 
 	bool EntityManager::delete_entity_by_id(const unsigned int& id)
 	{
-		Entity* entity = nullptr;
-
 		for(unsigned int i = 0; i < entities.size(); ++i)
 		{
 			if(entities.at(i)->get_id() == id)
@@ -112,8 +110,6 @@ namespace Radix
 
 	void EntityManager::delete_entities_by_name(const std::string& name)
 	{
-		Entity* entity = nullptr;
-
 		for(unsigned int i = 0; i < entities.size(); ++i)
 		{
 			if(entities.at(i)->get_name() == name)

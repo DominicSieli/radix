@@ -39,7 +39,7 @@ namespace Radix
 	{
 		if(inside_camera_bounds(position, Vector2<float>(destination_rect.w, destination_rect.h)))
 		{
-			SDL_RenderTextureRotated(Game::renderer, texture, &source_rect, &destination_rect, 0.00f, nullptr, SDL_FLIP_NONE);
+			SDL_RenderTextureRotated(Game::render_manager.get_renderer(), texture, &source_rect, &destination_rect, 0.00f, nullptr, SDL_FLIP_NONE);
 		}
 	}
 }

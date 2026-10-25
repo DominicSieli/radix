@@ -62,7 +62,7 @@ namespace Radix
 	void AssetManager::add_texture(const unsigned int& id, const char* file_path)
 	{
 		SDL_Surface* surface = IMG_Load(file_path);
-		SDL_Texture* texture = SDL_CreateTextureFromSurface(Game::renderer, surface);
+		SDL_Texture* texture = SDL_CreateTextureFromSurface(Game::render_manager.get_renderer(), surface);
 		SDL_DestroySurface(surface);
 		textures.try_emplace(id, texture);
 	}

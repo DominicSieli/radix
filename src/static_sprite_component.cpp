@@ -37,7 +37,7 @@ namespace Radix
 	{
 		if(fixed == true || (fixed == false && inside_camera_bounds(transform_component->get_position(), transform_component->get_dimensions())))
 		{
-			SDL_RenderTextureRotated(Game::renderer, texture, &source, &destination, transform_component->get_rotation(), nullptr, flip);
+			SDL_RenderTextureRotated(Game::render_manager.get_renderer(), texture, &source, &destination, transform_component->get_rotation(), nullptr, flip);
 		}
 	}
 
