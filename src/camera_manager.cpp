@@ -1,3 +1,4 @@
+#include "game.h"
 #include "camera_manager.h"
 
 namespace Radix
@@ -18,15 +19,29 @@ namespace Radix
 		return camera;
 	}
 
-	void CameraManager::update_position(const Vector2<float>& player_position, const Vector2<float>& boundary_dimensions)
+	void CameraManager::update_resolution(const float& w, const float& h)
 	{
-		camera.x = player_position.x - camera.w / 2;
-		camera.y = player_position.y - camera.h / 2;
+		Game::window_manager.update_resolution(static_cast<int>(w), static_cast<int>(h));
+		camera = {camera.x, camera.y, w, h};
+	}
 
-		camera.x = (camera.x < 0) ? 0 : camera.x;
-		camera.y = (camera.y < 0) ? 0 : camera.y;
-		camera.x = (camera.x + camera.w > boundary_dimensions.x) ? boundary_dimensions.x - camera.w : camera.x;
-		camera.y = (camera.y + camera.h > boundary_dimensions.y) ? boundary_dimensions.y - camera.h : camera.y;
+	void CameraManager::update_position(const Vector2<float>& player_position, const Vector2<float>& map_dimensions)
+	{
+		float w = (map_dimensions.x < camera.w) ? map_dimensions.x : camera.w;
+		float h = (map_dimensions.y < camera.h) ? map_dimensions.y : camera.h;
+
+		update_resolution(w, h);
+
+		if(!Game::time_manager.is_paused())
+		{
+			camera.x = player_position.x - camera.w / 2;
+			camera.y = player_position.y - camera.h / 2;
+
+			camera.x = (camera.x < 0) ? 0 : camera.x;
+			camera.y = (camera.y < 0) ? 0 : camera.y;
+			camera.x = (camera.x + camera.w > map_dimensions.x) ? map_dimensions.x - camera.w : camera.x;
+			camera.y = (camera.y + camera.h > map_dimensions.y) ? map_dimensions.y - camera.h : camera.y;
+		}
 	}
 
 	bool CameraManager::is_inside_bounds(const Vector2<float>& position, const Vector2<float>& dimensions)

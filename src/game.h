@@ -9,6 +9,7 @@
 #include "input_manager.h"
 #include "audio_manager.h"
 #include "asset_manager.h"
+#include "window_manager.h"
 #include "camera_manager.h"
 #include "render_manager.h"
 #include "entity_manager.h"
@@ -20,13 +21,13 @@ namespace Radix
 	{
 		private:
 			bool running = false;
-			SDL_Window* window = nullptr;
 
 		public:
 			inline static TimeManager time_manager{};
 			inline static InputManager input_manager{};
 			inline static AudioManager audio_manager{};
 			inline static AssetManager asset_manager{};
+			inline static WindowManager window_manager{};
 			inline static CameraManager camera_manager{};
 			inline static RenderManager render_manager{};
 			inline static EntityManager entity_manager{};

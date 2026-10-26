@@ -21,6 +21,8 @@ namespace Radix
 
 			SDL_FRect get_camera();
 
+			void update_resolution(const float&, const float&);
+
 			void update_position(const Vector2<float>&, const Vector2<float>&);
 
 			bool is_inside_bounds(const Vector2<float>&, const Vector2<float>&);

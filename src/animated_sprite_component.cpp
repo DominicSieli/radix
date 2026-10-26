@@ -25,18 +25,21 @@ namespace Radix
 
 	void AnimatedSpriteComponent::update(const float&)
 	{
-		Vector2<float> scale = transform_component->get_scale();
-		Vector2<float> position = transform_component->get_position();
-		unsigned int speed = animations[current_animation].speed;
-		unsigned int frames = animations[current_animation].frames;
+		if(!Game::time_manager.is_paused())
+		{
+			Vector2<float> scale = transform_component->get_scale();
+			Vector2<float> position = transform_component->get_position();
+			unsigned int speed = animations[current_animation].speed;
+			unsigned int frames = animations[current_animation].frames;
 
-		source.x = source.w * static_cast<float>((SDL_GetTicks() / speed) % frames);
-		source.y = static_cast<float>(index) * dimensions.y;
+			source.x = source.w * static_cast<float>((SDL_GetTicks() / speed) % frames);
+			source.y = static_cast<float>(index) * dimensions.y;
 
-		destination.w = dimensions.x * scale.x;
-		destination.h = dimensions.y * scale.y;
-		destination.x = position.x - ((fixed == true) ? 0.00f : Game::camera_manager.get_camera().x);
-		destination.y = position.y - ((fixed == true) ? 0.00f : Game::camera_manager.get_camera().y);
+			destination.w = dimensions.x * scale.x;
+			destination.h = dimensions.y * scale.y;
+			destination.x = position.x - ((fixed == true) ? 0.00f : Game::camera_manager.get_camera().x);
+			destination.y = position.y - ((fixed == true) ? 0.00f : Game::camera_manager.get_camera().y);
+		}
 	}
 
 	void AnimatedSpriteComponent::render()
