@@ -32,16 +32,13 @@ namespace Radix
 
 		update_resolution(w, h);
 
-		if(!Game::time_manager.is_paused())
-		{
-			camera.x = player_position.x - camera.w / 2;
-			camera.y = player_position.y - camera.h / 2;
+		camera.x = player_position.x - camera.w / 2;
+		camera.y = player_position.y - camera.h / 2;
 
-			camera.x = (camera.x < 0) ? 0 : camera.x;
-			camera.y = (camera.y < 0) ? 0 : camera.y;
-			camera.x = (camera.x + camera.w > map_dimensions.x) ? map_dimensions.x - camera.w : camera.x;
-			camera.y = (camera.y + camera.h > map_dimensions.y) ? map_dimensions.y - camera.h : camera.y;
-		}
+		camera.x = (camera.x < 0) ? 0 : camera.x;
+		camera.y = (camera.y < 0) ? 0 : camera.y;
+		camera.x = (camera.x + camera.w > map_dimensions.x) ? map_dimensions.x - camera.w : camera.x;
+		camera.y = (camera.y + camera.h > map_dimensions.y) ? map_dimensions.y - camera.h : camera.y;
 	}
 
 	bool CameraManager::is_inside_bounds(const Vector2<float>& position, const Vector2<float>& dimensions)

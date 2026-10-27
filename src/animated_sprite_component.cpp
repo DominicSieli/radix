@@ -25,7 +25,7 @@ namespace Radix
 
 	void AnimatedSpriteComponent::update(const float&)
 	{
-		if(!Game::time_manager.is_paused())
+		if(!paused)
 		{
 			Vector2<float> scale = transform_component->get_scale();
 			Vector2<float> position = transform_component->get_position();
@@ -50,10 +50,25 @@ namespace Radix
 		}
 	}
 
+	void AnimatedSpriteComponent::pause()
+	{
+		paused = true;
+	}
+
+	void AnimatedSpriteComponent::unpause()
+	{
+		paused = false;
+	}
+
+	bool AnimatedSpriteComponent::is_paused()
+	{
+		return paused;
+	}
+
 	void AnimatedSpriteComponent::play(const unsigned int& animation)
 	{
 		current_animation = animation;
-		index = animations[animation].index;
+		index = animations[current_animation].index;
 	}
 
 	void AnimatedSpriteComponent::set_texture(const unsigned int& id)

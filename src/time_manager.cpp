@@ -13,21 +13,6 @@ namespace Radix
 		return fps;
 	}
 
-	void TimeManager::pause()
-	{
-		paused = true;
-	}
-
-	void TimeManager::unpause()
-	{
-		paused = false;
-	}
-
-	bool TimeManager::is_paused()
-	{
-		return paused;
-	}
-
 	void TimeManager::calculate_fps()
 	{
 		Uint64 current_tick = SDL_GetPerformanceCounter();
@@ -55,22 +40,14 @@ namespace Radix
 		Uint64 frame_start = SDL_GetTicks();
 		Uint64 frame_time = SDL_GetTicks() - frame_start;
 
-		if(!paused)
+		if(static_cast<float>(frame_time) < target_frame_time)
 		{
-			if(static_cast<float>(frame_time) < target_frame_time)
-			{
-				SDL_Delay(static_cast<Uint64>(target_frame_time) - frame_time);
-			}
-
-			delta_time = (SDL_GetTicks() - previous_tick) / 1000.00f;
-			previous_tick = SDL_GetTicks();
-
-			delta_time = (delta_time > 0.05f) ? 0.05f : delta_time;
+			SDL_Delay(static_cast<Uint64>(target_frame_time) - frame_time);
 		}
 
-		if(paused)
-		{
-			delta_time = 0.00f;
-		}
+		delta_time = (SDL_GetTicks() - previous_tick) / 1000.00f;
+		previous_tick = SDL_GetTicks();
+
+		delta_time = (delta_time > 0.05f) ? 0.05f : delta_time;
 	}
 }

@@ -9,7 +9,6 @@ namespace Radix
 	{
 		private:
 			float fps;
-			bool paused;
 			float delta_time;
 			float elapsed_time;
 			Uint64 frame_count;
@@ -22,12 +21,6 @@ namespace Radix
 			~TimeManager();
 
 			float get_fps();
-
-			void pause();
-
-			void unpause();
-
-			bool is_paused();
 
 			void calculate_fps();
 

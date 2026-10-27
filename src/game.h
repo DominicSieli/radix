@@ -6,6 +6,7 @@
 #include <SDL3_image/SDL_image.h>
 
 #include "time_manager.h"
+#include "state_manager.h"
 #include "input_manager.h"
 #include "audio_manager.h"
 #include "asset_manager.h"
@@ -19,11 +20,9 @@ namespace Radix
 {
 	class Game
 	{
-		private:
-			bool running = false;
-
 		public:
 			inline static TimeManager time_manager{};
+			inline static StateManager state_manager{};
 			inline static InputManager input_manager{};
 			inline static AudioManager audio_manager{};
 			inline static AssetManager asset_manager{};
@@ -36,8 +35,6 @@ namespace Radix
 			Game();
 
 			~Game();
-
-			bool is_running();
 
 			void load_level(const unsigned int&);
 

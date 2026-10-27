@@ -13,6 +13,7 @@ namespace Radix
 	{
 		private:
 			bool fixed;
+			bool paused;
 			SDL_FlipMode flip;
 			unsigned int texture_id;
 			Vector2<float> dimensions;
@@ -34,6 +35,12 @@ namespace Radix
 			void update(const float&) override;
 
 			void render() override;
+
+			void pause();
+
+			void unpause();
+
+			bool is_paused();
 
 			void play(const unsigned int&);
 
