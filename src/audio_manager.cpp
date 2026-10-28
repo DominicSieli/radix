@@ -20,8 +20,6 @@ namespace Radix
 
 		if(!MIX_Init())
 		{
-			SDL_Log("MIX_Init failed: %s", SDL_GetError());
-
 			return false;
 		}
 
@@ -29,7 +27,6 @@ namespace Radix
 
 		if(!mixer)
 		{
-			SDL_Log("Creating audio mixer failed: %s", SDL_GetError());
 			MIX_Quit();
 
 			return false;
@@ -39,7 +36,6 @@ namespace Radix
 
 		if(!music_track)
 		{
-			SDL_Log("Creating music track failed: %s", SDL_GetError());
 			destroy();
 
 			return false;
@@ -52,8 +48,6 @@ namespace Radix
 	{
 		if(!mixer)
 		{
-			SDL_Log("AudioManager has not been initialized.");
-
 			return nullptr;
 		}
 
@@ -66,8 +60,6 @@ namespace Radix
 
 		if(!audio)
 		{
-			SDL_Log("Loading audio '%s' failed: %s", path.c_str(), SDL_GetError());
-
 			return nullptr;
 		}
 
@@ -97,8 +89,6 @@ namespace Radix
 
 		if(!MIX_SetTrackAudio(music_track, audio))
 		{
-			SDL_Log("Setting music audio failed: %s", SDL_GetError());
-
 			return false;
 		}
 
@@ -106,8 +96,6 @@ namespace Radix
 
 		if(!options)
 		{
-			SDL_Log("Creating playback properties failed: %s", SDL_GetError());
-
 			return false;
 		}
 
@@ -119,7 +107,7 @@ namespace Radix
 
 		if(!played)
 		{
-			SDL_Log("Playing music failed: %s", SDL_GetError());
+			return false;
 		}
 
 		current_music_id = id;
@@ -171,8 +159,6 @@ namespace Radix
 
 			if(!new_track)
 			{
-				SDL_Log("Creating sound track failed: %s", SDL_GetError());
-
 				return false;
 			}
 
@@ -181,15 +167,11 @@ namespace Radix
 
 		if(!MIX_SetTrackAudio(new_track, audio) || !MIX_SetTrackGain(new_track, clamp_float(volume, 0.00f, 1.00f) * sound_volume))
 		{
-			SDL_Log("Configuring sound effect failed: %s", SDL_GetError());
-
 			return false;
 		}
 
 		if(!MIX_PlayTrack(new_track, 0))
 		{
-			SDL_Log("Playing sound effect failed: %s", SDL_GetError());
-
 			return false;
 		}
 
@@ -240,8 +222,6 @@ namespace Radix
 
 		if(!audio)
 		{
-			SDL_Log("No audio data to delete");
-
 			return false;
 		}
 

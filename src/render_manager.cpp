@@ -18,8 +18,6 @@ namespace Radix
 
 		if(renderer == nullptr)
 		{
-			SDL_Log("Error Creating SDL Renderer");
-
 			return false;
 		}
 

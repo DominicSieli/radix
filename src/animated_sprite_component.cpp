@@ -44,7 +44,7 @@ namespace Radix
 
 	void AnimatedSpriteComponent::render()
 	{
-		if(fixed == true || (fixed == false && Game::camera_manager.is_inside_bounds(transform_component->get_position(), transform_component->get_dimensions())))
+		if(fixed || (!fixed && Game::camera_manager.is_inside_bounds(transform_component->get_position(), transform_component->get_dimensions())))
 		{
 			SDL_RenderTextureRotated(Game::render_manager.get_renderer(), texture, &source, &destination, transform_component->get_rotation(), nullptr, flip);
 		}

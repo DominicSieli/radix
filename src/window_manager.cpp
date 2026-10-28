@@ -1,3 +1,5 @@
+#include <SDL3_ttf/SDL_ttf.h>
+
 #include "window_manager.h"
 
 namespace Radix
@@ -10,6 +12,20 @@ namespace Radix
 
 	bool WindowManager::initialize(const int& resolution_x, const int& resolution_y)
 	{
+		bool sdl_init = SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
+
+		if(!sdl_init)
+		{
+			return false;
+		}
+
+		bool ttf_init = TTF_Init();
+
+		if(!ttf_init)
+		{
+			return false;
+		}
+
 		window = SDL_CreateWindow(nullptr, resolution_x, resolution_y, SDL_WINDOW_BORDERLESS);
 
 		if(!window)
