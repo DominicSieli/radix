@@ -9,7 +9,6 @@ namespace Radix
 	class TransformComponent: public Component
 	{
 		private:
-			bool paused;
 			float rotation;
 			Vector2<float> scale;
 			Vector2<float> position;
@@ -17,12 +16,6 @@ namespace Radix
 
 		public:
 			TransformComponent(const Vector2<float>&, const Vector2<float>&, const Vector2<float>&, const float&);
-
-			void pause();
-
-			void unpause();
-
-			bool is_paused();
 
 			void rotate(const float&);
 
