@@ -7,19 +7,15 @@
 
 namespace Radix
 {
-	AnimatedSpriteComponent::AnimatedSpriteComponent(const bool& fixed, const SDL_FlipMode& flip, const unsigned int& texture_id, const Vector2<float>& dimensions, const unsigned int& default_animation, const std::unordered_map<unsigned int, Animation>& animations):
-		fixed{fixed}, flip{flip}, texture_id{texture_id}, dimensions{dimensions}, default_animation{default_animation}, animations{animations}, current_animation{default_animation}
-	{
-		set_texture(texture_id);
-		play(default_animation);
-	}
+	AnimatedSpriteComponent::AnimatedSpriteComponent(const bool& fixed, const SDL_FlipMode& flip, const unsigned int& texture_id, const unsigned int& default_animation, const std::unordered_map<unsigned int, Animation>& animations):
+		fixed{fixed}, flip{flip}, texture_id{texture_id}, default_animation{default_animation}, animations{animations}, current_animation{default_animation}
+	{}
 
 	void AnimatedSpriteComponent::initialize()
 	{
-		source.x = 0;
-		source.y = 0;
-		source.w = dimensions.x;
-		source.h = dimensions.y;
+		set_texture(texture_id);
+		play(default_animation);
+		renderer = Game::render_manager.get_renderer();
 		transform_component = get_entity()->get_component<TransformComponent>();
 	}
 
@@ -27,26 +23,39 @@ namespace Radix
 	{
 		if(!paused)
 		{
-			Vector2<float> scale = transform_component->get_scale();
-			Vector2<float> position = transform_component->get_position();
+			SDL_FRect camera = Game::camera_manager.get_camera();
+			float delta_time = Game::time_manager.get_delta_time();
 			unsigned int speed = animations[current_animation].speed;
 			unsigned int frames = animations[current_animation].frames;
+			Vector2<float> scale = transform_component->get_scale();
+			Vector2<float> position = transform_component->get_position();
+			Vector2<float> dimensions = transform_component->get_dimensions();
 
 			source.x = source.w * static_cast<float>((SDL_GetTicks() / speed) % frames);
 			source.y = static_cast<float>(index) * dimensions.y;
+			source.w = dimensions.x;
+			source.h = dimensions.y;
 
 			destination.w = dimensions.x * scale.x;
 			destination.h = dimensions.y * scale.y;
-			destination.x = position.x - ((fixed == true) ? 0.00f : Game::camera_manager.get_camera().x);
-			destination.y = position.y - ((fixed == true) ? 0.00f : Game::camera_manager.get_camera().y);
+			destination.x = position.x - ((fixed == true) ? 0.00f : camera.x);
+			destination.y = position.y - ((fixed == true) ? 0.00f : camera.y);
 		}
 	}
 
 	void AnimatedSpriteComponent::render()
 	{
-		if(fixed || (!fixed && Game::camera_manager.is_inside_bounds(transform_component->get_position(), transform_component->get_dimensions())))
+		if(renderer && texture && transform_component)
 		{
-			SDL_RenderTextureRotated(Game::render_manager.get_renderer(), texture, &source, &destination, transform_component->get_rotation(), nullptr, flip);
+			float rotation = transform_component->get_rotation();
+			Vector2<float> position = transform_component->get_position();
+			Vector2<float> dimensions = transform_component->get_dimensions();
+			bool is_inside_camera_bounds = Game::camera_manager.is_inside_bounds(position, dimensions);
+
+			if(fixed || (!fixed && is_inside_camera_bounds))
+			{
+				SDL_RenderTextureRotated(renderer, texture, &source, &destination, rotation, nullptr, flip);
+			}
 		}
 	}
 

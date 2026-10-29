@@ -3,8 +3,6 @@
 
 #include <SDL3/SDL.h>
 
-#include "vectors.h"
-#include "asset_manager.h"
 #include "transform_component.h"
 
 namespace Radix
@@ -15,15 +13,15 @@ namespace Radix
 			bool fixed;
 			SDL_FlipMode flip;
 			unsigned int texture_id;
-			Vector2<float> dimensions;
 
 			SDL_FRect source;
 			SDL_Texture* texture;
 			SDL_FRect destination;
+			SDL_Renderer* renderer;
 			TransformComponent* transform_component;
 
 		public:
-			StaticSpriteComponent(const bool&, const SDL_FlipMode&, const unsigned int&, const Vector2<float>&);
+			StaticSpriteComponent(const bool&, const SDL_FlipMode&, const unsigned int&);
 
 			void initialize() override;
 
