@@ -12,9 +12,10 @@ namespace Radix
 		destroy();
 	}
 
-	bool RenderManager::initialize(SDL_Window* window, const char* graphics_api)
+	bool RenderManager::initialize(SDL_Window* window, const char* graphics_api, const int& vsync)
 	{
 		renderer = SDL_CreateRenderer(window, graphics_api);
+		SDL_SetRenderVSync(renderer, vsync);
 
 		if(renderer == nullptr)
 		{

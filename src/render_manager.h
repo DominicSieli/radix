@@ -15,7 +15,7 @@ namespace Radix
 
 			~RenderManager();
 
-			bool initialize(SDL_Window*, const char*);
+			bool initialize(SDL_Window*, const char*, const int&);
 
 			SDL_Renderer* get_renderer();
 

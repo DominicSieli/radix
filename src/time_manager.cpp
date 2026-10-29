@@ -15,18 +15,19 @@ namespace Radix
 
 	void TimeManager::calculate_fps()
 	{
-		Uint64 current_tick = SDL_GetPerformanceCounter();
+		const Uint64 current_tick = SDL_GetPerformanceCounter();
+
+		elapsed_ticks += current_tick - previous_tick;
+		previous_tick = current_tick;
 
 		++frame_count;
-		previous_tick = current_tick;
-		elapsed_time = static_cast<float>(current_tick - fps_timer) / static_cast<float>(SDL_GetPerformanceFrequency());
 
-		if(elapsed_time >= 1.00f)
+		if(elapsed_ticks >= frequency)
 		{
-			fps = static_cast<float>(frame_count) / elapsed_time;
+			fps = static_cast<float>(frame_count) * static_cast<float>(frequency) / static_cast<float>(elapsed_ticks);
 
 			frame_count = 0;
-			fps_timer = current_tick;
+			elapsed_ticks = 0;
 		}
 	}
 
@@ -35,19 +36,24 @@ namespace Radix
 		return delta_time;
 	}
 
-	void TimeManager::calculate_delta_time(const float& target_frame_time)
+	void TimeManager::calculate_delta_time()
+	{
+		const Uint64 current_time = SDL_GetPerformanceCounter();
+
+		delta_time = static_cast<float>(current_time - previous_time) / static_cast<float>(frequency);
+		previous_time = current_time;
+	}
+
+	void TimeManager::cap_fps(const unsigned int& fps_cap)
 	{
 		Uint64 frame_start = SDL_GetTicks();
 		Uint64 frame_time = SDL_GetTicks() - frame_start;
+		const Uint64 current_tick = SDL_GetPerformanceCounter();
+		const float target_frame_time = 1000.00f / static_cast<float>(fps_cap);
 
 		if(static_cast<float>(frame_time) < target_frame_time)
 		{
 			SDL_Delay(static_cast<Uint64>(target_frame_time) - frame_time);
 		}
-
-		delta_time = (SDL_GetTicks() - previous_tick) / 1000.00f;
-		previous_tick = SDL_GetTicks();
-
-		delta_time = (delta_time > 0.05f) ? 0.05f : delta_time;
 	}
 }
