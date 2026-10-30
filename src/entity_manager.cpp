@@ -58,9 +58,12 @@ namespace Radix
 			{
 				if(entities.at(i)->get_type_id() == type_id)
 				{
-					entities.at(i)->set_active();
+					if(!entities.at(i)->is_active())
+					{
+						entities.at(i)->set_active();
 
-					return entities.at(i);
+						return entities.at(i);
+					}
 				}
 			}
 
