@@ -2,7 +2,6 @@
 #define ENTITY_H
 
 #include <vector>
-#include <string>
 #include <typeinfo>
 #include <unordered_map>
 
@@ -15,7 +14,7 @@ namespace Radix
 		private:
 			bool active;
 			unsigned int id;
-			std::string name;
+			unsigned int type_id;
 			unsigned int render_layer;
 			std::vector<Component*> components;
 			inline static unsigned int current_id;
@@ -24,7 +23,7 @@ namespace Radix
 		public:
 			Entity();
 
-			Entity(const std::string&, const unsigned int&);
+			Entity(const unsigned int&, const unsigned int&);
 
 			~Entity();
 
@@ -40,7 +39,7 @@ namespace Radix
 
 			unsigned int get_id();
 
-			std::string get_name();
+			unsigned int get_type_id();
 
 			void clear_components();
 

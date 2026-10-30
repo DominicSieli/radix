@@ -23,15 +23,17 @@ namespace Radix
 
 			bool is_empty();
 
-			Entity* create_entity(const std::string&, const unsigned int&);
+			Entity* create_entity(const unsigned int&, const unsigned int&);
 
 			Entity* get_entity_by_id(const unsigned int&);
 
 			bool delete_entity_by_id(const unsigned int&);
 
-			void delete_entities_by_name(const std::string&);
+			void delete_entities_by_type_id(const unsigned int&);
 
 			std::vector<Entity*> get_entities();
+
+			std::vector<Entity*> get_entities_by_type_id(const unsigned int&);
 
 			std::vector<Entity*> get_entities_by_render_layer(const unsigned int&);
 

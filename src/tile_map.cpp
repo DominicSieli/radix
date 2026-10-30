@@ -16,7 +16,7 @@ namespace Radix
 		map_dimensions = Vector2<int>(map_size.x * tile_size * scale, map_size.y * tile_size * scale);
 	}
 
-	void TileMap::load_map(const std::string& file_path, const std::string& name, const unsigned int& render_layer)
+	void TileMap::load_map(const std::string& file_path, const unsigned int& type_id, const unsigned int& render_layer)
 	{
 		std::fstream map_file;
 		map_file.open(file_path);
@@ -30,7 +30,7 @@ namespace Radix
 				float source_rect_y = static_cast<float>(std::strtol(&character, nullptr, 10) * tile_size);
 				map_file.get(character);
 				float source_rect_x = static_cast<float>(std::strtol(&character, nullptr, 10) * tile_size);
-				add_tile(Vector2<float>(source_rect_x, source_rect_y), Vector2<float>(x * (scale * tile_size), y * (scale * tile_size)), name, render_layer);
+				add_tile(Vector2<float>(source_rect_x, source_rect_y), Vector2<float>(x * (scale * tile_size), y * (scale * tile_size)), type_id, render_layer);
 				map_file.ignore();
 			}
 		}
@@ -38,9 +38,9 @@ namespace Radix
 		map_file.close();
 	}
 
-	void TileMap::add_tile(const Vector2<float>& rect_source, const Vector2<float>& rect_position, const std::string& name, const unsigned int& render_layer)
+	void TileMap::add_tile(const Vector2<float>& rect_source, const Vector2<float>& rect_position, const unsigned int& type_id, const unsigned int& render_layer)
 	{
-		Entity* new_tile = Game::entity_manager.create_entity(name, render_layer);
+		Entity* new_tile = Game::entity_manager.create_entity(type_id, render_layer);
 		new_tile->add_component<TileComponent>(rect_source, rect_position, tile_size, scale, texture_id);
 	}
 

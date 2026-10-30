@@ -13,6 +13,11 @@ namespace Radix
 		return fps;
 	}
 
+	float TimeManager::get_delta_time()
+	{
+		return delta_time;
+	}
+
 	void TimeManager::calculate_fps()
 	{
 		const Uint64 current_tick = SDL_GetPerformanceCounter();
@@ -31,11 +36,6 @@ namespace Radix
 		}
 	}
 
-	float TimeManager::get_delta_time()
-	{
-		return delta_time;
-	}
-
 	void TimeManager::calculate_delta_time()
 	{
 		const Uint64 current_time = SDL_GetPerformanceCounter();
@@ -48,7 +48,6 @@ namespace Radix
 	{
 		Uint64 frame_start = SDL_GetTicks();
 		Uint64 frame_time = SDL_GetTicks() - frame_start;
-		const Uint64 current_tick = SDL_GetPerformanceCounter();
 		const float target_frame_time = 1000.00f / static_cast<float>(fps_cap);
 
 		if(static_cast<float>(frame_time) < target_frame_time)

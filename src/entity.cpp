@@ -5,8 +5,8 @@ namespace Radix
 	Entity::Entity()
 	{}
 
-	Entity::Entity(const std::string& name, const unsigned int& render_layer):
-		active{true}, id{current_id++}, name{name}, render_layer{render_layer}
+	Entity::Entity(const unsigned int& type_id, const unsigned int& render_layer):
+		active{true}, id{current_id++}, type_id{type_id}, render_layer{render_layer}
 	{}
 
 	Entity::~Entity()
@@ -62,9 +62,9 @@ namespace Radix
 		return id;
 	}
 
-	std::string Entity::get_name()
+	unsigned int Entity::get_type_id()
 	{
-		return name;
+		return type_id;
 	}
 
 	void Entity::clear_components()

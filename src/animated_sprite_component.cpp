@@ -24,7 +24,6 @@ namespace Radix
 		if(!paused)
 		{
 			SDL_FRect camera = Game::camera_manager.get_camera();
-			float delta_time = Game::time_manager.get_delta_time();
 			unsigned int speed = animations[current_animation].speed;
 			unsigned int frames = animations[current_animation].frames;
 			Vector2<float> scale = transform_component->get_scale();

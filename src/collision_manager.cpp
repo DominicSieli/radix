@@ -22,7 +22,7 @@ namespace Radix
 				{
 					Entity* entity_2 = Game::entity_manager.get_entities().at(j);
 
-					if(entity_1->get_name().compare(entity_2->get_name()) != 0 && entity_2->has_component<ColliderComponent>() == true)
+					if(entity_1->get_type_id() != entity_2->get_type_id() && entity_2->has_component<ColliderComponent>() == true)
 					{
 						ColliderComponent* entity_2_collider = entity_2->get_component<ColliderComponent>();
 

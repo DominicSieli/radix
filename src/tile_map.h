@@ -21,9 +21,9 @@ namespace Radix
 
 			TileMap(const unsigned int&, const Vector2<int>&, const unsigned int&, const unsigned int&);
 
-			void load_map(const std::string&, const std::string&, const unsigned int&);
+			void load_map(const std::string&, const unsigned int&, const unsigned int&);
 
-			void add_tile(const Vector2<float>&, const Vector2<float>&, const std::string&, const unsigned int&);
+			void add_tile(const Vector2<float>&, const Vector2<float>&, const unsigned int&, const unsigned int&);
 
 			Vector2<int> get_map_dimensions();
 	};
