@@ -24,13 +24,22 @@ namespace Radix
 		if(!paused)
 		{
 			SDL_FRect camera = Game::camera_manager.get_camera();
-			unsigned int speed = animations[current_animation].speed;
-			unsigned int frames = animations[current_animation].frames;
+			float delta_time = Game::time_manager.get_delta_time();
 			Vector2<float> scale = transform_component->get_scale();
+			unsigned int frames = animations[current_animation].frames;
 			Vector2<float> position = transform_component->get_position();
 			Vector2<float> dimensions = transform_component->get_dimensions();
+			float speed = static_cast<float>(animations[current_animation].speed);
 
-			source.x = source.w * static_cast<float>((SDL_GetTicks() / speed) % frames);
+			animation_progress += speed * delta_time;
+
+			while(animation_progress >= 1.0f)
+			{
+				animation_progress -= 1.0f;
+				current_frame = (current_frame + 1) % frames;
+			}
+
+			source.x = source.w * static_cast<float>(current_frame);
 			source.y = static_cast<float>(index) * dimensions.y;
 			source.w = dimensions.x;
 			source.h = dimensions.y;

@@ -23,6 +23,8 @@ namespace Radix
 			SDL_Texture* texture;
 			SDL_FRect destination;
 			SDL_Renderer* renderer;
+			float animation_progress;
+			unsigned int current_frame;
 			unsigned int current_animation;
 			TransformComponent* transform_component;
 

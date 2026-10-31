@@ -30,8 +30,10 @@ namespace Radix
 
 	void TileComponent::update(const float&)
 	{
-		destination_rect.x = position.x - static_cast<float>(Game::camera_manager.get_camera().x);
-		destination_rect.y = position.y - static_cast<float>(Game::camera_manager.get_camera().y);
+		SDL_FRect camera = Game::camera_manager.get_camera();
+
+		destination_rect.x = position.x - camera.x;
+		destination_rect.y = position.y - camera.y;
 	}
 
 	void TileComponent::render()
