@@ -11,6 +11,8 @@ namespace Radix
 			SDL_Event input_event;
 
 		public:
+			const bool* keyboard_state = SDL_GetKeyboardState(nullptr);
+
 			InputManager();
 
 			~InputManager();
