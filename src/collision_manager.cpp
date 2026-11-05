@@ -14,7 +14,7 @@ namespace Radix
 		{
 			Entity* entity_1 = Game::entity_manager.get_entities().at(i);
 
-			if(entity_1->has_component<ColliderComponent>() == true)
+			if(entity_1->has_component<ColliderComponent>())
 			{
 				ColliderComponent* entity_1_collider = entity_1->get_component<ColliderComponent>();
 
@@ -22,11 +22,11 @@ namespace Radix
 				{
 					Entity* entity_2 = Game::entity_manager.get_entities().at(j);
 
-					if(entity_1->get_type_id() != entity_2->get_type_id() && entity_2->has_component<ColliderComponent>() == true)
+					if(entity_1->get_type_id() != entity_2->get_type_id() && entity_2->has_component<ColliderComponent>())
 					{
 						ColliderComponent* entity_2_collider = entity_2->get_component<ColliderComponent>();
 
-						if(check_rect_collision(entity_1_collider->get_collider(), entity_2_collider->get_collider()) == true)
+						if(check_rect_collision(entity_1_collider->get_collider(), entity_2_collider->get_collider()))
 						{
 							for(const Collision& collision : collisions)
 							{
