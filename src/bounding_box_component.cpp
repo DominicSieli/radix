@@ -5,8 +5,8 @@
 
 namespace Radix
 {
-	BoundingBoxComponent::BoundingBoxComponent(const unsigned int& tag):
-		tag{tag}
+	BoundingBoxComponent::BoundingBoxComponent(const unsigned int& tag, const SDL_Color& color):
+		tag{tag}, color{color}
 	{}
 
 	void BoundingBoxComponent::initialize()
@@ -20,10 +20,10 @@ namespace Radix
 			Vector2<float> position = transform_component->get_position();
 			Vector2<float> dimensions = transform_component->get_dimensions();
 
-			vertices.push_back({position.x, position.y});
-			vertices.push_back({position.x + (dimensions.x * scale.x), position.y});
-			vertices.push_back({position.x + (dimensions.x * scale.x), position.y + (dimensions.y * scale.y)});
-			vertices.push_back({position.x, position.y + (dimensions.y * scale.y)});
+			geometry.push_back({position.x, position.y});
+			geometry.push_back({position.x + (dimensions.x * scale.x), position.y});
+			geometry.push_back({position.x + (dimensions.x * scale.x), position.y + (dimensions.y * scale.y)});
+			geometry.push_back({position.x, position.y + (dimensions.y * scale.y)});
 		}
 	}
 
@@ -39,16 +39,16 @@ namespace Radix
 			position.x = position.x - Game::camera_manager.get_camera().x;
 			position.y = position.y - Game::camera_manager.get_camera().y;
 
-			vertices.at(0) = {position.x, position.y};
-			vertices.at(1) = {position.x + (dimensions.x * scale.x), position.y};
-			vertices.at(2) = {position.x + (dimensions.x * scale.x), position.y + (dimensions.y * scale.y)};
-			vertices.at(3) = {position.x, position.y + (dimensions.y * scale.y)};
+			geometry.at(0) = {position.x, position.y};
+			geometry.at(1) = {position.x + (dimensions.x * scale.x), position.y};
+			geometry.at(2) = {position.x + (dimensions.x * scale.x), position.y + (dimensions.y * scale.y)};
+			geometry.at(3) = {position.x, position.y + (dimensions.y * scale.y)};
 		}
 	}
 
 	void BoundingBoxComponent::render()
 	{
-		render_polygons(renderer, vertices);
+		render_geometry(renderer, geometry, color);
 	}
 
 	unsigned int BoundingBoxComponent::get_tag()
@@ -56,8 +56,13 @@ namespace Radix
 		return tag;
 	}
 
-	std::vector<SDL_FPoint> BoundingBoxComponent::get_vertices()
+	void BoundingBoxComponent::set_color(const SDL_Color& new_color)
 	{
-		return vertices;
+		color = new_color;
+	}
+
+	std::vector<SDL_FPoint> BoundingBoxComponent::get_geometry()
+	{
+		return geometry;
 	}
 }

@@ -12,13 +12,14 @@ namespace Radix
 	class BoundingBoxComponent: public Component
 	{
 		private:
+			SDL_Color color;
 			unsigned int tag;
 			SDL_Renderer* renderer;
-			std::vector<SDL_FPoint> vertices;
+			std::vector<SDL_FPoint> geometry;
 			TransformComponent* transform_component;
 
 		public:
-			BoundingBoxComponent(const unsigned int&);
+			BoundingBoxComponent(const unsigned int&, const SDL_Color&);
 
 			void initialize() override;
 
@@ -28,7 +29,9 @@ namespace Radix
 
 			unsigned int get_tag();
 
-			std::vector<SDL_FPoint> get_vertices();
+			void set_color(const SDL_Color&);
+
+			std::vector<SDL_FPoint> get_geometry();
 	};
 }
 
