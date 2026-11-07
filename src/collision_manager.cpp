@@ -91,56 +91,6 @@ namespace Radix
 
 	bool CollisionManager::check_geometry_collision(const std::vector<SDL_FPoint>& geometry_1, const std::vector<SDL_FPoint>& geometry_2)
 	{
-		// Test the edges of both polygons.
-		auto check_axes = [](const std::vector<SDL_FPoint>& geometry_a, const std::vector<SDL_FPoint>& geometry_b) -> bool
-		{
-			for(size_t i = 0; i < geometry_a.size(); ++i)
-			{
-				// Get the current edge.
-				SDL_FPoint point_1 = geometry_a.at(i);
-				SDL_FPoint point_2 = geometry_a.at((i + 1) % geometry_a.size());
-
-				float edge_x = point_2.x - point_1.x;
-				float edge_y = point_2.y - point_1.y;
-
-				// Calculate perpendicular axis (normal).
-				float axis_x = -edge_y;
-				float axis_y = edge_x;
-
-				// Project polygon 1 onto the axis.
-				float min_a = FLT_MAX;
-				float max_a = -FLT_MAX;
-
-				for(const SDL_FPoint& point : geometry_a)
-				{
-					float projection = point.x * axis_x + point.y * axis_y;
-
-					min_a = std::min(min_a, projection);
-					max_a = std::max(max_a, projection);
-				}
-
-				// Project polygon 2 onto the axis.
-				float min_b = FLT_MAX;
-				float max_b = -FLT_MAX;
-
-				for(const SDL_FPoint& point : geometry_b)
-				{
-					float projection = point.x * axis_x + point.y * axis_y;
-
-					min_b = std::min(min_b, projection);
-					max_b = std::max(max_b, projection);
-				}
-
-				// Check for a separating axis.
-				if(max_a < min_b || max_b < min_a)
-				{
-					return false;
-				}
-			}
-
-			return true;
-		};
-
 		if(!check_axes(geometry_1, geometry_2))
 		{
 			return false;
@@ -149,6 +99,51 @@ namespace Radix
 		if(!check_axes(geometry_2, geometry_1))
 		{
 			return false;
+		}
+
+		return true;
+	}
+
+
+	bool CollisionManager::check_axes(const std::vector<SDL_FPoint>& geometry_1, const std::vector<SDL_FPoint>& geometry_2)
+	{
+		for(unsigned int i = 0; i < geometry_1.size(); ++i)
+		{
+			SDL_FPoint point_1 = geometry_1.at(i);
+			SDL_FPoint point_2 = geometry_1.at((i + 1) % geometry_1.size());
+
+			float edge_x = point_2.x - point_1.x;
+			float edge_y = point_2.y - point_1.y;
+
+			float axis_x = -edge_y;
+			float axis_y = edge_x;
+
+			float min_a = FLT_MAX;
+			float max_a = -FLT_MAX;
+
+			for(const SDL_FPoint& point : geometry_1)
+			{
+				float projection = point.x * axis_x + point.y * axis_y;
+
+				min_a = std::min(min_a, projection);
+				max_a = std::max(max_a, projection);
+			}
+
+			float min_b = FLT_MAX;
+			float max_b = -FLT_MAX;
+
+			for(const SDL_FPoint& point : geometry_2)
+			{
+				float projection = point.x * axis_x + point.y * axis_y;
+
+				min_b = std::min(min_b, projection);
+				max_b = std::max(max_b, projection);
+			}
+
+			if(max_a < min_b || max_b < min_a)
+			{
+				return false;
+			}
 		}
 
 		return true;

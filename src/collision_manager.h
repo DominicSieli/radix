@@ -20,6 +20,8 @@ namespace Radix
 			bool check_rect_collision(const SDL_FRect&, const SDL_FRect&);
 
 			bool check_geometry_collision(const std::vector<SDL_FPoint>&, const std::vector<SDL_FPoint>&);
+
+			bool check_axes(const std::vector<SDL_FPoint>&, const std::vector<SDL_FPoint>&);
 	};
 }
 

@@ -14,9 +14,9 @@ namespace Radix
 		private:
 			SDL_Color color;
 			unsigned int tag;
-			bool render_polygons;
+			bool render_lines;
 			SDL_Renderer* renderer;
-			std::vector<SDL_FPoint> geometry;
+			std::vector<SDL_FPoint> vertices;
 			TransformComponent* transform_component;
 
 		public:
@@ -32,7 +32,7 @@ namespace Radix
 
 			void set_color(const SDL_Color&);
 
-			std::vector<SDL_FPoint> get_geometry();
+			const std::vector<SDL_FPoint>& get_geometry();
 	};
 }
 

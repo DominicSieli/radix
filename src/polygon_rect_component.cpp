@@ -5,8 +5,8 @@
 
 namespace Radix
 {
-	PolygonRectComponent::PolygonRectComponent(const unsigned int& tag, const SDL_Color& color, const bool& render_polygons):
-		tag{tag}, color{color}, render_polygons{render_polygons}
+	PolygonRectComponent::PolygonRectComponent(const unsigned int& tag, const SDL_Color& color, const bool& render_lines):
+		tag{tag}, color{color}, render_lines{render_lines}
 	{}
 
 	void PolygonRectComponent::initialize()
@@ -20,10 +20,10 @@ namespace Radix
 			Vector2<float> position = transform_component->get_position();
 			Vector2<float> dimensions = transform_component->get_dimensions();
 
-			geometry.push_back({position.x, position.y});
-			geometry.push_back({position.x + (dimensions.x * scale.x), position.y});
-			geometry.push_back({position.x + (dimensions.x * scale.x), position.y + (dimensions.y * scale.y)});
-			geometry.push_back({position.x, position.y + (dimensions.y * scale.y)});
+			vertices.push_back({position.x, position.y});
+			vertices.push_back({position.x + (dimensions.x * scale.x), position.y});
+			vertices.push_back({position.x + (dimensions.x * scale.x), position.y + (dimensions.y * scale.y)});
+			vertices.push_back({position.x, position.y + (dimensions.y * scale.y)});
 		}
 	}
 
@@ -31,6 +31,7 @@ namespace Radix
 	{
 		if(transform_component)
 		{
+			float rotation = transform_component->get_rotation();
 			Vector2<float> scale = transform_component->get_scale();
 			Vector2<float> position = transform_component->get_position();
 			Vector2<float> dimensions = transform_component->get_dimensions();
@@ -39,18 +40,21 @@ namespace Radix
 			position.x = position.x - Game::camera_manager.get_camera().x;
 			position.y = position.y - Game::camera_manager.get_camera().y;
 
-			geometry.at(0) = {position.x, position.y};
-			geometry.at(1) = {position.x + (dimensions.x * scale.x), position.y};
-			geometry.at(2) = {position.x + (dimensions.x * scale.x), position.y + (dimensions.y * scale.y)};
-			geometry.at(3) = {position.x, position.y + (dimensions.y * scale.y)};
+			vertices.at(0) = {position.x, position.y};
+			vertices.at(1) = {position.x + (dimensions.x * scale.x), position.y};
+			vertices.at(2) = {position.x + (dimensions.x * scale.x), position.y + (dimensions.y * scale.y)};
+			vertices.at(3) = {position.x, position.y + (dimensions.y * scale.y)};
+
+			scale_geometry(vertices, scale.x, scale.y);
+			rotate_geometry(vertices, rotation);
 		}
 	}
 
 	void PolygonRectComponent::render()
 	{
-		if(render_polygons)
+		if(render_lines)
 		{
-			render_geometry(renderer, geometry, color);
+			render_geometry(renderer, vertices, color);
 		}
 	}
 
@@ -64,8 +68,8 @@ namespace Radix
 		color = new_color;
 	}
 
-	std::vector<SDL_FPoint> PolygonRectComponent::get_geometry()
+	const std::vector<SDL_FPoint>& PolygonRectComponent::get_geometry()
 	{
-		return geometry;
+		return vertices;
 	}
 }
