@@ -5,13 +5,12 @@
 #include "entity.h"
 #include "collision_manager.h"
 #include "collider_component.h"
-#include "bounding_box_component.h"
+#include "polygon_rect_component.h"
 
 namespace Radix
 {
 	CollisionManager::CollisionManager()
 	{}
-
 
 	unsigned int CollisionManager::check_rect_collisions(const std::vector<Collision>& collisions, const unsigned int& no_collision)
 	{
@@ -55,17 +54,17 @@ namespace Radix
 		{
 			Entity* entity_1 = Game::entity_manager.get_entities().at(i);
 
-			if(entity_1->has_component<BoundingBoxComponent>())
+			if(entity_1->has_component<PolygonRectComponent>())
 			{
-				BoundingBoxComponent* entity_1_geometry = entity_1->get_component<BoundingBoxComponent>();
+				PolygonRectComponent* entity_1_geometry = entity_1->get_component<PolygonRectComponent>();
 
 				for(unsigned int j = i + 1; j < Game::entity_manager.get_entities().size(); ++j)
 				{
 					Entity* entity_2 = Game::entity_manager.get_entities().at(j);
 
-					if(entity_1->get_type_id() != entity_2->get_type_id() && entity_2->has_component<BoundingBoxComponent>())
+					if(entity_1->get_type_id() != entity_2->get_type_id() && entity_2->has_component<PolygonRectComponent>())
 					{
-						BoundingBoxComponent* entity_2_geometry = entity_2->get_component<BoundingBoxComponent>();
+						PolygonRectComponent* entity_2_geometry = entity_2->get_component<PolygonRectComponent>();
 
 						if(check_geometry_collision(entity_1_geometry->get_geometry(), entity_2_geometry->get_geometry()))
 						{

@@ -1,15 +1,15 @@
 #include "game.h"
 #include "vectors.h"
 #include "geometry.h"
-#include "bounding_box_component.h"
+#include "polygon_rect_component.h"
 
 namespace Radix
 {
-	BoundingBoxComponent::BoundingBoxComponent(const unsigned int& tag, const SDL_Color& color):
-		tag{tag}, color{color}
+	PolygonRectComponent::PolygonRectComponent(const unsigned int& tag, const SDL_Color& color, const bool& render_polygons):
+		tag{tag}, color{color}, render_polygons{render_polygons}
 	{}
 
-	void BoundingBoxComponent::initialize()
+	void PolygonRectComponent::initialize()
 	{
 		renderer = Game::render_manager.get_renderer();
 
@@ -27,7 +27,7 @@ namespace Radix
 		}
 	}
 
-	void BoundingBoxComponent::update(const float&)
+	void PolygonRectComponent::update(const float&)
 	{
 		if(transform_component)
 		{
@@ -46,22 +46,25 @@ namespace Radix
 		}
 	}
 
-	void BoundingBoxComponent::render()
+	void PolygonRectComponent::render()
 	{
-		render_geometry(renderer, geometry, color);
+		if(render_polygons)
+		{
+			render_geometry(renderer, geometry, color);
+		}
 	}
 
-	unsigned int BoundingBoxComponent::get_tag()
+	unsigned int PolygonRectComponent::get_tag()
 	{
 		return tag;
 	}
 
-	void BoundingBoxComponent::set_color(const SDL_Color& new_color)
+	void PolygonRectComponent::set_color(const SDL_Color& new_color)
 	{
 		color = new_color;
 	}
 
-	std::vector<SDL_FPoint> BoundingBoxComponent::get_geometry()
+	std::vector<SDL_FPoint> PolygonRectComponent::get_geometry()
 	{
 		return geometry;
 	}

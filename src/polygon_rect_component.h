@@ -1,5 +1,5 @@
-#ifndef BOUNDING_BOX_COMPONENT_H
-#define BOUNDING_BOX_COMPONENT_H
+#ifndef POLYGON_RECT_COMPONENT_H
+#define POLYGON_RECT_COMPONENT_H
 
 #include <vector>
 #include <SDL3/SDL.h>
@@ -9,17 +9,18 @@
 
 namespace Radix
 {
-	class BoundingBoxComponent: public Component
+	class PolygonRectComponent: public Component
 	{
 		private:
 			SDL_Color color;
 			unsigned int tag;
+			bool render_polygons;
 			SDL_Renderer* renderer;
 			std::vector<SDL_FPoint> geometry;
 			TransformComponent* transform_component;
 
 		public:
-			BoundingBoxComponent(const unsigned int&, const SDL_Color&);
+			PolygonRectComponent(const unsigned int&, const SDL_Color&, const bool&);
 
 			void initialize() override;
 
