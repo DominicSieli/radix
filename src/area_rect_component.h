@@ -1,5 +1,5 @@
-#ifndef COLLIDER_COMPONENT_H
-#define COLLIDER_COMPONENT_H
+#ifndef AREA_RECT_COMPONENT_H
+#define AREA_RECT_COMPONENT_H
 
 #include <SDL3/SDL.h>
 
@@ -10,7 +10,7 @@
 
 namespace Radix
 {
-	class ColliderComponent: public Component
+	class AreaRectComponent: public Component
 	{
 		private:
 			unsigned int tag;
@@ -21,7 +21,7 @@ namespace Radix
 			TransformComponent* transform_component;
 
 		public:
-			ColliderComponent(const unsigned int&, const Vector2<float>&);
+			AreaRectComponent(const unsigned int&, const Vector2<float>&);
 
 			void initialize() override;
 

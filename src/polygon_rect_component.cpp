@@ -35,7 +35,6 @@ namespace Radix
 			Vector2<float> scale = transform_component->get_scale();
 			Vector2<float> position = transform_component->get_position();
 			Vector2<float> dimensions = transform_component->get_dimensions();
-			Vector2<float> center = Vector2<float>(position.x + ((dimensions.x * scale.x) / 2), position.y + ((dimensions.y * scale.y) / 2));
 
 			position.x = position.x - Game::camera_manager.get_camera().x;
 			position.y = position.y - Game::camera_manager.get_camera().y;

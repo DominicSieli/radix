@@ -1,13 +1,13 @@
 #include "game.h"
-#include "collider_component.h"
+#include "area_rect_component.h"
 
 namespace Radix
 {
-	ColliderComponent::ColliderComponent(const unsigned int& tag, const Vector2<float>& dimensions):
+	AreaRectComponent::AreaRectComponent(const unsigned int& tag, const Vector2<float>& dimensions):
 		tag{tag}, dimensions{dimensions}
 	{}
 
-	void ColliderComponent::initialize()
+	void AreaRectComponent::initialize()
 	{
 		transform_component = get_entity()->get_component<TransformComponent>();
 		Vector2<float> position = transform_component->get_position();
@@ -17,7 +17,7 @@ namespace Radix
 		collider = {position.x, position.y, dimensions.x, dimensions.y};
 	}
 
-	void ColliderComponent::update(const float&)
+	void AreaRectComponent::update(const float&)
 	{
 		Vector2<float> scale = transform_component->get_scale();
 		Vector2<float> position = transform_component->get_position();
@@ -30,12 +30,12 @@ namespace Radix
 		destination_rect.y = collider.y - Game::camera_manager.get_camera().y;
 	}
 
-	unsigned int ColliderComponent::get_tag()
+	unsigned int AreaRectComponent::get_tag()
 	{
 		return tag;
 	}
 
-	SDL_FRect ColliderComponent::get_collider()
+	SDL_FRect AreaRectComponent::get_collider()
 	{
 		return collider;
 	}

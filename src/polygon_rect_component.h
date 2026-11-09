@@ -12,8 +12,8 @@ namespace Radix
 	class PolygonRectComponent: public Component
 	{
 		private:
-			SDL_Color color;
 			unsigned int tag;
+			SDL_Color color;
 			bool render_lines;
 			SDL_Renderer* renderer;
 			std::vector<SDL_FPoint> vertices;

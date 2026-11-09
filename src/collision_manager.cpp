@@ -4,7 +4,7 @@
 #include "game.h"
 #include "entity.h"
 #include "collision_manager.h"
-#include "collider_component.h"
+#include "area_rect_component.h"
 #include "polygon_rect_component.h"
 
 namespace Radix
@@ -18,17 +18,17 @@ namespace Radix
 		{
 			Entity* entity_1 = Game::entity_manager.get_entities().at(i);
 
-			if(entity_1->has_component<ColliderComponent>())
+			if(entity_1->has_component<AreaRectComponent>())
 			{
-				ColliderComponent* entity_1_collider = entity_1->get_component<ColliderComponent>();
+				AreaRectComponent* entity_1_collider = entity_1->get_component<AreaRectComponent>();
 
 				for(unsigned int j = i + 1; j < Game::entity_manager.get_entities().size(); ++j)
 				{
 					Entity* entity_2 = Game::entity_manager.get_entities().at(j);
 
-					if(entity_1->get_type_id() != entity_2->get_type_id() && entity_2->has_component<ColliderComponent>())
+					if(entity_1->get_type_id() != entity_2->get_type_id() && entity_2->has_component<AreaRectComponent>())
 					{
-						ColliderComponent* entity_2_collider = entity_2->get_component<ColliderComponent>();
+						AreaRectComponent* entity_2_collider = entity_2->get_component<AreaRectComponent>();
 
 						if(check_rect_collision(entity_1_collider->get_collider(), entity_2_collider->get_collider()))
 						{

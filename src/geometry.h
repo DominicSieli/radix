@@ -35,7 +35,6 @@ namespace Radix
 		float min_y = vertices.at(0).y;
 		float max_y = vertices.at(0).y;
 
-		// Find bounding area.
 		for(const SDL_FPoint& vertex : vertices)
 		{
 			min_x = std::min(min_x, vertex.x);
@@ -44,11 +43,9 @@ namespace Radix
 			max_y = std::max(max_y, vertex.y);
 		}
 
-		// Calculate bounding area center.
 		const float center_x = (min_x + max_x) * 0.5f;
 		const float center_y = (min_y + max_y) * 0.5f;
 
-		// Scale vertices relative to center.
 		for(SDL_FPoint& vertex : vertices)
 		{
 			vertex.x = center_x + (vertex.x - center_x) * scale_x;
@@ -68,7 +65,6 @@ namespace Radix
 		float min_y = vertices.at(0).y;
 		float max_y = vertices.at(0).y;
 
-		// Find bounding area.
 		for(const SDL_FPoint& vertex : vertices)
 		{
 			min_x = std::min(min_x, vertex.x);
@@ -77,17 +73,14 @@ namespace Radix
 			max_y = std::max(max_y, vertex.y);
 		}
 
-		// Calculate bounding area center.
 		const float center_x = (min_x + max_x) * 0.5f;
 		const float center_y = (min_y + max_y) * 0.5f;
 
-		// Convert degrees to radians.
 		const float radians = degrees * (std::numbers::pi_v<float> / 180.0f);
 
 		const float cos_angle = std::cos(radians);
 		const float sin_angle = std::sin(radians);
 
-		// Rotate vertices around center.
 		for(SDL_FPoint& vertex : vertices)
 		{
 			const float x = vertex.x - center_x;

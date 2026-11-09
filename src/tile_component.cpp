@@ -23,11 +23,6 @@ namespace Radix
 		position.y = rect_position.y;
 	}
 
-	TileComponent::~TileComponent()
-	{
-		SDL_DestroyTexture(texture);
-	}
-
 	void TileComponent::update(const float&)
 	{
 		SDL_FRect camera = Game::camera_manager.get_camera();

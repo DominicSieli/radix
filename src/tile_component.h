@@ -20,8 +20,6 @@ namespace Radix
 		public:
 			TileComponent(const Vector2<float>&, const Vector2<float>&, const int&, const float&, const unsigned int&);
 
-			~TileComponent() override;
-
 			void update(const float&) override;
 
 			void render() override;
