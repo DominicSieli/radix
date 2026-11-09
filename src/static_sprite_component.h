@@ -1,7 +1,6 @@
 #ifndef STATIC_SPRITE_COMPONENT_H
 #define STATIC_SPRITE_COMPONENT_H
 
-#include <span>
 #include <SDL3/SDL.h>
 
 #include "transform_component.h"
@@ -13,6 +12,7 @@ namespace Radix
 	{
 		private:
 			bool fixed;
+			SDL_FlipMode flip;
 			unsigned int texture_id;
 
 			SDL_FRect source;
@@ -23,7 +23,7 @@ namespace Radix
 			PolygonRectComponent* polygon_rect_component;
 
 		public:
-			StaticSpriteComponent(const bool&, const unsigned int&);
+			StaticSpriteComponent(const bool&, const SDL_FlipMode&, const unsigned int&);
 
 			void initialize() override;
 

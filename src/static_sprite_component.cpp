@@ -9,8 +9,8 @@
 
 namespace Radix
 {
-	StaticSpriteComponent::StaticSpriteComponent(const bool& fixed, const unsigned int& texture_id):
-		fixed{fixed}, texture_id{texture_id}
+	StaticSpriteComponent::StaticSpriteComponent(const bool& fixed, const SDL_FlipMode& flip, const unsigned int& texture_id):
+		fixed{fixed}, flip{flip}, texture_id{texture_id}
 	{}
 
 	void StaticSpriteComponent::initialize()
@@ -44,16 +44,18 @@ namespace Radix
 
 	void StaticSpriteComponent::render()
 	{
-		if(renderer && texture && transform_component && polygon_rect_component)
+		if(renderer && texture && transform_component)
 		{
+			float rotation = transform_component->get_rotation();
 			Vector2<float> position = transform_component->get_position();
 			Vector2<float> dimensions = transform_component->get_dimensions();
 			bool is_inside_camera_bounds = Game::camera_manager.is_inside_bounds(position, dimensions);
-			const std::vector<SDL_FPoint>& polygon_rect_vertices = polygon_rect_component->get_geometry();
+			std::vector<SDL_FPoint> polygon_rect_vertices = polygon_rect_component->get_geometry();
 
 			if(fixed || (!fixed && is_inside_camera_bounds))
 			{
-				render_geometry(renderer, texture, polygon_rect_vertices);
+				//render_geometry(renderer, texture, polygon_rect_vertices);
+				SDL_RenderTextureRotated(renderer, texture, &source, &destination, rotation, nullptr, flip);
 			}
 		}
 	}

@@ -1,3 +1,4 @@
+#include <array>
 #include <SDL3/SDL.h>
 #include <SDL3_image/SDL_image.h>
 
@@ -17,6 +18,7 @@ namespace Radix
 		play(default_animation);
 		renderer = Game::render_manager.get_renderer();
 		transform_component = get_entity()->get_component<TransformComponent>();
+		polygon_rect_component = get_entity()->get_component<PolygonRectComponent>();
 	}
 
 	void AnimatedSpriteComponent::update(const float&)
@@ -59,9 +61,11 @@ namespace Radix
 			Vector2<float> position = transform_component->get_position();
 			Vector2<float> dimensions = transform_component->get_dimensions();
 			bool is_inside_camera_bounds = Game::camera_manager.is_inside_bounds(position, dimensions);
+			std::vector<SDL_FPoint> polygon_rect_vertices = polygon_rect_component->get_geometry();
 
 			if(fixed || (!fixed && is_inside_camera_bounds))
 			{
+				//render_geometry(renderer, texture, polygon_rect_vertices);
 				SDL_RenderTextureRotated(renderer, texture, &source, &destination, rotation, nullptr, flip);
 			}
 		}
@@ -91,5 +95,40 @@ namespace Radix
 	void AnimatedSpriteComponent::set_texture(const unsigned int& id)
 	{
 		texture = Game::asset_manager.get_texture(id);
+	}
+
+	void AnimatedSpriteComponent::render_geometry(SDL_Renderer* renderer, SDL_Texture* texture, const std::vector<SDL_FPoint>& positions)
+	{
+		float texture_width;
+		float texture_hight;
+		std::array<SDL_Vertex, 4> vertices;
+
+		SDL_GetTextureSize(texture, &texture_width, &texture_hight);
+
+		constexpr std::array<int, 6> indices = {
+			0, 1, 2,
+			0, 2, 3
+		};
+
+		float u1 = source.x / texture_width;
+		float v1 = source.y / texture_hight;
+		float u2 = (source.x + source.w) / texture_width;
+		float v2 = (source.y + source.h) / texture_hight;
+
+		std::array<SDL_FPoint, 4> uvs = {{
+			{u1, v1},
+			{u2, v1},
+			{u2, v2},
+			{u1, v2}
+		}};
+
+		for(unsigned int i = 0; i < vertices.size(); ++i)
+		{
+			vertices.at(i).position = positions.at(i);
+			vertices.at(i).tex_coord = uvs.at(i);
+			vertices.at(i).color = {1.0f, 1.0f, 1.0f, 1.0f};
+		}
+
+		SDL_RenderGeometry(renderer, texture, vertices.data(), static_cast<int>(vertices.size()), indices.data(), static_cast<int>(indices.size()));
 	}
 }

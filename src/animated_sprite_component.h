@@ -5,6 +5,7 @@
 
 #include "animation.h"
 #include "transform_component.h"
+#include "polygon_rect_component.h"
 
 namespace Radix
 {
@@ -27,6 +28,7 @@ namespace Radix
 			unsigned int current_frame;
 			unsigned int current_animation;
 			TransformComponent* transform_component;
+			PolygonRectComponent* polygon_rect_component;
 
 		public:
 			AnimatedSpriteComponent(const bool&, const SDL_FlipMode&, const unsigned int&, const unsigned int&, const std::unordered_map<unsigned int, Animation>&);
@@ -46,6 +48,9 @@ namespace Radix
 			void play(const unsigned int&);
 
 			void set_texture(const unsigned int&);
+
+		private:
+			void render_geometry(SDL_Renderer*, SDL_Texture*, const std::vector<SDL_FPoint>&);
 	};
 }
 
