@@ -15,12 +15,13 @@ namespace Radix
 			unsigned int tag;
 			SDL_Color color;
 			bool render_lines;
+			bool fixed_position;
 			SDL_Renderer* renderer;
 			std::vector<SDL_FPoint> vertices;
 			TransformComponent* transform_component;
 
 		public:
-			PolygonRectComponent(const unsigned int&, const SDL_Color&, const bool&);
+			PolygonRectComponent(const unsigned int&, const SDL_Color&, const bool&, const bool&);
 
 			void initialize() override;
 
@@ -33,6 +34,8 @@ namespace Radix
 			void set_color(const SDL_Color&);
 
 			const std::vector<SDL_FPoint>& get_geometry();
+
+			bool is_fixed_position();
 	};
 }
 

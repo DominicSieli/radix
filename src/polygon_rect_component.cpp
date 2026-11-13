@@ -5,8 +5,8 @@
 
 namespace Radix
 {
-	PolygonRectComponent::PolygonRectComponent(const unsigned int& tag, const SDL_Color& color, const bool& render_lines):
-		tag{tag}, color{color}, render_lines{render_lines}
+	PolygonRectComponent::PolygonRectComponent(const unsigned int& tag, const SDL_Color& color, const bool& render_lines, const bool& fixed_position):
+		tag{tag}, color{color}, render_lines{render_lines}, fixed_position{fixed_position}
 	{}
 
 	void PolygonRectComponent::initialize()
@@ -31,13 +31,14 @@ namespace Radix
 	{
 		if(transform_component)
 		{
+			SDL_FRect camera = Game::camera_manager.get_camera();
 			float rotation = transform_component->get_rotation();
 			Vector2<float> scale = transform_component->get_scale();
 			Vector2<float> position = transform_component->get_position();
 			Vector2<float> dimensions = transform_component->get_dimensions();
 
-			position.x = position.x - Game::camera_manager.get_camera().x;
-			position.y = position.y - Game::camera_manager.get_camera().y;
+			position.x = position.x - ((fixed_position == true) ? 0.00f : camera.x);
+			position.y = position.y - ((fixed_position == true) ? 0.00f : camera.y);
 
 			vertices.at(0) = {position.x, position.y};
 			vertices.at(1) = {position.x + (dimensions.x * scale.x), position.y};
@@ -70,5 +71,10 @@ namespace Radix
 	const std::vector<SDL_FPoint>& PolygonRectComponent::get_geometry()
 	{
 		return vertices;
+	}
+
+	bool PolygonRectComponent::is_fixed_position()
+	{
+		return fixed_position;
 	}
 }
