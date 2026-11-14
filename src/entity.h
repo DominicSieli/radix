@@ -31,6 +31,8 @@ namespace Radix
 
 			void render();
 
+			void destroy();
+
 			bool is_active();
 
 			void set_active();
@@ -40,8 +42,6 @@ namespace Radix
 			unsigned int get_id();
 
 			unsigned int get_type_id();
-
-			void clear_components();
 
 			unsigned int get_render_layer();
 

@@ -7,7 +7,7 @@
 namespace Radix
 {
 	TileComponent::TileComponent(const Vector2<float>& rect_source, const Vector2<float>& rect_position, const int& tile_size, const float& tile_scale, const unsigned int& texture_id):
-		texture{Game::asset_manager.get_texture(texture_id)}
+		texture{Game::texture_manager.get_texture(texture_id)}
 	{
 		source_rect.x = rect_source.x;
 		source_rect.y = rect_source.y;

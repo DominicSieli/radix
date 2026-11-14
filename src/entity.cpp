@@ -11,7 +11,7 @@ namespace Radix
 
 	Entity::~Entity()
 	{
-		clear_components();
+		destroy();
 	}
 
 	void Entity::update(const float& delta_time)
@@ -42,6 +42,24 @@ namespace Radix
 		}
 	}
 
+	void Entity::destroy()
+	{
+		for(Component* component : components)
+		{
+			delete component;
+			component = nullptr;
+		}
+
+		for(auto& [key, component] : component_map)
+		{
+			delete component;
+			component = nullptr;
+		}
+
+		components.clear();
+		component_map.clear();
+	}
+
 	bool Entity::is_active()
 	{
 		return active;
@@ -65,24 +83,6 @@ namespace Radix
 	unsigned int Entity::get_type_id()
 	{
 		return type_id;
-	}
-
-	void Entity::clear_components()
-	{
-		for(auto* component : components)
-		{
-			delete component;
-			component = nullptr;
-		}
-
-		for(auto& [key, component] : component_map)
-		{
-			delete component;
-			component = nullptr;
-		}
-
-		components.clear();
-		component_map.clear();
 	}
 
 	unsigned int Entity::get_render_layer()

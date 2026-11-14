@@ -17,7 +17,7 @@ namespace Radix
 
 			~EntityManager();
 
-			void delete_entities();
+			void destroy();
 
 			void update(const float&);
 

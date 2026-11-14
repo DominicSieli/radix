@@ -3,7 +3,7 @@
 #include <SDL3_image/SDL_image.h>
 
 #include "game.h"
-#include "asset_manager.h"
+#include "texture_manager.h"
 #include "sprite_component.h"
 
 namespace Radix
@@ -105,7 +105,7 @@ namespace Radix
 
 	void SpriteComponent::set_texture(const unsigned int& id)
 	{
-		texture = Game::asset_manager.get_texture(id);
+		texture = Game::texture_manager.get_texture(id);
 	}
 
 	void SpriteComponent::render_geometry(SDL_Renderer* renderer, SDL_Texture* texture, const std::vector<SDL_FPoint>& positions)

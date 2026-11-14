@@ -8,7 +8,14 @@ namespace Radix
 	{}
 
 	WindowManager::~WindowManager()
-	{}
+	{
+		destroy();
+	}
+
+	void WindowManager::destroy()
+	{
+		SDL_DestroyWindow(window);
+	}
 
 	bool WindowManager::initialize(const int& resolution_x, const int& resolution_y)
 	{

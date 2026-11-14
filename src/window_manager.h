@@ -17,6 +17,8 @@ namespace Radix
 
 			~WindowManager();
 
+			void destroy();
+
 			bool initialize(const int&, const int&);
 
 			SDL_Window* get_window();

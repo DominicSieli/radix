@@ -4,8 +4,8 @@
 #include <SDL3/SDL.h>
 
 #include "vectors.h"
-#include "asset_manager.h"
 #include "entity_manager.h"
+#include "texture_manager.h"
 
 namespace Radix
 {

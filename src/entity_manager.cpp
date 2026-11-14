@@ -8,12 +8,12 @@ namespace Radix
 
 	EntityManager::~EntityManager()
 	{
-		delete_entities();
+		destroy();
 	}
 
-	void EntityManager::delete_entities()
+	void EntityManager::destroy()
 	{
-		for(auto* entity : entities)
+		for(Entity* entity : entities)
 		{
 			delete entity;
 			entity = nullptr;
