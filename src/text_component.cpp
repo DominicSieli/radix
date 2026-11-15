@@ -14,16 +14,38 @@ namespace Radix
 		set_text(text, font_family);
 	}
 
+	void TextComponent::initialize()
+	{
+		renderer = Game::render_manager.get_renderer();
+	}
+
 	void TextComponent::set_text(const std::string& text, const unsigned int& font_family)
 	{
-		SDL_Surface* surface = TTF_RenderText_Blended(Game::font_manager.get_font(font_family), text.c_str(), 0, color);
-		texture = SDL_CreateTextureFromSurface(Game::render_manager.get_renderer(), surface);
-		SDL_DestroySurface(surface);
-		SDL_GetTextureSize(texture, &position.w, &position.h);
+		SDL_Surface* surface = nullptr;
+		TTF_Font* font = Game::font_manager.get_font(font_family);
+
+		if(font)
+		{
+			surface = TTF_RenderText_Blended(font, text.c_str(), 0, color);
+		}
+
+		if(renderer && surface)
+		{
+			texture = SDL_CreateTextureFromSurface(renderer, surface);
+			SDL_DestroySurface(surface);
+
+			if(texture)
+			{
+				SDL_GetTextureSize(texture, &position.w, &position.h);
+			}
+		}
 	}
 
 	void TextComponent::render()
 	{
-		SDL_RenderTexture(Game::render_manager.get_renderer(), texture, nullptr, &position);
+		if(renderer && texture)
+		{
+			SDL_RenderTexture(renderer, texture, nullptr, &position);
+		}
 	}
 }

@@ -20,8 +20,16 @@ namespace Radix
 	{
 		set_texture(texture_id);
 		renderer = Game::render_manager.get_renderer();
-		transform_component = get_entity()->get_component<TransformComponent>();
-		polygon_rect_component = get_entity()->get_component<PolygonRectComponent>();
+
+		if(get_entity()->has_component<TransformComponent>())
+		{
+			transform_component = get_entity()->get_component<TransformComponent>();
+		}
+
+		if(get_entity()->has_component<PolygonRectComponent>())
+		{
+			polygon_rect_component = get_entity()->get_component<PolygonRectComponent>();
+		}
 
 		if(!animations.empty())
 		{
@@ -110,11 +118,14 @@ namespace Radix
 
 	void SpriteComponent::render_geometry(SDL_Renderer* renderer, SDL_Texture* texture, const std::vector<SDL_FPoint>& positions)
 	{
-		float texture_width;
-		float texture_hight;
-		std::array<SDL_Vertex, 4> vertices;
+		float texture_width = 0.00f;
+		float texture_hight = 0.00f;
+		std::array<SDL_Vertex, 4> vertices{};
 
-		SDL_GetTextureSize(texture, &texture_width, &texture_hight);
+		if(texture)
+		{
+			SDL_GetTextureSize(texture, &texture_width, &texture_hight);
+		}
 
 		constexpr std::array<int, 6> indices = {
 			0, 1, 2,
@@ -140,6 +151,10 @@ namespace Radix
 			vertices.at(i).color = {1.0f, 1.0f, 1.0f, 1.0f};
 		}
 
-		SDL_RenderGeometry(renderer, texture, vertices.data(), static_cast<int>(vertices.size()), indices.data(), static_cast<int>(indices.size()));
+		if(renderer && texture)
+		{
+			SDL_RenderGeometry(renderer, texture, vertices.data(), static_cast<int>(vertices.size()), indices.data(), static_cast<int>(indices.size()));
+		}
+
 	}
 }

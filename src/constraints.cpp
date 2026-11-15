@@ -6,29 +6,38 @@ namespace Radix
 {
 	void constrain_to_camera_bounds(Entity* entity)
 	{
-		TransformComponent* transform_component = entity->get_component<TransformComponent>();
+		TransformComponent* transform_component = nullptr;
 
-		Vector2<float> position = transform_component->get_position();
-		Vector2<float> dimension = transform_component->get_dimensions();
-
-		if(position.x < Game::camera_manager.get_camera().x)
+		if(entity->has_component<TransformComponent>())
 		{
-			transform_component->set_position(Vector2<float>(Game::camera_manager.get_camera().x, position.y));
+			transform_component = entity->get_component<TransformComponent>();
 		}
 
-		if(position.y < Game::camera_manager.get_camera().y)
+		if(transform_component)
 		{
-			transform_component->set_position(Vector2<float>(position.x, Game::camera_manager.get_camera().y));
-		}
+			SDL_FRect camera = Game::camera_manager.get_camera();
+			Vector2<float> position = transform_component->get_position();
+			Vector2<float> dimension = transform_component->get_dimensions();
 
-		if(position.x + dimension.x > Game::camera_manager.get_camera().x + Game::camera_manager.get_camera().w)
-		{
-			transform_component->set_position(Vector2<float>((Game::camera_manager.get_camera().x + Game::camera_manager.get_camera().w) - dimension.x, position.y));
-		}
+			if(position.x < camera.x)
+			{
+				transform_component->set_position(Vector2<float>(camera.x, position.y));
+			}
 
-		if(position.y + dimension.y > Game::camera_manager.get_camera().y + Game::camera_manager.get_camera().h)
-		{
-			transform_component->set_position(Vector2<float>(position.x, (Game::camera_manager.get_camera().y + Game::camera_manager.get_camera().h) - dimension.y));
+			if(position.y < camera.y)
+			{
+				transform_component->set_position(Vector2<float>(position.x, camera.y));
+			}
+
+			if(position.x + dimension.x > camera.x + camera.w)
+			{
+				transform_component->set_position(Vector2<float>((camera.x + camera.w) - dimension.x, position.y));
+			}
+
+			if(position.y + dimension.y > camera.y + camera.h)
+			{
+				transform_component->set_position(Vector2<float>(position.x, (camera.y + camera.h) - dimension.y));
+			}
 		}
 	}
 }

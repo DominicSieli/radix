@@ -16,14 +16,18 @@ namespace Radix
 		if(get_entity()->has_component<TransformComponent>())
 		{
 			transform_component = get_entity()->get_component<TransformComponent>();
-			Vector2<float> scale = transform_component->get_scale();
-			Vector2<float> position = transform_component->get_position();
-			Vector2<float> dimensions = transform_component->get_dimensions();
 
-			vertices.push_back({position.x, position.y});
-			vertices.push_back({position.x + (dimensions.x * scale.x), position.y});
-			vertices.push_back({position.x + (dimensions.x * scale.x), position.y + (dimensions.y * scale.y)});
-			vertices.push_back({position.x, position.y + (dimensions.y * scale.y)});
+			if(transform_component)
+			{
+				Vector2<float> scale = transform_component->get_scale();
+				Vector2<float> position = transform_component->get_position();
+				Vector2<float> dimensions = transform_component->get_dimensions();
+
+				vertices.push_back({position.x, position.y});
+				vertices.push_back({position.x + (dimensions.x * scale.x), position.y});
+				vertices.push_back({position.x + (dimensions.x * scale.x), position.y + (dimensions.y * scale.y)});
+				vertices.push_back({position.x, position.y + (dimensions.y * scale.y)});
+			}
 		}
 	}
 
@@ -52,7 +56,7 @@ namespace Radix
 
 	void PolygonRectComponent::render()
 	{
-		if(render_lines)
+		if(renderer && render_lines)
 		{
 			render_geometry(renderer, vertices, color);
 		}

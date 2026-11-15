@@ -15,11 +15,15 @@ namespace Radix
 	bool RenderManager::initialize(SDL_Window* window, const char* graphics_api, const int& vsync)
 	{
 		renderer = SDL_CreateRenderer(window, graphics_api);
-		SDL_SetRenderVSync(renderer, vsync);
 
-		if(renderer == nullptr)
+		if(!renderer)
 		{
 			return false;
+		}
+
+		if(renderer)
+		{
+			SDL_SetRenderVSync(renderer, vsync);
 		}
 
 		return true;
@@ -32,25 +36,31 @@ namespace Radix
 
 	void RenderManager::render(const unsigned int& layer_count)
 	{
-		SDL_RenderClear(renderer);
-		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-
-		for(unsigned int i = 0; i < layer_count; ++i)
+		if(renderer)
 		{
-			for(Entity* entity : Game::entity_manager.get_entities_by_render_layer(i))
+			SDL_RenderClear(renderer);
+			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+
+			for(unsigned int i = 0; i < layer_count; ++i)
 			{
-				if(entity->is_active())
+				for(Entity* entity : Game::entity_manager.get_entities_by_render_layer(i))
 				{
-					entity->render();
+					if(entity->is_active())
+					{
+						entity->render();
+					}
 				}
 			}
-		}
 
-		SDL_RenderPresent(renderer);
+			SDL_RenderPresent(renderer);
+		}
 	}
 
 	void RenderManager::destroy()
 	{
-		SDL_DestroyRenderer(renderer);
+		if(renderer)
+		{
+			SDL_DestroyRenderer(renderer);
+		}
 	}
 }

@@ -17,7 +17,7 @@ namespace Radix
 		{
 			Entity* entity_1 = Game::entity_manager.get_entities().at(i);
 
-			if(entity_1->has_component<PolygonRectComponent>())
+			if(entity_1 && entity_1->has_component<PolygonRectComponent>())
 			{
 				PolygonRectComponent* entity_1_geometry = entity_1->get_component<PolygonRectComponent>();
 
@@ -25,17 +25,20 @@ namespace Radix
 				{
 					Entity* entity_2 = Game::entity_manager.get_entities().at(j);
 
-					if(entity_1->get_type_id() != entity_2->get_type_id() && entity_2->has_component<PolygonRectComponent>())
+					if(entity_2 && entity_2->has_component<PolygonRectComponent>())
 					{
-						PolygonRectComponent* entity_2_geometry = entity_2->get_component<PolygonRectComponent>();
-
-						if(check_geometry_collision(entity_1_geometry->get_geometry(), entity_2_geometry->get_geometry()))
+						if(entity_1->get_id() != entity_2->get_id())
 						{
-							for(const Collision& collision : collisions)
+							PolygonRectComponent* entity_2_geometry = entity_2->get_component<PolygonRectComponent>();
+
+							if(check_geometry_collision(entity_1_geometry->get_geometry(), entity_2_geometry->get_geometry()))
 							{
-								if(entity_1_geometry->get_tag() == collision.get_collider_tag_1() && entity_2_geometry->get_tag() == collision.get_collider_tag_2())
+								for(const Collision& collision : collisions)
 								{
-									return collision.get_collision_type();
+									if(entity_1_geometry->get_tag() == collision.get_collider_tag_1() && entity_2_geometry->get_tag() == collision.get_collider_tag_2())
+									{
+										return collision.get_collision_type();
+									}
 								}
 							}
 						}
@@ -49,6 +52,11 @@ namespace Radix
 
 	bool CollisionManager::check_geometry_collision(const std::vector<SDL_FPoint>& geometry_1, const std::vector<SDL_FPoint>& geometry_2)
 	{
+		if(geometry_1.size() < 3 || geometry_2.size() < 3)
+		{
+			return false;
+		}
+
 		if(!check_axes(geometry_1, geometry_2))
 		{
 			return false;

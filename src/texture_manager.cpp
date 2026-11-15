@@ -20,7 +20,7 @@ namespace Radix
 	{
 		for(auto& [id, texture] : textures)
 		{
-			SDL_DestroyTexture(texture);
+			delete_texture(id);
 		}
 
 		textures.clear();
@@ -39,9 +39,24 @@ namespace Radix
 
 	void TextureManager::add_texture(const unsigned int& id, const char* file_path)
 	{
-		SDL_Surface* surface = IMG_Load(file_path);
-		SDL_Texture* texture = SDL_CreateTextureFromSurface(Game::render_manager.get_renderer(), surface);
-		SDL_DestroySurface(surface);
-		textures.try_emplace(id, texture);
+		SDL_Surface* surface = nullptr;
+		SDL_Texture* texture = nullptr;
+		SDL_Renderer* renderer = Game::render_manager.get_renderer();
+
+		if(file_path)
+		{
+			surface = IMG_Load(file_path);
+		}
+
+		if(renderer && surface)
+		{
+			texture = SDL_CreateTextureFromSurface(renderer, surface);
+			SDL_DestroySurface(surface);
+		}
+
+		if(texture)
+		{
+			textures.try_emplace(id, texture);
+		}
 	}
 }

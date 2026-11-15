@@ -14,7 +14,10 @@ namespace Radix
 
 	void WindowManager::destroy()
 	{
-		SDL_DestroyWindow(window);
+		if(window)
+		{
+			SDL_DestroyWindow(window);
+		}
 	}
 
 	bool WindowManager::initialize(const int& resolution_x, const int& resolution_y)
@@ -40,7 +43,10 @@ namespace Radix
 			return false;
 		}
 
-		SDL_SetWindowPosition(window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+		if(window)
+		{
+			SDL_SetWindowPosition(window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+		}
 
 		return true;
 	}
@@ -52,6 +58,9 @@ namespace Radix
 
 	void WindowManager::update_resolution(const int& x, const int& y)
 	{
-		SDL_SetWindowSize(window, x, y);
+		if(window)
+		{
+			SDL_SetWindowSize(window, x, y);
+		}
 	}
 }

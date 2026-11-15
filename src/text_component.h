@@ -20,9 +20,12 @@ namespace Radix
 
 			SDL_FRect position;
 			SDL_Texture* texture;
+			SDL_Renderer* renderer;
 
 		public:
 			TextComponent(const Vector2<float>&, const std::string&, const unsigned int&, const SDL_Color&);
+
+			void initialize() override;
 
 			void set_text(const std::string&, const unsigned int&);
 
