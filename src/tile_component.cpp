@@ -7,7 +7,7 @@
 namespace Radix
 {
 	TileComponent::TileComponent(const unsigned int& texture_id, const SDL_FRect& source, const Vector2<float>& position, const float& scale):
-		source{source}, position{position}, scale{scale}
+		scale{scale}, source{source}, position{position}
 	{
 		set_texture(texture_id);
 	}

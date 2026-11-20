@@ -13,10 +13,10 @@ namespace Radix
 	{
 		private:
 			float scale;
-			SDL_Texture* texture;
 			SDL_FRect source;
 			SDL_FRect destination;
 			Vector2<float> position;
+			SDL_Texture* texture;
 
 		public:
 			TileComponent(const unsigned int&, const SDL_FRect&, const Vector2<float>&, const float&);

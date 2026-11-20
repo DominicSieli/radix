@@ -1,13 +1,11 @@
 #ifndef TEXT_COMPONENT_H
 #define TEXT_COMPONENT_H
 
+#include <string>
 #include <SDL3/SDL.h>
-#include <SDL3_ttf/SDL_ttf.h>
 
-#include "game.h"
-#include "vectors.h"
-#include "font_manager.h"
 #include "entity_manager.h"
+#include "transform_component.h"
 
 namespace Radix
 {
@@ -15,21 +13,31 @@ namespace Radix
 	{
 		private:
 			std::string text;
-			unsigned int font_family;
+			unsigned int font;
 			SDL_Color color;
+			bool fixed_position;
 
-			SDL_FRect position;
+			SDL_FRect rect;
 			SDL_Texture* texture;
 			SDL_Renderer* renderer;
+			TransformComponent* transform_component;
 
 		public:
-			TextComponent(const Vector2<float>&, const std::string&, const unsigned int&, const SDL_Color&);
+			TextComponent(const std::string&, const unsigned int&, const SDL_Color&, const bool&);
 
 			void initialize() override;
 
-			void set_text(const std::string&, const unsigned int&);
+			void update(const float&) override;
 
 			void render() override;
+
+			void update_text();
+
+			void set_color(const SDL_Color&);
+
+			void set_text(const std::string&);
+
+			void set_font(const unsigned int&);
 	};
 }
 

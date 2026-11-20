@@ -2,31 +2,56 @@
 #include <SDL3_image/SDL_image.h>
 
 #include "game.h"
+#include "font_manager.h"
 #include "text_component.h"
 
 namespace Radix
 {
-	TextComponent::TextComponent(const Vector2<float>& screen_position, const std::string& text, const unsigned int& font_family, const SDL_Color& color):
-		text{text}, font_family{font_family}, color{color}
-	{
-		position.x = screen_position.x;
-		position.y = screen_position.y;
-		set_text(text, font_family);
-	}
+	TextComponent::TextComponent(const std::string& text, const unsigned int& font, const SDL_Color& color, const bool& fixed_position):
+		text{text}, font{font}, color{color}, fixed_position{fixed_position}
+	{}
 
 	void TextComponent::initialize()
 	{
+		update_text();
 		renderer = Game::render_manager.get_renderer();
+
+		if(get_entity()->has_component<TransformComponent>())
+		{
+			transform_component = get_entity()->get_component<TransformComponent>();
+		}
+
+		if(transform_component)
+		{
+			rect.x = transform_component->get_position().x;
+			rect.y = transform_component->get_position().y;
+		}
 	}
 
-	void TextComponent::set_text(const std::string& text, const unsigned int& font_family)
+	void TextComponent::update(const float&)
+	{
+		SDL_FRect camera = Game::camera_manager.get_camera();
+
+		rect.x = rect.x - ((fixed_position == true) ? 0.00f : camera.x);
+		rect.y = rect.y - ((fixed_position == true) ? 0.00f : camera.y);
+	}
+
+	void TextComponent::render()
+	{
+		if(renderer && texture)
+		{
+			SDL_RenderTexture(renderer, texture, nullptr, &rect);
+		}
+	}
+
+	void TextComponent::update_text()
 	{
 		SDL_Surface* surface = nullptr;
-		TTF_Font* font = Game::font_manager.get_font(font_family);
+		TTF_Font* ttf_font = Game::font_manager.get_font(font);
 
-		if(font)
+		if(ttf_font)
 		{
-			surface = TTF_RenderText_Blended(font, text.c_str(), 0, color);
+			surface = TTF_RenderText_Blended(ttf_font, text.c_str(), 0, color);
 		}
 
 		if(renderer && surface)
@@ -36,16 +61,23 @@ namespace Radix
 
 			if(texture)
 			{
-				SDL_GetTextureSize(texture, &position.w, &position.h);
+				SDL_GetTextureSize(texture, &rect.w, &rect.h);
 			}
 		}
 	}
 
-	void TextComponent::render()
+	void TextComponent::set_color(const SDL_Color& new_color)
 	{
-		if(renderer && texture)
-		{
-			SDL_RenderTexture(renderer, texture, nullptr, &position);
-		}
+		color = new_color;
+	}
+
+	void TextComponent::set_text(const std::string& new_text)
+	{
+		text = new_text;
+	}
+
+	void TextComponent::set_font(const unsigned int& new_font)
+	{
+		font = new_font;
 	}
 }

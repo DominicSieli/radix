@@ -8,7 +8,7 @@
 namespace Radix
 {
 	TileMap::TileMap(const unsigned int& texture_id, const Vector2<unsigned int>& tiles, const float& tile_size, const float& scale):
-		texture_id{texture_id}, tiles{tiles}, tile_size{tile_size}, scale{scale}
+		scale{scale}, tile_size{tile_size}, texture_id{texture_id}, tiles{tiles}
 	{
 		get_map_dimensions();
 	}
