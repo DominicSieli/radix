@@ -7,44 +7,34 @@
 
 namespace Radix
 {
-	TextComponent::TextComponent(const std::string& text, const unsigned int& font, const SDL_Color& color, const bool& fixed_position):
-		text{text}, font{font}, color{color}, fixed_position{fixed_position}
+	TextComponent::TextComponent(const std::string& text, const unsigned int& font, const SDL_Color& color, const SDL_FRect& sdl_frect, const bool& fixed_position):
+		text{text}, font{font}, color{color}, sdl_frect{sdl_frect}, fixed_position{fixed_position}
 	{}
 
 	void TextComponent::initialize()
 	{
-		update_text();
+		create_texture();
 		renderer = Game::render_manager.get_renderer();
-
-		if(get_entity()->has_component<TransformComponent>())
-		{
-			transform_component = get_entity()->get_component<TransformComponent>();
-		}
-
-		if(transform_component)
-		{
-			rect.x = transform_component->get_position().x;
-			rect.y = transform_component->get_position().y;
-		}
 	}
 
 	void TextComponent::update(const float&)
 	{
+		position = sdl_frect;
 		SDL_FRect camera = Game::camera_manager.get_camera();
 
-		rect.x = rect.x - ((fixed_position == true) ? 0.00f : camera.x);
-		rect.y = rect.y - ((fixed_position == true) ? 0.00f : camera.y);
+		position.x -= ((fixed_position == true) ? 0.00f : camera.x);
+		position.y -= ((fixed_position == true) ? 0.00f : camera.y);
 	}
 
 	void TextComponent::render()
 	{
 		if(renderer && texture)
 		{
-			SDL_RenderTexture(renderer, texture, nullptr, &rect);
+			SDL_RenderTexture(renderer, texture, nullptr, &position);
 		}
 	}
 
-	void TextComponent::update_text()
+	void TextComponent::create_texture()
 	{
 		SDL_Surface* surface = nullptr;
 		TTF_Font* ttf_font = Game::font_manager.get_font(font);
@@ -61,23 +51,31 @@ namespace Radix
 
 			if(texture)
 			{
-				SDL_GetTextureSize(texture, &rect.w, &rect.h);
+				SDL_GetTextureSize(texture, &sdl_frect.w, &sdl_frect.h);
 			}
 		}
-	}
-
-	void TextComponent::set_color(const SDL_Color& new_color)
-	{
-		color = new_color;
 	}
 
 	void TextComponent::set_text(const std::string& new_text)
 	{
 		text = new_text;
+		create_texture();
 	}
 
 	void TextComponent::set_font(const unsigned int& new_font)
 	{
 		font = new_font;
+		create_texture();
+	}
+
+	void TextComponent::set_color(const SDL_Color& new_color)
+	{
+		color = new_color;
+		create_texture();
+	}
+
+	void TextComponent::set_position(const SDL_FRect& new_frect)
+	{
+		sdl_frect = new_frect;
 	}
 }

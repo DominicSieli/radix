@@ -41,8 +41,8 @@ namespace Radix
 			Vector2<float> position = transform_component->get_position();
 			Vector2<float> dimensions = transform_component->get_dimensions();
 
-			position.x = position.x - ((fixed_position == true) ? 0.00f : camera.x);
-			position.y = position.y - ((fixed_position == true) ? 0.00f : camera.y);
+			position.x -= ((fixed_position == true) ? 0.00f : camera.x);
+			position.y -= ((fixed_position == true) ? 0.00f : camera.y);
 
 			vertices.at(0) = {position.x, position.y};
 			vertices.at(1) = {position.x + (dimensions.x * scale.x), position.y};

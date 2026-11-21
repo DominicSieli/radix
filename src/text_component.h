@@ -15,15 +15,15 @@ namespace Radix
 			std::string text;
 			unsigned int font;
 			SDL_Color color;
+			SDL_FRect sdl_frect;
 			bool fixed_position;
 
-			SDL_FRect rect;
+			SDL_FRect position;
 			SDL_Texture* texture;
 			SDL_Renderer* renderer;
-			TransformComponent* transform_component;
 
 		public:
-			TextComponent(const std::string&, const unsigned int&, const SDL_Color&, const bool&);
+			TextComponent(const std::string&, const unsigned int&, const SDL_Color&, const SDL_FRect&, const bool&);
 
 			void initialize() override;
 
@@ -31,13 +31,15 @@ namespace Radix
 
 			void render() override;
 
-			void update_text();
-
-			void set_color(const SDL_Color&);
+			void create_texture();
 
 			void set_text(const std::string&);
 
 			void set_font(const unsigned int&);
+
+			void set_color(const SDL_Color&);
+
+			void set_position(const SDL_FRect&);
 	};
 }
 
