@@ -28,8 +28,11 @@ namespace Radix
 
 	void TextureManager::delete_texture(const unsigned int& id)
 	{
-		SDL_DestroyTexture(textures[id]);
-		textures.erase(id);
+		if(textures.contains(id))
+		{
+			SDL_DestroyTexture(textures[id]);
+			textures.erase(id);
+		}
 	}
 
 	SDL_Texture* TextureManager::get_texture(const unsigned int& id)

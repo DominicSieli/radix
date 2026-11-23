@@ -15,8 +15,11 @@ namespace Radix
 	{
 		for(Entity* entity : entities)
 		{
-			delete entity;
-			entity = nullptr;
+			if(entity)
+			{
+				delete entity;
+				entity = nullptr;
+			}
 		}
 
 		entities.clear();
@@ -39,8 +42,11 @@ namespace Radix
 		{
 			if(!entities.at(i)->is_active())
 			{
-				delete entities.at(i);
-				entities.at(i) = nullptr;
+				if(entities.at(i))
+				{
+					delete entities.at(i);
+					entities.at(i) = nullptr;
+				}
 			}
 		}
 	}
@@ -101,8 +107,11 @@ namespace Radix
 		{
 			if(entities.at(i)->get_id() == id)
 			{
-				delete entities.at(i);
-				entities.at(i) = nullptr;
+				if(entities.at(i))
+				{
+					delete entities.at(i);
+					entities.at(i) = nullptr;
+				}
 
 				return true;
 			}
@@ -117,8 +126,11 @@ namespace Radix
 		{
 			if(entities.at(i)->get_type_id() == type_id)
 			{
-				delete entities.at(i);
-				entities.at(i) = nullptr;
+				if(entities.at(i))
+				{
+					delete entities.at(i);
+					entities.at(i) = nullptr;
+				}
 			}
 		}
 	}

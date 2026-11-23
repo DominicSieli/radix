@@ -245,26 +245,40 @@ namespace Radix
 
 		if(music_track)
 		{
-			MIX_DestroyTrack(music_track);
-			music_track = nullptr;
+			if(music_track)
+			{
+				MIX_DestroyTrack(music_track);
+				music_track = nullptr;
+			}
 		}
 
 		for(MIX_Track* track : tracks)
 		{
-			MIX_DestroyTrack(track);
+			if(track)
+			{
+				MIX_DestroyTrack(track);
+				track = nullptr;
+			}
 		}
 
 		tracks.clear();
 
 		for(auto& [id, audio] : audio_map)
 		{
-			MIX_DestroyAudio(audio);
+			if(audio)
+			{
+				MIX_DestroyAudio(audio);
+				audio = nullptr;
+			}
 		}
 
 		audio_map.clear();
 
-		MIX_DestroyMixer(mixer);
-		mixer = nullptr;
+		if(mixer)
+		{
+			MIX_DestroyMixer(mixer);
+			mixer = nullptr;
+		}
 
 		MIX_Quit();
 	}

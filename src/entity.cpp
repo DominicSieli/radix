@@ -46,14 +46,11 @@ namespace Radix
 	{
 		for(Component* component : components)
 		{
-			delete component;
-			component = nullptr;
-		}
-
-		for(auto& [key, component] : component_map)
-		{
-			delete component;
-			component = nullptr;
+			if(component)
+			{
+				delete component;
+				component = nullptr;
+			}
 		}
 
 		components.clear();

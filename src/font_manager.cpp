@@ -19,7 +19,10 @@ namespace Radix
 	{
 		for(auto& [id, font] : fonts)
 		{
-			TTF_CloseFont(font);
+			if(font)
+			{
+				TTF_CloseFont(font);
+			}
 		}
 
 		fonts.clear();
@@ -27,8 +30,11 @@ namespace Radix
 
 	void FontManager::delete_font(const unsigned int& id)
 	{
-		TTF_CloseFont(fonts[id]);
-		fonts.erase(id);
+		if(fonts.contains(id))
+		{
+			TTF_CloseFont(fonts[id]);
+			fonts.erase(id);
+		}
 	}
 
 	TTF_Font* FontManager::get_font(const unsigned int& id)
